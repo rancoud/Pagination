@@ -16,7 +16,10 @@ $countElements = 10;
 $countElementPerPage = 5;
 
 $p = new Pagination();
-$p->generateHtml($currentPage, $countElements, $countElementPerPage);
+$html = $p->generateHtml($currentPage, $countElements, $countElementPerPage);
+echo $html;
+// it will output
+// <ul ><li ><a  href="1"  title="1">1</a></li><li ><a  href="2"  title="2">2</a></li></ul>
 ```
 
 ## Pagination Constructor
