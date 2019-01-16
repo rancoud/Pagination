@@ -136,7 +136,14 @@ class PaginationTest extends TestCase
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [],
+                    'links' => [
+                        [
+                            'dots' => false,
+                            'current' => true,
+                            'href' => '1',
+                            'text' => '1'
+                        ]
+                    ],
                     'next' => null,
                 ]
             ],
@@ -149,7 +156,14 @@ class PaginationTest extends TestCase
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [],
+                    'links' => [
+                        [
+                            'dots' => false,
+                            'current' => true,
+                            'href' => '1',
+                            'text' => '1'
+                        ]
+                    ],
                     'next' => null,
                 ]
             ],
@@ -707,6 +721,26 @@ class PaginationTest extends TestCase
                     '	</ul>'.PHP_EOL.
                     '</nav>'
             ]
+        ];
+    }
+
+    /** @dataProvider dataCountPages
+     * @param int  $countElements
+     * @param int  $countElementPerPage
+     * @param int  $expected
+     */
+    public function testCountPages(int $countElements, int $countElementPerPage, int $expected)
+    {
+        static::assertSame($expected, Pagination::countPages($countElements, $countElementPerPage));
+    }
+
+    public function dataCountPages()
+    {
+        return [
+            '1 item + 1 per page' => [1, 1, 1],
+            '10 item + 1 per page' => [10, 1, 10],
+            '10 item + 5 per page' => [10, 5, 2],
+            '11 item + 5 per page' => [11, 5, 3],
         ];
     }
 }

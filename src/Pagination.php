@@ -126,6 +126,34 @@ class Pagination
     }
 
     /**
+     * @param int $countElements
+     * @param int $countElementPerPage
+     *
+     * @return int
+     */
+    public static function countPages(int $countElements, int $countElementPerPage): int
+    {
+        $countElements = $countElements < 0 ? 0 : $countElements;
+        $countElementPerPage = $countElementPerPage < 1 ? 1 : $countElementPerPage;
+
+        return (int) \ceil($countElements / $countElementPerPage);
+    }
+
+    /**
+     * @param int $countElementPerPage
+     * @param int $indexItem
+     *
+     * @return int
+     */
+    public static function locateItemInPage(int $countElementPerPage, int $indexItem): int
+    {
+        $countElementPerPage = $countElementPerPage < 1 ? 1 : $countElementPerPage;
+        $indexItem = $indexItem < 0 ? 0 : $indexItem;
+
+        return (int) \ceil($indexItem / $countElementPerPage);
+    }
+
+    /**
      * @param int $currentPage
      * @param int $countElements
      * @param int $countElementPerPage
@@ -220,10 +248,6 @@ class Pagination
 
     protected function computeLinks(): void
     {
-        if ($this->maxPages < 2) {
-            return;
-        }
-
         $canAddDot = true;
         for ($i = 1; $i <= $this->maxPages; ++$i) {
             $href = $this->getLink($i);
