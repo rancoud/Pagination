@@ -33,7 +33,16 @@ class PaginationTest extends TestCase
         static::assertEquals($out, $data);
 
         $html = $p->generateHtml(1, 2, 1);
-        $expected = '<ul ><li ><a  href="1"  title="1">1</a></li><li ><a  href="2"  title="2">2</a></li></ul>';
+        $expected = '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                    '	<ul>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '	</ul>'.PHP_EOL.
+                    '</nav>';
         static::assertSame($expected, $html);
     }
 
@@ -384,8 +393,320 @@ class PaginationTest extends TestCase
         ];
     }
 
-    // security sur attributes + html by default
-    // base link + base link after
-    // remove start and end when no dots
-    // choose count page each side
+    /** @dataProvider dataAdjacentAndLimitConfiguration
+     * @param array $configuration
+     * @param array $params
+     * @param array $dataOut
+     */
+    public function testAdjacentAndLimitConfiguration(array $configuration, array $params, array $dataOut)
+    {
+        $p = new Pagination();
+        $p->setConfiguration($configuration);
+        $data = $p->generateData($params['current'], $params['count'], $params['per_page']);
+
+        static::assertEquals($dataOut, $data);
+    }
+
+    /**
+     * @return array
+     */
+    public function dataAdjacentAndLimitConfiguration()
+    {
+        $currentPage = [];
+        $currentPage[] = [
+            'dots' => false,
+            'current' => true,
+            'href' => (string) 20,
+            'text' => (string) 20
+        ];
+
+        $limitPagesLeft = [];
+        $limitPagesRight = [];
+        for ($i = 1; $i < 6; $i++) {
+            $limitPagesLeft[] = [
+                'dots' => false,
+                'current' => false,
+                'href' => (string) $i,
+                'text' => (string) $i
+            ];
+        }
+        for ($i = 46; $i < 51; $i++) {
+            $limitPagesRight[] = [
+                'dots' => false,
+                'current' => false,
+                'href' => (string) $i,
+                'text' => (string) $i
+            ];
+        }
+
+        $adjacentPagesLeft = [];
+        $adjacentPagesRight = [];
+        for ($i = 15; $i < 20; $i++) {
+            $adjacentPagesLeft[] = [
+                'dots' => false,
+                'current' => false,
+                'href' => (string) $i,
+                'text' => (string) $i
+            ];
+        }
+        for ($i = 21; $i < 26; $i++) {
+            $adjacentPagesRight[] = [
+                'dots' => false,
+                'current' => false,
+                'href' => (string) $i,
+                'text' => (string) $i
+            ];
+        }
+        
+        $params = [
+            'current' => 20,
+            'count' => 50,
+            'per_page' => 1
+        ];
+
+        return [
+            'limit 0 + adjacent 0' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 0,
+                    'count_pages_pair_adjacent' => 0,
+                ],
+                'params' => $params,
+                'data_out' => [
+                    'links' => $currentPage,
+                ]
+            ],
+            'limit 5 + adjacent 0' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 5,
+                    'count_pages_pair_adjacent' => 0,
+                ],
+                'params' => $params,
+                'data_out' => [
+                    'links' => array_merge($limitPagesLeft, $currentPage, $limitPagesRight),
+                ]
+            ],
+            'limit 0 + adjacent 5' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 0,
+                    'count_pages_pair_adjacent' => 5,
+                ],
+                'params' => $params,
+                'data_out' => [
+                    'links' => array_merge($adjacentPagesLeft, $currentPage, $adjacentPagesRight),
+                ]
+            ],
+            'limit 5 + adjacent 5' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 5,
+                    'count_pages_pair_adjacent' => 5,
+                ],
+                'params' => $params,
+                'data_out' => [
+                    'links' => array_merge($limitPagesLeft, $adjacentPagesLeft, $currentPage, $adjacentPagesRight, $limitPagesRight),
+                ]
+            ]
+        ];
+    }
+
+    /** @dataProvider dataRenderHtml
+     * @param array  $configuration
+     * @param array  $params
+     * @param string $expectedHtml
+     */
+    public function testRenderHtml(array $configuration, array $params, string $expectedHtml)
+    {
+        $p = new Pagination();
+        $p->setConfiguration($configuration);
+        $html = $p->generateHtml($params['current'], $params['count'], $params['per_page']);
+        static::assertSame($expectedHtml, $html);
+    }
+    
+    public function dataRenderHtml()
+    {
+        return [
+            'pretty html off' => [
+                'configuration' => [
+                    'use_pretty_html' => false
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.
+                    '<ul>'.
+                    '<li>'.
+                    '<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.
+                    '</li>'.
+                    '<li>'.
+                    '<a href="2" aria-label="Goto page 2" title="2">2</a>'.
+                    '</li>'.
+                    '</ul>'.
+                    '</nav>'
+            ],
+            'initial indentation 4' => [
+                'configuration' => [
+                    'html_initial_indentation' => 4
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '				<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                    '					<ul>'.PHP_EOL.
+                    '						<li>'.PHP_EOL.
+                    '							<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '						</li>'.PHP_EOL.
+                    '						<li>'.PHP_EOL.
+                    '							<a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '						</li>'.PHP_EOL.
+                    '					</ul>'.PHP_EOL.
+                    '				</nav>'
+            ],
+            'initial indentation 4 + four spaces' => [
+                'configuration' => [
+                    'html_initial_indentation' => 4,
+                    'html_tab_sequence' => '    '
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '                <nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                    '                    <ul>'.PHP_EOL.
+                    '                        <li>'.PHP_EOL.
+                    '                            <a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '                        </li>'.PHP_EOL.
+                    '                        <li>'.PHP_EOL.
+                    '                            <a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '                        </li>'.PHP_EOL.
+                    '                    </ul>'.PHP_EOL.
+                    '                </nav>'
+            ],
+            'initial indentation 4 + four spaces + nav off' => [
+                'configuration' => [
+                    'html_initial_indentation' => 4,
+                    'html_tab_sequence' => '    ',
+                    'use_nav' => false
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '                <ul>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                </ul>'
+            ],
+            'initial indentation 4 + four spaces + previous + after' => [
+                'configuration' => [
+                    'html_initial_indentation' => 4,
+                    'html_tab_sequence' => '    ',
+                    'use_nav' => false,
+                    'use_next' => true,
+                    'use_previous' => true,
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 3,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '                <ul>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="1" aria-label="Previous page" title="Previous page">Previous page</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="1" aria-label="Goto page 1" title="1">1</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="2" aria-label="Current page, page 2" aria-current="true" title="2">2</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="3" aria-label="Goto page 3" title="3">3</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                    <li>'.PHP_EOL.
+                    '                        <a href="3" aria-label="Next page" title="Next page">Next page</a>'.PHP_EOL.
+                    '                    </li>'.PHP_EOL.
+                    '                </ul>'
+            ],
+            'attrs + labels' => [
+                'configuration' => [
+                    'text_previous'               => '前',
+                    'text_next'                   => '次',
+                    'root_tag'                    => 'root',
+                    'root_attrs'                  => 'x="f(x)"',
+                    'item_tag'                    => 'item',
+                    'item_attrs'                  => 'class="okay"',
+                    'item_attrs_current'          => 'data-id="yes"',
+                    'item_next_attrs'             => 'next',
+                    'item_previous_attrs'         => 'previous',
+                    'link_tag'                    => 'zela',
+                    'link_attrs'                  => 'data-data="o"',
+                    'link_attrs_current'          => 'data-id="id"',
+                    'aria_label_link'             => '頁 -> %d',
+                    'aria_label_current_link'     => '頁 - %d',
+                    'aria_label_nav'              => 'plop',
+                    'use_next'                    => true,
+                    'use_previous'                => true,
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 3,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="plop">'.PHP_EOL.
+                    '	<root x="f(x)">'.PHP_EOL.
+                    '		<item previous>'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="前" title="前">前</zela>'.PHP_EOL.
+                    '		</item>'.PHP_EOL.
+                    '		<item class="okay">'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="頁 -> 1" title="1">1</zela>'.PHP_EOL.
+                    '		</item>'.PHP_EOL.
+                    '		<item data-id="yes">'.PHP_EOL.
+                    '			<zela data-id="id" href="2" aria-label="頁 - 2" aria-current="true" title="2">2</zela>'.PHP_EOL.
+                    '		</item>'.PHP_EOL.
+                    '		<item class="okay">'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="頁 -> 3" title="3">3</zela>'.PHP_EOL.
+                    '		</item>'.PHP_EOL.
+                    '		<item next>'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="次" title="次">次</zela>'.PHP_EOL.
+                    '		</item>'.PHP_EOL.
+                    '	</root>'.PHP_EOL.
+                    '</nav>'
+            ],
+            'use dots' => [
+                'configuration' => [
+                    'use_dots' => true,
+                    'text_dots' => 'dots',
+                    'item_dot_attrs' => 'dotdot',
+                    'count_pages_pair_adjacent' => 0
+                ],
+                'params' => [
+                    'current' => 25,
+                    'count' => 50,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                    '	<ul>'.PHP_EOL.
+                    '		<li dotdot>'.PHP_EOL.
+                    '			<span>dots</span>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="25" aria-label="Current page, page 25" aria-current="true" title="25">25</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li dotdot>'.PHP_EOL.
+                    '			<span>dots</span>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '	</ul>'.PHP_EOL.
+                    '</nav>'
+            ]
+        ];
+    }
 }

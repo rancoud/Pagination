@@ -27,6 +27,9 @@ class Pagination
     protected $textPrevious = 'Previous page';
     protected $textNext = 'Next page';
     protected $textDots = '&hellip;';
+    protected $ariaLabelLink = 'Goto page %d';
+    protected $ariaLabelCurrentLink = 'Current page, page %d';
+    protected $ariaLabelNav = 'Pagination navigation';
     // endregion
 
     // region Properties: Generation
@@ -37,6 +40,10 @@ class Pagination
     protected $usePrevious = false;
     protected $useNext = false;
     protected $showAllLinks = false;
+    protected $usePrettyHtml = true;
+    protected $htmlInitialIndentation = 0;
+    protected $htmlTabSequence = "\t";
+    protected $useNav = true;
     // endregion
 
     // region Properties: Tags Parameters
@@ -47,6 +54,7 @@ class Pagination
     protected $itemAttrsCurrent = '';
     protected $itemNextAttrs = '';
     protected $itemPreviousAttrs = '';
+    protected $itemDotAttrs = '';
     protected $linkTag = 'a';
     protected $linkAttrs = '';
     protected $linkAttrsCurrent = '';
@@ -54,38 +62,45 @@ class Pagination
 
     // region Configuration keys
     protected $propsString = [
-        'base_link'           => 'baseLink',
-        'base_link_after'     => 'baseLinkAfter',
-        'text_previous'       => 'textPrevious',
-        'text_next'           => 'textNext',
-        'text_dots'           => 'textDots',
-        'root_tag'            => 'rootTag',
-        'root_attrs'          => 'rootAttrs',
-        'item_tag'            => 'itemTag',
-        'item_attrs'          => 'itemAttrs',
-        'item_attrs_current'  => 'itemAttrsCurrent',
-        'item_next_attrs'     => 'itemNextAttrs',
-        'item_previous_attrs' => 'itemPreviousAttrs',
-        'link_tag'            => 'linkTag',
-        'link_attrs'          => 'linkAttrs',
-        'link_attrs_current'  => 'linkAttrsCurrent'
+        'base_link'                   => 'baseLink',
+        'base_link_after'             => 'baseLinkAfter',
+        'text_previous'               => 'textPrevious',
+        'text_next'                   => 'textNext',
+        'text_dots'                   => 'textDots',
+        'root_tag'                    => 'rootTag',
+        'root_attrs'                  => 'rootAttrs',
+        'item_tag'                    => 'itemTag',
+        'item_attrs'                  => 'itemAttrs',
+        'item_attrs_current'          => 'itemAttrsCurrent',
+        'item_next_attrs'             => 'itemNextAttrs',
+        'item_previous_attrs'         => 'itemPreviousAttrs',
+        'item_dot_attrs'              => 'itemDotAttrs',
+        'link_tag'                    => 'linkTag',
+        'link_attrs'                  => 'linkAttrs',
+        'link_attrs_current'          => 'linkAttrsCurrent',
+        'html_tab_sequence'           => 'htmlTabSequence',
+        'aria_label_link'             => 'ariaLabelLink',
+        'aria_label_current_link'     => 'ariaLabelCurrentLink',
+        'aria_label_nav'              => 'ariaLabelNav'
     ];
     protected $propsBool = [
         'use_dots'       => 'useDots',
         'use_previous'   => 'usePrevious',
         'use_next'       => 'useNext',
-        'show_all_links' => 'showAllLinks'
+        'show_all_links' => 'showAllLinks',
+        'use_pretty_html'=> 'usePrettyHtml',
+        'use_nav'        => 'useNav'
     ];
     protected $propsPositiveInteger = [
         'count_pages_pair_limit'    => 'countPagesPairLimit',
         'count_pages_pair_adjacent' => 'countPagesPairAdjacent',
+        'html_initial_indentation'  => 'htmlInitialIndentation',
     ];
     // endregion
 
     /**
      * Pagination constructor.
      *
-     * @param int   $currentPage
      * @param array $configuration
      */
     public function __construct(array $configuration = [])
@@ -209,21 +224,25 @@ class Pagination
             return;
         }
 
+        $canAddDot = true;
         for ($i = 1; $i <= $this->maxPages; ++$i) {
             $href = $this->getLink($i);
 
             if ($i === $this->currentPage) {
                 $this->links[] = $this->generateLinkData($href, $i, true);
+                $canAddDot = true;
                 continue;
             }
 
             if ($this->showAllLinks || $this->isLimit($i) || $this->isAdjacent($i)) {
                 $this->links[] = $this->generateLinkData($href, $i);
+                $canAddDot = true;
                 continue;
             }
 
-            if ($this->useDots) {
-                $this->links[] = $this->generateLinkData('#', $this->textDots, false, true);
+            if ($this->useDots && $canAddDot) {
+                $this->links[] = $this->generateLinkData('', $this->textDots, false, true);
+                $canAddDot = false;
             }
         }
     }
@@ -303,7 +322,21 @@ class Pagination
      */
     protected function getHtml(): string
     {
-        $html = '<' . $this->rootTag . ' ' . $this->rootAttrs . '>';
+        $html = '';
+        $tab = $this->getTabSequence();
+        $endl = $this->getEndlineSequence();
+
+        if ($this->useNav) {
+            ++$this->htmlInitialIndentation;
+            $html .= $tab . '<nav role="navigation" aria-label="' . $this->ariaLabelNav . '">' . $endl;
+            $tab = $this->getTabSequence();
+        }
+
+        $html .= $tab . '<' . $this->rootTag;
+        if (!empty($this->rootAttrs)) {
+            $html .= ' ' . $this->rootAttrs;
+        }
+        $html .= '>' . $endl;
 
         $html .= $this->generatePreviousLink();
 
@@ -313,7 +346,13 @@ class Pagination
 
         $html .= $this->generateNextLink();
 
-        $html .= '</' . $this->rootTag . '>';
+        $html .= $tab . '</' . $this->rootTag . '>';
+
+        if ($this->useNav) {
+            --$this->htmlInitialIndentation;
+            $tab = $this->getTabSequence();
+            $html .= $endl . $tab . '</nav>';
+        }
 
         return $html;
     }
@@ -328,11 +367,13 @@ class Pagination
         }
 
         return $this->generateLinkFactory([
-            'itemAttrs'  => $this->itemAttrs,
-            'linkAttrs'  => $this->linkAttrs,
-            'href'       => $this->previous['href'],
-            'text'       => $this->previous['text'],
-            'aria-label' => 'aria-label="' . $this->textPrevious . '"'
+            'itemAttrs'    => $this->itemPreviousAttrs,
+            'linkAttrs'    => $this->linkAttrs,
+            'href'         => $this->previous['href'],
+            'text'         => $this->previous['text'],
+            'ariaLabel'    => 'aria-label="' . $this->textPrevious . '"',
+            'ariaCurrent'  => false,
+            'dots'         => false
         ]);
     }
 
@@ -343,12 +384,27 @@ class Pagination
      */
     protected function generateLink(array $link): string
     {
+        $ariaLabel = \sprintf($this->ariaLabelLink, $link['text']);
+        if ($link['current']) {
+            $ariaLabel = \sprintf($this->ariaLabelCurrentLink, $link['text']);
+        }
+
+        $itemAttrs = $this->itemAttrs;
+        if ($link['current']) {
+            $itemAttrs = $this->itemAttrsCurrent;
+        }
+        if ($link['dots']) {
+            $itemAttrs = $this->itemDotAttrs;
+        }
+
         return $this->generateLinkFactory([
-            'itemAttrs'  => (($link['current']) ? $this->itemAttrsCurrent : $this->itemAttrs),
-            'linkAttrs'  => (($link['current']) ? $this->linkAttrsCurrent : $this->linkAttrs),
-            'href'       => $link['href'],
-            'text'       => $link['text'],
-            'aria-label' => ''
+            'itemAttrs'    => $itemAttrs,
+            'linkAttrs'    => (($link['current']) ? $this->linkAttrsCurrent : $this->linkAttrs),
+            'href'         => $link['href'],
+            'text'         => $link['text'],
+            'ariaLabel'    => 'aria-label="' . $ariaLabel . '"',
+            'ariaCurrent'  => $link['current'],
+            'dots'         => $link['dots']
         ]);
     }
 
@@ -362,11 +418,13 @@ class Pagination
         }
 
         return $this->generateLinkFactory([
-            'itemAttrs'  => $this->itemAttrs,
-            'linkAttrs'  => $this->linkAttrs,
-            'href'       => $this->next['href'],
-            'text'       => $this->next['text'],
-            'aria-label' => 'aria-label="' . $this->textNext . '"'
+            'itemAttrs'    => $this->itemNextAttrs,
+            'linkAttrs'    => $this->linkAttrs,
+            'href'         => $this->next['href'],
+            'text'         => $this->next['text'],
+            'ariaLabel'    => 'aria-label="' . $this->textNext . '"',
+            'ariaCurrent'  => false,
+            'dots'         => false
         ]);
     }
 
@@ -377,16 +435,59 @@ class Pagination
      */
     protected function generateLinkFactory(array $infos): string
     {
-        $html = '<' . $this->itemTag . ' ' . $infos['itemAttrs'] . '>';
+        $tab1 = $this->getTabSequence(1);
+        $tab2 = $this->getTabSequence(2);
+        $endl = $this->getEndlineSequence();
 
-        $html .= '<' . $this->linkTag . ' ' . $infos['linkAttrs'] . ' href="' . $infos['href'] . '" ';
+        $openItemTag = '<' . $this->itemTag;
+        $openItemTag .= !empty($infos['itemAttrs']) ? ' ' . $infos['itemAttrs'] . '>' : '>';
+        $closeItemTag = '</' . $this->itemTag . '>';
 
-        $html .= $infos['aria-label'] . ' title="' . $infos['text'] . '">' . $infos['text'];
+        if ($infos['dots']) {
+            $openLinkTag = '<span';
+            $openLinkTag .= '>' . $infos['text'];
+            $closeLinkTag = '</span>';
+        } else {
+            $openLinkTag = '<' . $this->linkTag;
+            $openLinkTag .= !empty($infos['linkAttrs']) ? ' ' . $infos['linkAttrs'] : '';
+            $openLinkTag .= !empty($infos['href']) ? ' href="' . $infos['href'] . '"' : '';
+            $openLinkTag .= !empty($infos['ariaLabel']) ? ' ' . $infos['ariaLabel'] : '';
+            $openLinkTag .= $infos['ariaCurrent'] ? ' aria-current="true"' : '';
+            $openLinkTag .= ' title="' . $infos['text'] . '"';
+            $openLinkTag .= '>' . $infos['text'];
+            $closeLinkTag = '</' . $this->linkTag . '>';
+        }
 
-        $html .= '</' . $this->linkTag . '>';
-
-        $html .= '</' . $this->itemTag . '>';
+        $html = $tab1 . $openItemTag . $endl;
+        $html .= $tab2 . $openLinkTag . $closeLinkTag . $endl;
+        $html .= $tab1 . $closeItemTag . $endl;
 
         return $html;
+    }
+
+    /**
+     * @param int $currentIndent
+     *
+     * @return string
+     */
+    protected function getTabSequence(int $currentIndent = 0): string
+    {
+        if (!$this->usePrettyHtml) {
+            return '';
+        }
+
+        return \str_repeat($this->htmlTabSequence, $this->htmlInitialIndentation + $currentIndent);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEndlineSequence(): string
+    {
+        if (!$this->usePrettyHtml) {
+            return '';
+        }
+
+        return PHP_EOL;
     }
 }
