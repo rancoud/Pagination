@@ -20,14 +20,16 @@ class PaginationTest extends TestCase
             [
                 'dots' => false,
                 'current' => true,
-                'href' => '1',
-                'text' => '1'
+                'href' => '#',
+                'text' => '1',
+                'page' => 1
             ],
             [
                 'dots' => false,
                 'current' => false,
                 'href' => '2',
-                'text' => '2'
+                'text' => '2',
+                'page' => 2
             ]
         ]];
         static::assertEquals($out, $data);
@@ -36,10 +38,10 @@ class PaginationTest extends TestCase
         $expected = '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
                     '	<ul>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
                     '</nav>';
@@ -60,19 +62,22 @@ class PaginationTest extends TestCase
                     'dots' => false,
                     'current' => false,
                     'href' => '1',
-                    'text' => '1'
+                    'text' => '1',
+                    'page' => 1
                 ],
                 [
                     'dots' => false,
                     'current' => true,
-                    'href' => '2',
-                    'text' => '2'
+                    'href' => '#',
+                    'text' => '2',
+                    'page' => 2
                 ],
                 [
                     'dots' => false,
                     'current' => false,
                     'href' => '3',
-                    'text' => '3'
+                    'text' => '3',
+                    'page' => 3
                 ]
             ],
             'next' => [
@@ -140,8 +145,9 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '1',
-                            'text' => '1'
+                            'href' => '#',
+                            'text' => '1',
+                            'page' => 1
                         ]
                     ],
                     'next' => null,
@@ -160,8 +166,9 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '1',
-                            'text' => '1'
+                            'href' => '#',
+                            'text' => '1',
+                            'page' => 1
                         ]
                     ],
                     'next' => null,
@@ -209,20 +216,23 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '1',
-                            'text' => '1'
+                            'href' => '#',
+                            'text' => '1',
+                            'page' => 1
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '2',
-                            'text' => '2'
+                            'text' => '2',
+                            'page' => 2
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '3',
-                            'text' => '3'
+                            'text' => '3',
+                            'page' => 3
                         ]
                     ],
                     'next' => [
@@ -248,25 +258,29 @@ class PaginationTest extends TestCase
                             'dots' => false,
                             'current' => false,
                             'href' => '1',
-                            'text' => '1'
+                            'text' => '1',
+                            'page' => 1
                         ],
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '2',
-                            'text' => '2'
+                            'href' => '#',
+                            'text' => '2',
+                            'page' => 2
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '3',
-                            'text' => '3'
+                            'text' => '3',
+                            'page' => 3
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '4',
-                            'text' => '4'
+                            'text' => '4',
+                            'page' => 4
                         ]
                     ],
                     'next' => [
@@ -347,20 +361,23 @@ class PaginationTest extends TestCase
             $linksCurrentPage1[] = [
                 'dots' => false,
                 'current' => ($i == 1),
-                'href' => (string) $i,
-                'text' => (string) $i
+                'href' => ($i == 1) ? '#' : (string) $i,
+                'text' => (string) $i,
+                'page' => $i
             ];
             $linksCurrentPage2[] = [
                 'dots' => false,
                 'current' => ($i == 2),
-                'href' => (string) $i,
-                'text' => (string) $i
+                'href' => ($i == 2) ? '#' : (string) $i,
+                'text' => (string) $i,
+                'page' => $i
             ];
             $linksCurrentPage50[] = [
                 'dots' => false,
                 'current' => ($i == 50),
-                'href' => (string) $i,
-                'text' => (string) $i
+                'href' => ($i == 50) ? '#' : (string) $i,
+                'text' => (string) $i,
+                'page' => $i
             ];
         }
         
@@ -430,8 +447,9 @@ class PaginationTest extends TestCase
         $currentPage[] = [
             'dots' => false,
             'current' => true,
-            'href' => (string) 20,
-            'text' => (string) 20
+            'href' => '#',
+            'text' => (string) 20,
+            'page' => 20
         ];
 
         $limitPagesLeft = [];
@@ -441,7 +459,8 @@ class PaginationTest extends TestCase
                 'dots' => false,
                 'current' => false,
                 'href' => (string) $i,
-                'text' => (string) $i
+                'text' => (string) $i,
+                'page' => $i
             ];
         }
         for ($i = 46; $i < 51; $i++) {
@@ -449,7 +468,8 @@ class PaginationTest extends TestCase
                 'dots' => false,
                 'current' => false,
                 'href' => (string) $i,
-                'text' => (string) $i
+                'text' => (string) $i,
+                'page' => $i
             ];
         }
 
@@ -460,7 +480,8 @@ class PaginationTest extends TestCase
                 'dots' => false,
                 'current' => false,
                 'href' => (string) $i,
-                'text' => (string) $i
+                'text' => (string) $i,
+                'page' => $i
             ];
         }
         for ($i = 21; $i < 26; $i++) {
@@ -468,7 +489,8 @@ class PaginationTest extends TestCase
                 'dots' => false,
                 'current' => false,
                 'href' => (string) $i,
-                'text' => (string) $i
+                'text' => (string) $i,
+                'page' => $i
             ];
         }
         
@@ -550,10 +572,10 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.
                     '<ul>'.
                     '<li>'.
-                    '<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.
+                    '<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.
                     '</li>'.
                     '<li>'.
-                    '<a href="2" aria-label="Goto page 2" title="2">2</a>'.
+                    '<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.
                     '</li>'.
                     '</ul>'.
                     '</nav>'
@@ -570,10 +592,10 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '				<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
                     '					<ul>'.PHP_EOL.
                     '						<li>'.PHP_EOL.
-                    '							<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '							<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '						</li>'.PHP_EOL.
                     '						<li>'.PHP_EOL.
-                    '							<a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '							<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
                     '						</li>'.PHP_EOL.
                     '					</ul>'.PHP_EOL.
                     '				</nav>'
@@ -591,10 +613,10 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '                <nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
                     '                    <ul>'.PHP_EOL.
                     '                        <li>'.PHP_EOL.
-                    '                            <a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '                            <a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '                        </li>'.PHP_EOL.
                     '                        <li>'.PHP_EOL.
-                    '                            <a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '                            <a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
                     '                        </li>'.PHP_EOL.
                     '                    </ul>'.PHP_EOL.
                     '                </nav>'
@@ -612,14 +634,14 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '                <ul>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>'.PHP_EOL.
+                    '                        <a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="2" aria-label="Goto page 2" title="2">2</a>'.PHP_EOL.
+                    '                        <a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                </ul>'
             ],
-            'initial indentation 4 + four spaces + previous + after' => [
+            'initial indentation 4 + four spaces + nav off + previous + after' => [
                 'configuration' => [
                     'html_initial_indentation' => 4,
                     'html_tab_sequence' => '    ',
@@ -634,19 +656,19 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '                <ul>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="1" aria-label="Previous page" title="Previous page">Previous page</a>'.PHP_EOL.
+                    '                        <a href="1" aria-label="Previous&#x20;page">Previous page</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="1" aria-label="Goto page 1" title="1">1</a>'.PHP_EOL.
+                    '                        <a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="2" aria-label="Current page, page 2" aria-current="true" title="2">2</a>'.PHP_EOL.
+                    '                        <a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="3" aria-label="Goto page 3" title="3">3</a>'.PHP_EOL.
+                    '                        <a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="3" aria-label="Next page" title="Next page">Next page</a>'.PHP_EOL.
+                    '                        <a href="3" aria-label="Next&#x20;page">Next page</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                </ul>'
             ],
@@ -678,19 +700,19 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav role="navigation" aria-label="plop">'.PHP_EOL.
                     '	<root x="f(x)">'.PHP_EOL.
                     '		<item previous>'.PHP_EOL.
-                    '			<zela data-data="o" href="1" aria-label="前" title="前">前</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="&#xE5;">前</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item class="okay">'.PHP_EOL.
-                    '			<zela data-data="o" href="1" aria-label="頁 -> 1" title="1">1</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="&#xE9;&#x20;-&gt;&#x20;1">1</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item data-id="yes">'.PHP_EOL.
-                    '			<zela data-id="id" href="2" aria-label="頁 - 2" aria-current="true" title="2">2</zela>'.PHP_EOL.
+                    '			<zela data-id="id" href="#" aria-label="&#xE9;&#x20;-&#x20;2" aria-current="true">2</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item class="okay">'.PHP_EOL.
-                    '			<zela data-data="o" href="3" aria-label="頁 -> 3" title="3">3</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="&#xE9;&#x20;-&gt;&#x20;3">3</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item next>'.PHP_EOL.
-                    '			<zela data-data="o" href="3" aria-label="次" title="次">次</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="&#xE6;">次</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '	</root>'.PHP_EOL.
                     '</nav>'
@@ -713,7 +735,7 @@ class PaginationTest extends TestCase
                     '			<span>dots</span>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="25" aria-label="Current page, page 25" aria-current="true" title="25">25</a>'.PHP_EOL.
+                    '			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;25" aria-current="true">25</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li dotdot>'.PHP_EOL.
                     '			<span>dots</span>'.PHP_EOL.

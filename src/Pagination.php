@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rancoud\Pagination;
 
+use Rancoud\Security\Security;
+
 /**
  * Class Pagination.
  */
@@ -19,17 +21,19 @@ class Pagination
     // endregion
 
     // region Properties: Links
-    protected $baseLink = '';
-    protected $baseLinkAfter = '';
+    protected $baseUrlBefore = '';
+    protected $baseUrlAfter = '';
     // endregion
 
     // region Properties: Texts
     protected $textPrevious = 'Previous page';
     protected $textNext = 'Next page';
-    protected $textDots = '&hellip;';
+    protected $textDots = '…';
     protected $ariaLabelLink = 'Goto page %d';
     protected $ariaLabelCurrentLink = 'Current page, page %d';
     protected $ariaLabelNav = 'Pagination navigation';
+    protected $thousandsSeparator = '';
+    protected $textPage = '%d';
     // endregion
 
     // region Properties: Generation
@@ -60,13 +64,20 @@ class Pagination
     protected $linkAttrsCurrent = '';
     // endregion
 
+    // region Properties: Security
+    protected $escAttr = true;
+    protected $escHtml = true;
+    protected $charset = 'UTF-8';
+    // endregion
+
     // region Configuration keys
     protected $propsString = [
-        'base_link'                   => 'baseLink',
-        'base_link_after'             => 'baseLinkAfter',
+        'base_url_before'             => 'baseUrlBefore',
+        'base_url_after'              => 'baseUrlAfter',
         'text_previous'               => 'textPrevious',
         'text_next'                   => 'textNext',
         'text_dots'                   => 'textDots',
+        'text_page'                   => 'textPage',
         'root_tag'                    => 'rootTag',
         'root_attrs'                  => 'rootAttrs',
         'item_tag'                    => 'itemTag',
@@ -81,15 +92,19 @@ class Pagination
         'html_tab_sequence'           => 'htmlTabSequence',
         'aria_label_link'             => 'ariaLabelLink',
         'aria_label_current_link'     => 'ariaLabelCurrentLink',
-        'aria_label_nav'              => 'ariaLabelNav'
+        'aria_label_nav'              => 'ariaLabelNav',
+        'thousands_separator'         => 'thousandsSeparator',
+        'charset'                     => 'charset'
     ];
     protected $propsBool = [
         'use_dots'       => 'useDots',
         'use_previous'   => 'usePrevious',
         'use_next'       => 'useNext',
+        'use_nav'        => 'useNav',
         'show_all_links' => 'showAllLinks',
         'use_pretty_html'=> 'usePrettyHtml',
-        'use_nav'        => 'useNav'
+        'esc_attr'       => 'escAttr',
+        'esc_html'       => 'escHtml'
     ];
     protected $propsPositiveInteger = [
         'count_pages_pair_limit'    => 'countPagesPairLimit',
@@ -141,16 +156,16 @@ class Pagination
 
     /**
      * @param int $countElementPerPage
-     * @param int $indexItem
+     * @param int $itemIndex
      *
      * @return int
      */
-    public static function locateItemInPage(int $countElementPerPage, int $indexItem): int
+    public static function locateItemInPage(int $countElementPerPage, int $itemIndex): int
     {
         $countElementPerPage = $countElementPerPage < 1 ? 1 : $countElementPerPage;
-        $indexItem = $indexItem < 0 ? 0 : $indexItem;
+        $itemIndex = $itemIndex < 0 ? 0 : $itemIndex;
 
-        return (int) \ceil($indexItem / $countElementPerPage);
+        return (int) \ceil($itemIndex / $countElementPerPage);
     }
 
     /**
@@ -253,19 +268,19 @@ class Pagination
             $href = $this->getLink($i);
 
             if ($i === $this->currentPage) {
-                $this->links[] = $this->generateLinkData($href, $i, true);
+                $this->links[] = $this->generateLinkData($i, '#', $i, true);
                 $canAddDot = true;
                 continue;
             }
 
             if ($this->showAllLinks || $this->isLimit($i) || $this->isAdjacent($i)) {
-                $this->links[] = $this->generateLinkData($href, $i);
+                $this->links[] = $this->generateLinkData($i, $href, $i);
                 $canAddDot = true;
                 continue;
             }
 
             if ($this->useDots && $canAddDot) {
-                $this->links[] = $this->generateLinkData('', $this->textDots, false, true);
+                $this->links[] = $this->generateLinkData($i, '', $this->textDots, false, true);
                 $canAddDot = false;
             }
         }
@@ -314,6 +329,7 @@ class Pagination
     }
 
     /**
+     * @param int  $page
      * @param      $href
      * @param      $text
      * @param bool $current
@@ -321,13 +337,18 @@ class Pagination
      *
      * @return array
      */
-    protected function generateLinkData($href, $text, bool $current = false, bool $dots = false): array
+    protected function generateLinkData(int $page, $href, $text, bool $current = false, bool $dots = false): array
     {
+        if (!$dots) {
+            $text = \number_format((int) $text, 0, '.', $this->thousandsSeparator);
+        }
+
         return [
             'dots'    => $dots,
             'current' => $current,
             'href'    => (string) $href,
-            'text'    => (string) $text
+            'text'    => $text,
+            'page'    => $page
         ];
     }
 
@@ -338,7 +359,7 @@ class Pagination
      */
     protected function getLink(int $page): string
     {
-        return $this->baseLink . $page . $this->baseLinkAfter;
+        return $this->baseUrlBefore . $page . $this->baseUrlAfter;
     }
 
     /**
@@ -390,12 +411,22 @@ class Pagination
             return '';
         }
 
+        $text = $this->previous['text'];
+        if ($this->escHtml) {
+            $text = Security::escHtml($this->previous['text'], $this->charset);
+        }
+
+        $ariaLabel = $this->textPrevious;
+        if ($this->escAttr) {
+            $ariaLabel = Security::escAttr($this->textPrevious, $this->charset);
+        }
+
         return $this->generateLinkFactory([
             'itemAttrs'    => $this->itemPreviousAttrs,
             'linkAttrs'    => $this->linkAttrs,
             'href'         => $this->previous['href'],
-            'text'         => $this->previous['text'],
-            'ariaLabel'    => 'aria-label="' . $this->textPrevious . '"',
+            'text'         => $text,
+            'ariaLabel'    => 'aria-label="' . $ariaLabel . '"',
             'ariaCurrent'  => false,
             'dots'         => false
         ]);
@@ -408,9 +439,9 @@ class Pagination
      */
     protected function generateLink(array $link): string
     {
-        $ariaLabel = \sprintf($this->ariaLabelLink, $link['text']);
+        $ariaLabel = \sprintf($this->ariaLabelLink, $link['page']);
         if ($link['current']) {
-            $ariaLabel = \sprintf($this->ariaLabelCurrentLink, $link['text']);
+            $ariaLabel = \sprintf($this->ariaLabelCurrentLink, $link['page']);
         }
 
         $itemAttrs = $this->itemAttrs;
@@ -421,11 +452,20 @@ class Pagination
             $itemAttrs = $this->itemDotAttrs;
         }
 
+        $text = \sprintf($this->textPage, $link['text']);
+        if ($this->escHtml) {
+            $text = Security::escHtml($link['text'], $this->charset);
+        }
+
+        if ($this->escAttr) {
+            $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
+        }
+
         return $this->generateLinkFactory([
             'itemAttrs'    => $itemAttrs,
             'linkAttrs'    => (($link['current']) ? $this->linkAttrsCurrent : $this->linkAttrs),
             'href'         => $link['href'],
-            'text'         => $link['text'],
+            'text'         => $text,
             'ariaLabel'    => 'aria-label="' . $ariaLabel . '"',
             'ariaCurrent'  => $link['current'],
             'dots'         => $link['dots']
@@ -437,16 +477,26 @@ class Pagination
      */
     protected function generateNextLink(): string
     {
-        if ($this->previous === null) {
+        if ($this->next === null) {
             return '';
+        }
+
+        $text = $this->next['text'];
+        if ($this->escHtml) {
+            $text = Security::escHtml($this->next['text'], $this->charset);
+        }
+
+        $ariaLabel = $this->textNext;
+        if ($this->escAttr) {
+            $ariaLabel = Security::escAttr($this->textNext, $this->charset);
         }
 
         return $this->generateLinkFactory([
             'itemAttrs'    => $this->itemNextAttrs,
             'linkAttrs'    => $this->linkAttrs,
             'href'         => $this->next['href'],
-            'text'         => $this->next['text'],
-            'ariaLabel'    => 'aria-label="' . $this->textNext . '"',
+            'text'         => $text,
+            'ariaLabel'    => 'aria-label="' . $ariaLabel . '"',
             'ariaCurrent'  => false,
             'dots'         => false
         ]);
@@ -477,7 +527,6 @@ class Pagination
             $openLinkTag .= !empty($infos['href']) ? ' href="' . $infos['href'] . '"' : '';
             $openLinkTag .= !empty($infos['ariaLabel']) ? ' ' . $infos['ariaLabel'] : '';
             $openLinkTag .= $infos['ariaCurrent'] ? ' aria-current="true"' : '';
-            $openLinkTag .= ' title="' . $infos['text'] . '"';
             $openLinkTag .= '>' . $infos['text'];
             $closeLinkTag = '</' . $this->linkTag . '>';
         }
