@@ -734,6 +734,9 @@ class PaginationTest extends TestCase
         static::assertSame($expected, Pagination::countPages($countElements, $countElementPerPage));
     }
 
+    /**
+     * @return array
+     */
     public function dataCountPages()
     {
         return [
@@ -741,6 +744,33 @@ class PaginationTest extends TestCase
             '10 item + 1 per page' => [10, 1, 10],
             '10 item + 5 per page' => [10, 5, 2],
             '11 item + 5 per page' => [11, 5, 3],
+        ];
+    }
+
+    /** @dataProvider dataLocateItemInPage
+     * @param int $countElementPerPage
+     * @param int $itemIndex
+     * @param int $expected
+     */
+    public function testLocateItemInPage(int $countElementPerPage, int $itemIndex, int $expected)
+    {
+        static::assertSame($expected, Pagination::locateItemInPage($countElementPerPage, $itemIndex));
+    }
+
+    /**
+     * @return array
+     */
+    public function dataLocateItemInPage()
+    {
+        return [
+            '1 per page + item index 1' => [1, 1, 1],
+            '10 per page + item index 1' => [10, 1, 1],
+            '10 per page + item index 5' => [10, 5, 1],
+            '11 per page + item index 5' => [11, 5, 1],
+            '10 per page + item index 10' => [10, 10, 1],
+            '10 per page + item index 11' => [10, 11, 2],
+            '5 per page + item index 25' => [5, 25, 5],
+            '5 per page + item index 26' => [5, 26, 6]
         ];
     }
 }
