@@ -22,14 +22,22 @@ class PaginationTest extends TestCase
                 'current' => true,
                 'href' => '#',
                 'text' => '1',
-                'page' => 1
+                'page' => 1,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;1"',
+                'ariaCurrent' => true
             ],
             [
                 'dots' => false,
                 'current' => false,
                 'href' => '2',
                 'text' => '2',
-                'page' => 2
+                'page' => 2,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;2"',
+                'ariaCurrent' => false
             ]
         ]];
         static::assertEquals($out, $data);
@@ -56,6 +64,10 @@ class PaginationTest extends TestCase
             'previous' => [
                 'href' => '1',
                 'text' => 'toto',
+                'page' => 1,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="toto"'
             ],
             'links' => [
                 [
@@ -63,26 +75,42 @@ class PaginationTest extends TestCase
                     'current' => false,
                     'href' => '1',
                     'text' => '1',
-                    'page' => 1
+                    'page' => 1,
+                    'itemAttrs' => '',
+                    'linkAttrs' => '',
+                    'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;1"',
+                    'ariaCurrent' => false
                 ],
                 [
                     'dots' => false,
                     'current' => true,
                     'href' => '#',
                     'text' => '2',
-                    'page' => 2
+                    'page' => 2,
+                    'itemAttrs' => '',
+                    'linkAttrs' => '',
+                    'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;2"',
+                    'ariaCurrent' => true
                 ],
                 [
                     'dots' => false,
                     'current' => false,
                     'href' => '3',
                     'text' => '3',
-                    'page' => 3
+                    'page' => 3,
+                    'itemAttrs' => '',
+                    'linkAttrs' => '',
+                    'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;3"',
+                    'ariaCurrent' => false
                 ]
             ],
             'next' => [
                 'href' => '3',
                 'text' => 'aze',
+                'page' => 3,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="aze"'
             ],
         ];
 
@@ -127,6 +155,10 @@ class PaginationTest extends TestCase
                     'previous' => [
                         'href' => '1',
                         'text' => 'Previous page',
+                        'page' => 1,
+                        'itemAttrs' => '',
+                        'linkAttrs' => '',
+                        'ariaLabel' => 'aria-label="Previous&#x20;page"'
                     ],
                     'links' => [],
                     'next' => null
@@ -147,7 +179,11 @@ class PaginationTest extends TestCase
                             'current' => true,
                             'href' => '#',
                             'text' => '1',
-                            'page' => 1
+                            'page' => 1,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;1"',
+                            'ariaCurrent' => true
                         ]
                     ],
                     'next' => null,
@@ -168,7 +204,11 @@ class PaginationTest extends TestCase
                             'current' => true,
                             'href' => '#',
                             'text' => '1',
-                            'page' => 1
+                            'page' => 1,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;1"',
+                            'ariaCurrent' => true
                         ]
                     ],
                     'next' => null,
@@ -198,6 +238,10 @@ class PaginationTest extends TestCase
                     'previous' => [
                         'href' => '3',
                         'text' => 'Previous page',
+                        'page' => 3,
+                        'itemAttrs' => '',
+                        'linkAttrs' => '',
+                        'ariaLabel' => 'aria-label="Previous&#x20;page"'
                     ],
                     'links' => [],
                     'next' => null
@@ -218,26 +262,42 @@ class PaginationTest extends TestCase
                             'current' => true,
                             'href' => '#',
                             'text' => '1',
-                            'page' => 1
+                            'page' => 1,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;1"',
+                            'ariaCurrent' => true
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '2',
                             'text' => '2',
-                            'page' => 2
+                            'page' => 2,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;2"',
+                            'ariaCurrent' => false
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '3',
                             'text' => '3',
-                            'page' => 3
+                            'page' => 3,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;3"',
+                            'ariaCurrent' => false
                         ]
                     ],
                     'next' => [
                         'href' => '2',
-                        'text' => 'Next page'
+                        'text' => 'Next page',
+                        'page' => 2,
+                        'itemAttrs' => '',
+                        'linkAttrs' => '',
+                        'ariaLabel' => 'aria-label="Next&#x20;page"'
                     ],
                 ]
             ],
@@ -251,7 +311,11 @@ class PaginationTest extends TestCase
                 'data_out' => [
                     'previous' => [
                         'href' => '1',
-                        'text' => 'Previous page'
+                        'text' => 'Previous page',
+                        'page' => 1,
+                        'itemAttrs' => '',
+                        'linkAttrs' => '',
+                        'ariaLabel' => 'aria-label="Previous&#x20;page"'
                     ],
                     'links' => [
                         [
@@ -259,33 +323,53 @@ class PaginationTest extends TestCase
                             'current' => false,
                             'href' => '1',
                             'text' => '1',
-                            'page' => 1
+                            'page' => 1,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;1"',
+                            'ariaCurrent' => false
                         ],
                         [
                             'dots' => false,
                             'current' => true,
                             'href' => '#',
                             'text' => '2',
-                            'page' => 2
+                            'page' => 2,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;2"',
+                            'ariaCurrent' => true
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '3',
                             'text' => '3',
-                            'page' => 3
+                            'page' => 3,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;3"',
+                            'ariaCurrent' => false
                         ],
                         [
                             'dots' => false,
                             'current' => false,
                             'href' => '4',
                             'text' => '4',
-                            'page' => 4
+                            'page' => 4,
+                            'itemAttrs' => '',
+                            'linkAttrs' => '',
+                            'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;4"',
+                            'ariaCurrent' => false
                         ]
                     ],
                     'next' => [
                         'href' => '3',
-                        'text' => 'Next page'
+                        'text' => 'Next page',
+                        'page' => 3,
+                        'itemAttrs' => '',
+                        'linkAttrs' => '',
+                        'ariaLabel' => 'aria-label="Next&#x20;page"'
                     ],
                 ]
             ],
@@ -335,10 +419,18 @@ class PaginationTest extends TestCase
             [
                 'href' => '1',
                 'text' => 'Previous page',
+                'page' => 1,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Previous&#x20;page"'
             ],
             [
                 'href' => '49',
                 'text' => 'Previous page',
+                'page' => 49,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Previous&#x20;page"'
             ]
         ];
 
@@ -346,10 +438,18 @@ class PaginationTest extends TestCase
             [
                 'href' => '2',
                 'text' => 'Next page',
+                'page' => 2,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Next&#x20;page"'
             ],
             [
                 'href' => '3',
                 'text' => 'Next page',
+                'page' => 3,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Next&#x20;page"'
             ],
             null
         ];
@@ -363,21 +463,33 @@ class PaginationTest extends TestCase
                 'current' => ($i == 1),
                 'href' => ($i == 1) ? '#' : (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => ($i == 1) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
+                'ariaCurrent' => ($i == 1)
             ];
             $linksCurrentPage2[] = [
                 'dots' => false,
                 'current' => ($i == 2),
                 'href' => ($i == 2) ? '#' : (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => ($i == 2) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
+                'ariaCurrent' => ($i == 2)
             ];
             $linksCurrentPage50[] = [
                 'dots' => false,
                 'current' => ($i == 50),
                 'href' => ($i == 50) ? '#' : (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => ($i == 50) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
+                'ariaCurrent' => ($i == 50)
             ];
         }
         
@@ -449,7 +561,11 @@ class PaginationTest extends TestCase
             'current' => true,
             'href' => '#',
             'text' => (string) 20,
-            'page' => 20
+            'page' => 20,
+            'itemAttrs' => '',
+            'linkAttrs' => '',
+            'ariaLabel' => 'aria-label="Current&#x20;page,&#x20;page&#x20;20"',
+            'ariaCurrent' => true
         ];
 
         $limitPagesLeft = [];
@@ -460,7 +576,11 @@ class PaginationTest extends TestCase
                 'current' => false,
                 'href' => (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;' . $i . '"',
+                'ariaCurrent' => false
             ];
         }
         for ($i = 46; $i < 51; $i++) {
@@ -469,7 +589,11 @@ class PaginationTest extends TestCase
                 'current' => false,
                 'href' => (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;' . $i . '"',
+                'ariaCurrent' => false
             ];
         }
 
@@ -481,7 +605,11 @@ class PaginationTest extends TestCase
                 'current' => false,
                 'href' => (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;' . $i . '"',
+                'ariaCurrent' => false
             ];
         }
         for ($i = 21; $i < 26; $i++) {
@@ -490,7 +618,11 @@ class PaginationTest extends TestCase
                 'current' => false,
                 'href' => (string) $i,
                 'text' => (string) $i,
-                'page' => $i
+                'page' => $i,
+                'itemAttrs' => '',
+                'linkAttrs' => '',
+                'ariaLabel' => 'aria-label="Goto&#x20;page&#x20;' . $i . '"',
+                'ariaCurrent' => false
             ];
         }
         
@@ -556,7 +688,10 @@ class PaginationTest extends TestCase
         $html = $p->generateHtml($params['current'], $params['count'], $params['per_page']);
         static::assertSame($expectedHtml, $html);
     }
-    
+
+    /**
+     * @return array
+     */
     public function dataRenderHtml()
     {
         return [
@@ -686,8 +821,8 @@ class PaginationTest extends TestCase
                     'link_tag'                    => 'zela',
                     'link_attrs'                  => 'data-data="o"',
                     'link_attrs_current'          => 'data-id="id"',
-                    'aria_label_link'             => '頁 -> %d',
-                    'aria_label_current_link'     => '頁 - %d',
+                    'aria_label_link'             => '頁 -> {{PAGE}}',
+                    'aria_label_current_link'     => '頁 - {{PAGE}}',
                     'aria_label_nav'              => 'plop',
                     'use_next'                    => true,
                     'use_previous'                => true,
@@ -795,4 +930,1091 @@ class PaginationTest extends TestCase
             '5 per page + item index 26' => [5, 26, 6]
         ];
     }
+
+    /** @dataProvider dataRenderHtmlForReadme
+     * @param array  $configuration
+     * @param array  $params
+     * @param string $expectedHtml
+     */
+    public function testRenderHtmlForReadme(array $configuration, array $params, string $expectedHtml)
+    {
+        $p = new Pagination();
+        $p->setConfiguration($configuration);
+        $html = $p->generateHtml($params['current'], $params['count'], $params['per_page']);
+        $expectedHtml = str_replace("\n", PHP_EOL, $expectedHtml);
+        static::assertSame($expectedHtml, $html);
+    }
+
+    /**
+     * @return array
+     */
+    public function dataRenderHtmlForReadme()
+    {
+        return [
+            'url (page append at the end)' => [
+                'configuration' => [
+                    'url' => 'https://example.com/news/page/'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="https://example.com/news/page/2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'url (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'url' => 'https://example.com/news/page/{{PAGE}}/?date=desc'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="https://example.com/news/page/2/?date=desc" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'url after page (replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'url' => '{{PAGE}}?date=desc'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2?date=desc" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'show_all_links' => [
+                'configuration' => [
+                    'show_all_links' => true
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 30,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
+		</li>
+		<li>
+			<a href="5" aria-label="Goto&#x20;page&#x20;5">5</a>
+		</li>
+		<li>
+			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'use_previous' => [
+                'configuration' => [
+                    'use_previous' => true
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
+		</li>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'always_use_previous' => [
+                'configuration' => [
+                    'always_use_previous' => true
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li data-disabled>
+			<a href="#" aria-label="Previous&#x20;page">Previous page</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'use_next' => [
+                'configuration' => [
+                    'use_next' => true
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'always_use_next' => [
+                'configuration' => [
+                    'always_use_next' => true
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+		<li data-disabled>
+			<a href="#" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'use_dots' => [
+                'configuration' => [
+                    'use_dots' => true
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 30,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<span>…</span>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'count_pages_pair_limit' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 1
+                ],
+                'params' => [
+                    'current' => 5,
+                    'count' => 300,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+		</li>
+		<li>
+			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
+		</li>
+		<li>
+			<a href="7" aria-label="Goto&#x20;page&#x20;7">7</a>
+		</li>
+		<li>
+			<a href="60" aria-label="Goto&#x20;page&#x20;60">60</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'count_pages_pair_adjacent' => [
+                'configuration' => [
+                    'count_pages_pair_adjacent' => 1
+                ],
+                'params' => [
+                    'current' => 5,
+                    'count' => 300,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+		</li>
+		<li>
+			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'count_pages_pair_limit 0 + count_pages_pair_adjacent 0' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 0,
+                    'count_pages_pair_adjacent' => 0
+                ],
+                'params' => [
+                    'current' => 5,
+                    'count' => 300,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'count_pages_pair_limit 2 + count_pages_pair_adjacent 2' => [
+                'configuration' => [
+                    'count_pages_pair_limit' => 2,
+                    'count_pages_pair_adjacent' => 2
+                ],
+                'params' => [
+                    'current' => 5,
+                    'count' => 300,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+		</li>
+		<li>
+			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
+		</li>
+		<li>
+			<a href="7" aria-label="Goto&#x20;page&#x20;7">7</a>
+		</li>
+		<li>
+			<a href="59" aria-label="Goto&#x20;page&#x20;59">59</a>
+		</li>
+		<li>
+			<a href="60" aria-label="Goto&#x20;page&#x20;60">60</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'text_previous' => [
+                'configuration' => [
+                    'use_previous' => true,
+                    'text_previous' => 'prev'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="prev">prev</a>
+		</li>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'text_next' => [
+                'configuration' => [
+                    'use_next' => true,
+                    'text_next' => 'next'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="2" aria-label="next">next</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'text_dots' => [
+                'configuration' => [
+                    'use_dots' => true,
+                    'text_dots' => 'dots'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 30,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<span>dots</span>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'text_page (page append at the end)' => [
+                'configuration' => [
+                    'text_page' => 'yolo'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yolo 1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">yolo 2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'text_page (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'text_page' => 'yo {{PAGE}} lo'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yo 1 lo</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">yo 2 lo</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_link' => [
+                'configuration' => [
+                    'aria_label_link' => 'aria label link'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="aria&#x20;label&#x20;link">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_link (with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'aria_label_link' => 'aria label link {{PAGE}}'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="aria&#x20;label&#x20;link&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_current_link' => [
+                'configuration' => [
+                    'aria_label_current_link' => 'aria label current link'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="aria&#x20;label&#x20;current&#x20;link" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_current_link (with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'aria_label_current_link' => 'aria label current link {{PAGE}}'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="aria&#x20;label&#x20;current&#x20;link&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_nav' => [
+                'configuration' => [
+                    'aria_label_nav' => 'aria label nav'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="aria label nav">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'thousands_separator' => [
+                'configuration' => [
+                    'thousands_separator' => ';',
+                    'count_pages_pair_limit' => 1
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 1000,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<a href="1000" aria-label="Goto&#x20;page&#x20;1000">1;000</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'root_tag' => [
+                'configuration' => [
+                    'root_tag' => 'root'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<root>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</root>
+</nav>'
+            ],
+            'root_attrs' => [
+                'configuration' => [
+                    'root_attrs' => 'root attrs'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul root attrs>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'use_nav' => [
+                'configuration' => [
+                    'use_nav' => false
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<ul>
+	<li>
+		<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+	</li>
+	<li>
+		<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+	</li>
+</ul>'
+            ],
+            'item_tag' => [
+                'configuration' => [
+                    'item_tag' => 'item'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<item>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</item>
+		<item>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</item>
+	</ul>
+</nav>'
+            ],
+            'item_attrs' => [
+                'configuration' => [
+                    'item_attrs' => 'item attrs'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li item attrs>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_attrs (with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'item_attrs' => 'item attrs data-page="{{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li item attrs data-page="2">
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_attrs_current' => [
+                'configuration' => [
+                    'item_attrs_current' => 'item attrs current'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item attrs current>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_attrs_current (with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'item_attrs_current' => 'item attrs current data-page="{{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item attrs current data-page="1">
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_previous_attrs' => [
+                'configuration' => [
+                    'use_previous' => true,
+                    'item_previous_attrs' => 'item previous attrs'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item previous attrs>
+			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
+		</li>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_previous_attrs (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'use_previous' => true,
+                    'item_previous_attrs' => 'item previous attrs data-page="{{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item previous attrs data-page="1">
+			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
+		</li>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_next_attrs' => [
+                'configuration' => [
+                    'use_next' => true,
+                    'item_next_attrs' => 'item next attrs'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li item next attrs>
+			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_next_attrs (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'use_next' => true,
+                    'item_next_attrs' => 'item next attrs data-page="{{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li item next attrs data-page="2">
+			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_dot_attrs' => [
+                'configuration' => [
+                    'use_dots' => true,
+                    'item_dot_attrs' => 'item dot attrs'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 30,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li item dot attrs>
+			<span>…</span>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_tag' => [
+                'configuration' => [
+                    'link_tag' => 'link'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<link href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</link>
+		</li>
+		<li>
+			<link href="2" aria-label="Goto&#x20;page&#x20;2">2</link>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_attrs' => [
+                'configuration' => [
+                    'link_attrs' => 'link attrs'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a link attrs href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_attrs (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'link_attrs' => 'link attrs data-page="{{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a link attrs data-page="2" href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_attrs_current' => [
+                'configuration' => [
+                    'link_attrs_current' => 'link attrs current'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a link attrs current href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_attrs_current (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'link_attrs_current' => 'link attrs current data-page="{{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a link attrs current data-page="1" href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'use_pretty_html' => [
+                'configuration' => [
+                    'use_pretty_html' => false
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation"><ul><li><a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>'
+            ],
+            'html_tab_sequence' => [
+                'configuration' => [
+                    'html_tab_sequence' => ''
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+<ul>
+<li>
+<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+</li>
+<li>
+<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+</li>
+</ul>
+</nav>'
+            ],
+            'html_initial_indentation' => [
+                'configuration' => [
+                    'html_initial_indentation' => 1
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '	<nav role="navigation" aria-label="Pagination navigation">
+		<ul>
+			<li>
+				<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			</li>
+			<li>
+				<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+			</li>
+		</ul>
+	</nav>'
+            ],
+            'esc_attr' => [
+                'configuration' => [
+                    'esc_attr' => false
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current page, page 1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto page 2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'esc_html' => [
+                'configuration' => [
+                    'esc_html' => false,
+                    'text_page' => '<em>{{PAGE}}</em>'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true"><em>1</em></a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2"><em>2</em></a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'charset' => [
+                'configuration' => [
+                    'charset' => 'EUC-JP'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 2,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ]
+        ];
+    }
+
 }

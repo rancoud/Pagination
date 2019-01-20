@@ -51,13 +51,14 @@ It will output
 ## Configuration Parameters
 
 ### Url
-* base_url_before (string) ([example](#base_url_before))
-* base_link_after (string) ([example](#base_url_after))
+* url (string) ([example](#url))
 
 ### Behavior
 * show_all_links (bool: false) ([example](#show_all_links))
 * use_previous (bool: false) ([example](#use_previous))
+* always_use_previous (bool: false) ([example](#always_use_previous))
 * use_next (bool: false) ([example](#use_next))
+* always_use_next (bool: false) ([example](#always_use_next))
 * use_dots (bool: false) ([example](#use_dots))
 * count_pages_pair_limit (int: 0) ([example](#count_pages_pair_limit))
 * count_pages_pair_adjacent (int: 2) ([example](#count_pages_pair_adjacent))
@@ -66,9 +67,9 @@ It will output
 * text_previous (string: Previous page) ([example](#text_previous))
 * text_next (string: Next page) ([example](#text_next))
 * text_dots (string: …) ([example](#text_dots))
-* text_page (string: %d) ([example](#text_page))
-* aria_label_link (string: Goto page %d) ([example](#aria_label_link))
-* aria_label_current_link (string: Current page, page %d) ([example](#aria_label_current_link))
+* text_page (string: {{PAGE}}) ([example](#text_page))
+* aria_label_link (string: Goto page {{PAGE}}) ([example](#aria_label_link))
+* aria_label_current_link (string: Current page, page {{PAGE}}) ([example](#aria_label_current_link))
 * aria_label_nav (string: Pagination navigation) ([example](#aria_label_nav))
 * thousands_separator (string) ([example](#thousands_separator))
 
@@ -82,8 +83,8 @@ It will output
 * item_tag (string: li) ([example](#item_tag))
 * item_attrs (string) ([example](#item_attrs))
 * item_attrs_current (string) ([example](#item_attrs_current))
-* item_next_attrs (string) ([example](#item_next_attrs))
 * item_previous_attrs (string) ([example](#item_previous_attrs))
+* item_next_attrs (string) ([example](#item_next_attrs))
 * item_dot_attrs (string) ([example](#item_dot_attrs))
 
 #### Link
@@ -102,11 +103,11 @@ It will output
 * charset (string: UTF-8) ([example](#charset))
 
 ## Examples
-### base_url_before
+### url (page append at the end)
 #### Input
 ```php
 $conf = [
-    'base_url_before' => 'https://example.com/news/page/'
+    'url' => 'https://example.com/news/page/'
 ];
 echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
@@ -124,34 +125,11 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### base_url_after
+### url (page replace with {{PAGE}} pattern)
 #### Input
 ```php
 $conf = [
-    'base_url_after' => '/?date=desc'
-];
-echo (new Pagination($conf))->generateHtml(1, 10, 5);
-```
-#### Output
-```html
-<nav role="navigation" aria-label="Pagination navigation">
-	<ul>
-		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
-		</li>
-		<li>
-			<a href="2/?date=desc" aria-label="Goto&#x20;page&#x20;2">2</a>
-		</li>
-	</ul>
-</nav>
-```
-
-### base_url_before + base_url_after
-#### Input
-```php
-$conf = [
-    'base_url_before' => 'https://example.com/news/page/',
-    'base_url_after' => '/?date=desc'
+    'url' => 'https://example.com/news/page/{{PAGE}}/?date=desc'
 ];
 echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
@@ -168,6 +146,29 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+### url after page (replace with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'url' => '{{PAGE}}?date=desc'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2?date=desc" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
 
 ### show_all_links
 #### Input
@@ -228,6 +229,32 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
+### always_use_previous
+Previous has `data-disabled` on item tag if there is no previous page
+#### Input
+```php
+$conf = [
+    'always_use_previous' => true
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li data-disabled>
+			<a href="#" aria-label="Previous&#x20;page">Previous page</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
 ### use_next
 #### Input
 ```php
@@ -248,6 +275,32 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 		</li>
 		<li>
 			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### always_use_next
+Next have `data-disabled` on item tag if there is no next page
+#### Input
+```php
+$conf = [
+    'always_use_next' => true
+];
+echo (new Pagination($conf))->generateHtml(2, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+		<li data-disabled>
+			<a href="#" aria-label="Next&#x20;page">Next page</a>
 		</li>
 	</ul>
 </nav>
@@ -275,7 +328,7 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
 		</li>
 		<li>
-			<span>&amp;hellip;</span>
+			<span>…</span>
 		</li>
 	</ul>
 </nav>
@@ -433,12 +486,424 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
-### text_previous with page inside
+### text_next
+#### Input
+```php
+$conf = [
+    'use_next' => true,
+    'text_next' => 'next'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="2" aria-label="next">next</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### text_dots
+#### Input
+```php
+$conf = [
+    'use_dots' => true,
+    'text_dots' => 'dots'
+];
+echo (new Pagination($conf))->generateHtml(1, 30, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<span>dots</span>
+		</li>
+	</ul>
+</nav>
+```
+
+### text_page (page append at the end)
+#### Input
+```php
+$conf = [
+    'text_page' => 'yolo'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yolo 1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">yolo 2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### text_page (page replace with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'text_page' => 'yo {{PAGE}} lo'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yo 1 lo</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">yo 2 lo</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_link
+#### Input
+```php
+$conf = [
+    'aria_label_link' => 'aria label link'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="aria&#x20;label&#x20;link">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_link (with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'aria_label_link' => 'aria label link {{PAGE}}'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="aria&#x20;label&#x20;link&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_current_link
+#### Input
+```php
+$conf = [
+    'aria_label_current_link' => 'aria label current link'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="aria&#x20;label&#x20;current&#x20;link" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_current_link (with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'aria_label_current_link' => 'aria label current link {{PAGE}}'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="aria&#x20;label&#x20;current&#x20;link&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_nav
+#### Input
+```php
+$conf = [
+    'aria_label_nav' => 'aria label nav'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="aria label nav">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### thousands_separator
+#### Input
+```php
+$conf = [
+    'thousands_separator' => ';',
+    'count_pages_pair_limit' => 1
+];
+echo (new Pagination($conf))->generateHtml(1, 1000, 1);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li>
+			<a href="1000" aria-label="Goto&#x20;page&#x20;1000">1;000</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### root_tag
+#### Input
+```php
+$conf = [
+    'root_tag' => 'root'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<root>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</root>
+</nav>
+```
+
+### root_attrs
+#### Input
+```php
+$conf = [
+    'root_attrs' => 'root attrs'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul root attrs>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### use_nav
+#### Input
+```php
+$conf = [
+    'use_nav' => false
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<ul>
+	<li>
+		<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+	</li>
+	<li>
+		<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+	</li>
+</ul>
+```
+
+### item_tag
+#### Input
+```php
+$conf = [
+    'item_tag' => 'item'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<item>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</item>
+		<item>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</item>
+	</ul>
+</nav>
+```
+
+### item_attrs
+#### Input
+```php
+$conf = [
+    'item_attrs' => 'item attrs'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li item attrs>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### item_attrs (with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'item_attrs' => 'item attrs data-page="{{PAGE}}"'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li item attrs data-page="2">
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### item_attrs_current
+#### Input
+```php
+$conf = [
+    'item_attrs_current' => 'item attrs current'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item attrs current>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### item_attrs_current (page replace with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'item_attrs_current' => 'item attrs current data-page="{{PAGE}}"'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item attrs current data-page="1">
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### item_previous_attrs
 #### Input
 ```php
 $conf = [
     'use_previous' => true,
-    'text_previous' => 'prev %d'
+    'item_previous_attrs' => 'item previous attrs'
 ];
 echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
@@ -446,8 +911,8 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```html
 <nav role="navigation" aria-label="Pagination navigation">
 	<ul>
-		<li>
-			<a href="1" aria-label="prev&#x20;&#x25;d">prev %d</a>
+		<li item previous attrs>
+			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
 		</li>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -459,204 +924,345 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
-### text_next
+### item_previous_attrs (page replace with {{PAGE}} pattern)
 #### Input
 ```php
+$conf = [
+    'use_previous' => true,
+    'item_previous_attrs' => 'item previous attrs data-page="{{PAGE}}"'
+];
+echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-```
-
-### text_dots
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### text_page
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### aria_label_link
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### aria_label_current_link
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### aria_label_nav
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### thousands_separator
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### root_tag
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### root_attrs
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### use_nav
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### item_tag
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### item_attrs
-#### Input
-```php
-```
-#### Output
-```html
-```
-
-### item_attrs_current
-#### Input
-```php
-```
-#### Output
-```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li item previous attrs data-page="1">
+			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
+		</li>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### item_next_attrs
 #### Input
 ```php
+$conf = [
+    'use_next' => true,
+    'item_next_attrs' => 'item next attrs'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li item next attrs>
+			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>
 ```
 
-### item_previous_attrs
+### item_next_attrs (page replace with {{PAGE}} pattern)
 #### Input
 ```php
+$conf = [
+    'use_next' => true,
+    'item_next_attrs' => 'item next attrs data-page="{{PAGE}}"'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li item next attrs data-page="2">
+			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### item_dot_attrs
 #### Input
 ```php
+$conf = [
+    'use_dots' => true,
+    'item_dot_attrs' => 'item dot attrs'
+];
+echo (new Pagination($conf))->generateHtml(1, 30, 5);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
+		</li>
+		<li item dot attrs>
+			<span>…</span>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### link_tag
 #### Input
 ```php
+$conf = [
+    'link_tag' => 'link'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<link href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</link>
+		</li>
+		<li>
+			<link href="2" aria-label="Goto&#x20;page&#x20;2">2</link>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### link_attrs
 #### Input
 ```php
+$conf = [
+    'link_attrs' => 'link attrs'
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a link attrs href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### link_attrs (page replace with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'link_attrs' => 'link attrs data-page="{{PAGE}}"'
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a link attrs data-page="2" href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### link_attrs_current
 #### Input
 ```php
+$conf = [
+    'use_pretty_html' => false
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a link attrs current href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### link_attrs_current (page replace with {{PAGE}} pattern)
+#### Input
+```php
+$conf = [
+    'link_attrs_current' => 'link attrs current data-page="{{PAGE}}"'
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a link attrs current data-page="1" href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### use_pretty_html
 #### Input
 ```php
+$conf = [
+    'use_pretty_html' => false
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation"><ul><li><a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>
 ```
 
 ### html_tab_sequence
 #### Input
 ```php
+$conf = [
+    'html_tab_sequence' => ''
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+<ul>
+<li>
+<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+</li>
+<li>
+<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+</li>
+</ul>
+</nav>
 ```
 
 ### html_initial_indentation
 #### Input
 ```php
+$conf = [
+    'html_initial_indentation' => 1
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+	<nav role="navigation" aria-label="Pagination navigation">
+		<ul>
+			<li>
+				<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			</li>
+			<li>
+				<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+			</li>
+		</ul>
+	</nav>
 ```
 
 ### esc_attr
 #### Input
 ```php
+$conf = [
+    'esc_attr' => false
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current page, page 1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto page 2">2</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### esc_html
 #### Input
 ```php
+$conf = [
+    'esc_html' => false,
+    'text_page' => '<em>{{PAGE}}</em>'
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true"><em>1</em></a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2"><em>2</em></a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ### charset
 #### Input
 ```php
+$conf = [
+    'charset' => 'EUC-JP'
+];
+echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
+<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 ## How to Dev
