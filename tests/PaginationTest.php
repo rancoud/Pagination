@@ -67,7 +67,7 @@ class PaginationTest extends TestCase
                 'page' => 1,
                 'itemAttrs' => '',
                 'linkAttrs' => '',
-                'ariaLabel' => 'aria-label="toto"'
+                'ariaLabel' => 'aria-label="Previous&#x20;page"'
             ],
             'links' => [
                 [
@@ -110,7 +110,7 @@ class PaginationTest extends TestCase
                 'page' => 3,
                 'itemAttrs' => '',
                 'linkAttrs' => '',
-                'ariaLabel' => 'aria-label="aze"'
+                'ariaLabel' => 'aria-label="Next&#x20;page"'
             ],
         ];
 
@@ -824,6 +824,8 @@ class PaginationTest extends TestCase
                     'aria_label_link'             => '頁 -> {{PAGE}}',
                     'aria_label_current_link'     => '頁 - {{PAGE}}',
                     'aria_label_nav'              => 'plop',
+                    'aria_label_previous'         => 'aria-前',
+                    'aria_label_next'             => 'aria-次',
                     'use_next'                    => true,
                     'use_previous'                => true,
                 ],
@@ -835,7 +837,7 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav role="navigation" aria-label="plop">'.PHP_EOL.
                     '	<root x="f(x)">'.PHP_EOL.
                     '		<item previous>'.PHP_EOL.
-                    '			<zela data-data="o" href="1" aria-label="&#xE5;">前</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="aria-&#xE5;">前</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item class="okay">'.PHP_EOL.
                     '			<zela data-data="o" href="1" aria-label="&#xE9;&#x20;-&gt;&#x20;1">1</zela>'.PHP_EOL.
@@ -847,7 +849,7 @@ class PaginationTest extends TestCase
                     '			<zela data-data="o" href="3" aria-label="&#xE9;&#x20;-&gt;&#x20;3">3</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item next>'.PHP_EOL.
-                    '			<zela data-data="o" href="3" aria-label="&#xE6;">次</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="aria-&#xE6;">次</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '	</root>'.PHP_EOL.
                     '</nav>'
@@ -900,6 +902,49 @@ class PaginationTest extends TestCase
                     '		</li>'.PHP_EOL.
                     '		<li item_next_attrs data-disabled>'.PHP_EOL.
                     '			<a href="#" aria-label="Next&#x20;page">Next page</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '	</ul>'.PHP_EOL.
+                    '</nav>'
+            ],
+            'empty text + empty tag' => [
+                'configuration' => [
+                    'text_previous'               => '',
+                    'text_next'                   => '',
+                    'text_dots'                   => '',
+                    'text_page'                   => '',
+                    'aria_label_link'             => '',
+                    'aria_label_current_link'     => '',
+                    'aria_label_nav'              => '',
+                    'aria_label_previous'         => '',
+                    'aria_label_next'             => '',
+                    'root_tag'                    => '',
+                    'item_tag'                    => '',
+                    'link_tag'                    => '',
+                    'use_next'                    => true,
+                    'use_previous'                => true,
+                    'use_dots'                    => true
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 3,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation">'.PHP_EOL.
+                    '	<ul>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="1"></a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="1">1</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="#" aria-current="true">2</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="3">3</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="3"></a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
                     '</nav>'
@@ -1318,7 +1363,7 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
 	<ul>
 		<li>
-			<a href="1" aria-label="prev">prev</a>
+			<a href="1" aria-label="Previous&#x20;page">prev</a>
 		</li>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -1348,7 +1393,7 @@ class PaginationTest extends TestCase
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
 		</li>
 		<li>
-			<a href="2" aria-label="next">next</a>
+			<a href="2" aria-label="Next&#x20;page">next</a>
 		</li>
 	</ul>
 </nav>'
@@ -1516,6 +1561,54 @@ class PaginationTest extends TestCase
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_previous' => [
+                'configuration' => [
+                    'use_previous' => true,
+                    'aria_label_previous' => 'prev'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="1" aria-label="prev">Previous page</a>
+		</li>
+		<li>
+			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'aria_label_next' => [
+                'configuration' => [
+                    'use_next' => true,
+                    'aria_label_next' => 'next'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="2" aria-label="next">Next page</a>
 		</li>
 	</ul>
 </nav>'

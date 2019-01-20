@@ -32,6 +32,8 @@ class Pagination
     protected $ariaLabelLink = 'Goto page {{PAGE}}';
     protected $ariaLabelCurrentLink = 'Current page, page {{PAGE}}';
     protected $ariaLabelNav = 'Pagination navigation';
+    protected $ariaLabelPrevious = 'Previous page';
+    protected $ariaLabelNext = 'Next page';
     protected $thousandsSeparator = '';
     // endregion
 
@@ -93,6 +95,8 @@ class Pagination
         'aria_label_link'             => 'ariaLabelLink',
         'aria_label_current_link'     => 'ariaLabelCurrentLink',
         'aria_label_nav'              => 'ariaLabelNav',
+        'aria_label_previous'         => 'ariaLabelPrevious',
+        'aria_label_next'             => 'ariaLabelNext',
         'thousands_separator'         => 'thousandsSeparator',
         'charset'                     => 'charset'
     ];
@@ -130,8 +134,16 @@ class Pagination
      */
     public function setConfiguration(array $configuration): void
     {
+        $tagsVerification = ['root_tag', 'item_tag', 'link_tag'];
+
         foreach ($configuration as $key => $value) {
             if (isset($this->propsString[$key])) {
+                if (\in_array($key, $tagsVerification, true)) {
+                    $valid = \preg_match('/^[a-zA-Z-]+$/i', $value);
+                    if (!$valid) {
+                        continue;
+                    }
+                }
                 $this->{$this->propsString[$key]} = (string) $value;
             } elseif (isset($this->propsBool[$key])) {
                 $this->{$this->propsBool[$key]} = (bool) $value;
@@ -264,9 +276,12 @@ class Pagination
             $text = Security::escHtml($this->textPrevious, $this->charset);
         }
 
-        $ariaLabel = $this->textPrevious;
+        $ariaLabel = $this->ariaLabelPrevious;
         if ($this->escAttr) {
             $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
+        }
+        if (!empty($ariaLabel)) {
+            $ariaLabel = 'aria-label="' . $ariaLabel . '"';
         }
 
         $itemAttrs = $this->itemPreviousAttrs;
@@ -287,7 +302,7 @@ class Pagination
             'href'      => $href,
             'text'      => $text,
             'page'      => $page,
-            'ariaLabel' => 'aria-label="' . $ariaLabel . '"'
+            'ariaLabel' => $ariaLabel
         ];
     }
 
@@ -362,9 +377,12 @@ class Pagination
             $text = Security::escHtml($this->textNext, $this->charset);
         }
 
-        $ariaLabel = $this->textNext;
+        $ariaLabel = $this->ariaLabelNext;
         if ($this->escAttr) {
             $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
+        }
+        if (!empty($ariaLabel)) {
+            $ariaLabel = 'aria-label="' . $ariaLabel . '"';
         }
 
         $itemAttrs = $this->itemNextAttrs;
@@ -385,7 +403,7 @@ class Pagination
             'href'      => $href,
             'text'      => $text,
             'page'      => $page,
-            'ariaLabel' => 'aria-label="' . $ariaLabel . '"'
+            'ariaLabel' => $ariaLabel
         ];
     }
 
@@ -419,7 +437,11 @@ class Pagination
         $pageFormated = \number_format($page, 0, '.', $this->thousandsSeparator);
         $text = \str_replace('{{PAGE}}', $pageFormated, $this->textPage);
         if ($text === $this->textPage) {
-            $text .= ' ' . $pageFormated;
+            $sep = '';
+            if (!empty($text)) {
+                $sep = ' ';
+            }
+            $text .= $sep . $pageFormated;
         }
 
         if ($dots) {
@@ -434,6 +456,9 @@ class Pagination
         if ($this->escAttr) {
             $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
         }
+        if (!empty($ariaLabel)) {
+            $ariaLabel = 'aria-label="' . $ariaLabel . '"';
+        }
 
         return [
             'itemAttrs'    => $itemAttrs,
@@ -443,7 +468,7 @@ class Pagination
             'href'         => $href,
             'text'         => $text,
             'page'         => $page,
-            'ariaLabel'    => 'aria-label="' . $ariaLabel . '"',
+            'ariaLabel'    => $ariaLabel,
             'ariaCurrent'  => $current,
         ];
     }
@@ -479,7 +504,13 @@ class Pagination
 
         if ($this->useNav) {
             ++$this->htmlInitialIndentation;
-            $html .= $tab . '<nav role="navigation" aria-label="' . $this->ariaLabelNav . '">' . $endl;
+
+            $ariaLabelNav = $this->ariaLabelNav;
+            if (!empty($ariaLabelNav)) {
+                $ariaLabelNav = ' aria-label="' . $ariaLabelNav . '"';
+            }
+
+            $html .= $tab . '<nav role="navigation"' . $ariaLabelNav . '>' . $endl;
             $tab = $this->getTabSequence();
         }
 

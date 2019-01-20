@@ -71,6 +71,8 @@ It will output
 * aria_label_link (string: Goto page {{PAGE}}) ([example](#aria_label_link))
 * aria_label_current_link (string: Current page, page {{PAGE}}) ([example](#aria_label_current_link))
 * aria_label_nav (string: Pagination navigation) ([example](#aria_label_nav))
+* aria_label_previous (string: Previous page) ([example](#aria_label_previous))
+* aria_label_next (string: Next page) ([example](#aria_label_next))
 * thousands_separator (string) ([example](#thousands_separator))
 
 ### HTML markup
@@ -475,7 +477,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 <nav role="navigation" aria-label="Pagination navigation">
 	<ul>
 		<li>
-			<a href="1" aria-label="prev">prev</a>
+			<a href="1" aria-label="Previous&#x20;page">prev</a>
 		</li>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -507,7 +509,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
 		</li>
 		<li>
-			<a href="2" aria-label="next">next</a>
+			<a href="2" aria-label="Next&#x20;page">next</a>
 		</li>
 	</ul>
 </nav>
@@ -680,6 +682,52 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```php
 $conf = [
     'aria_label_nav' => 'aria label nav'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="aria label nav">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_previous
+#### Input
+```php
+$conf = [
+    'use_previous' => true,
+    'aria_label_previous' => 'prev'
+];
+echo (new Pagination($conf))->generateHtml(2, 10, 5);
+```
+#### Output
+```html
+<nav role="navigation" aria-label="aria label nav">
+	<ul>
+		<li>
+			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
+```
+
+### aria_label_next
+#### Input
+```php
+$conf = [
+    'use_next' => true,
+    'aria_label_next' => 'next'
 ];
 echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
