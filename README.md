@@ -172,6 +172,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### show_all_links
 #### Input
 ```php
@@ -206,6 +208,8 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### use_previous
 #### Input
 ```php
@@ -230,6 +234,8 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### always_use_previous
 Previous has `data-disabled` on item tag if there is no previous page
@@ -257,6 +263,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### use_next
 #### Input
 ```php
@@ -281,6 +289,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### always_use_next
 Next have `data-disabled` on item tag if there is no next page
@@ -307,6 +317,8 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### use_dots
 #### Input
@@ -335,6 +347,8 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### count_pages_pair_limit
 #### Input
@@ -373,6 +387,8 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### count_pages_pair_adjacent
 #### Input
 ```php
@@ -397,6 +413,8 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### count_pages_pair_adjacent + count_pages_pair_adjacent
 count_pages_pair_limit 0 + count_pages_pair_adjacent 0
@@ -463,6 +481,8 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### text_previous
 #### Input
 ```php
@@ -489,6 +509,8 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### text_next
 #### Input
 ```php
@@ -514,6 +536,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### text_dots
 #### Input
@@ -543,6 +567,8 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### text_page
 Page append at the end
@@ -589,6 +615,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### aria_label_link
 #### Input
 ```php
@@ -632,6 +660,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### aria_label_current_link
 #### Input
@@ -677,6 +707,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### aria_label_nav
 #### Input
 ```php
@@ -698,6 +730,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### aria_label_previous
 #### Input
@@ -722,6 +756,8 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### aria_label_next
 #### Input
 ```php
@@ -744,6 +780,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### thousands_separator
 #### Input
@@ -774,6 +812,8 @@ echo (new Pagination($conf))->generateHtml(1, 1000, 1);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### root_tag
 #### Input
 ```php
@@ -795,6 +835,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</root>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### root_attrs
 #### Input
@@ -818,6 +860,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### use_nav
 #### Input
 ```php
@@ -837,6 +881,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</li>
 </ul>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### item_tag
 #### Input
@@ -859,6 +905,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### item_attrs
 #### Input
@@ -904,6 +952,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### item_attrs_current
 #### Input
 ```php
@@ -947,6 +997,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### item_previous_attrs
 #### Input
@@ -1000,6 +1052,8 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### item_next_attrs
 #### Input
 ```php
@@ -1052,6 +1106,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### item_dot_attrs
 #### Input
 ```php
@@ -1081,6 +1137,8 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### link_tag
 #### Input
 ```php
@@ -1102,6 +1160,8 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### link_attrs
 #### Input
@@ -1147,6 +1207,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### link_attrs_current
 #### Input
 ```php
@@ -1191,6 +1253,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### use_pretty_html
 #### Input
 ```php
@@ -1203,6 +1267,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```html
 <nav role="navigation" aria-label="Pagination navigation"><ul><li><a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### html_tab_sequence
 #### Input
@@ -1226,6 +1292,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### html_initial_indentation
 #### Input
 ```php
@@ -1248,6 +1316,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 	</nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### esc_attr
 #### Input
 ```php
@@ -1269,6 +1339,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ### esc_html
 #### Input
@@ -1293,6 +1365,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 </nav>
 ```
 
+[⏫ Configuration Parameters](#configuration-parameters)
+
 ### charset
 #### Input
 ```php
@@ -1314,6 +1388,8 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 	</ul>
 </nav>
 ```
+
+[⏫ Configuration Parameters](#configuration-parameters)
 
 ## How to Dev
 `./run_all_commands.sh` for php-cs-fixer and phpunit and coverage  
