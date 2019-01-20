@@ -351,7 +351,7 @@ class Pagination
         }
 
         $page = $this->currentPage + 1;
-        if ($this->currentPage > $this->maxPages) {
+        if ($this->currentPage >= $this->maxPages) {
             $page = $this->maxPages;
         }
 

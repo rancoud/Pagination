@@ -877,6 +877,32 @@ class PaginationTest extends TestCase
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
                     '</nav>'
+            ],
+            'previous + next + attrs not empty + data disabled' => [
+                'configuration' => [
+                    'always_use_previous' => true,
+                    'always_use_next' => true,
+                    'item_previous_attrs' => 'item_previous_attrs',
+                    'item_next_attrs' => 'item_next_attrs',
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 1,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                    '	<ul>'.PHP_EOL.
+                    '		<li item_previous_attrs data-disabled>'.PHP_EOL.
+                    '			<a href="#" aria-label="Previous&#x20;page">Previous page</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li item_next_attrs data-disabled>'.PHP_EOL.
+                    '			<a href="#" aria-label="Next&#x20;page">Next page</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '	</ul>'.PHP_EOL.
+                    '</nav>'
             ]
         ];
     }
