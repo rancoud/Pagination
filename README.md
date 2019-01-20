@@ -103,7 +103,8 @@ It will output
 * charset (string: UTF-8) ([example](#charset))
 
 ## Examples
-### url (page append at the end)
+### url
+Page append at the end
 #### Input
 ```php
 $conf = [
@@ -125,7 +126,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### url (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -147,7 +148,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### url after page (replace with {{PAGE}} pattern)
+After page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -168,7 +169,6 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 	</ul>
 </nav>
 ```
-
 
 ### show_all_links
 #### Input
@@ -396,7 +396,8 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 </nav>
 ```
 
-### count_pages_pair_limit 0 + count_pages_pair_adjacent 0
+### count_pages_pair_adjacent + count_pages_pair_adjacent
+count_pages_pair_limit 0 + count_pages_pair_adjacent 0
 #### Input
 ```php
 $conf = [
@@ -416,7 +417,7 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 </nav>
 ```
 
-### count_pages_pair_limit 2 + count_pages_pair_adjacent 2
+count_pages_pair_limit 2 + count_pages_pair_adjacent 2
 #### Input
 ```php
 $conf = [
@@ -541,7 +542,8 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 </nav>
 ```
 
-### text_page (page append at the end)
+### text_page
+Page append at the end
 #### Input
 ```php
 $conf = [
@@ -563,7 +565,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### text_page (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -607,7 +609,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### aria_label_link (with {{PAGE}} pattern)
+With {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -651,7 +653,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### aria_label_current_link (with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -832,7 +834,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### item_attrs (with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -876,7 +878,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### item_attrs_current (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -924,7 +926,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
-### item_previous_attrs (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -976,7 +978,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-### item_next_attrs (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -1075,7 +1077,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 </nav>
 ```
 
-### link_attrs (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
@@ -1119,7 +1121,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 </nav>
 ```
 
-### link_attrs_current (page replace with {{PAGE}} pattern)
+Page replace with {{PAGE}} pattern
 #### Input
 ```php
 $conf = [
