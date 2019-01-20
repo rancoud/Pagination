@@ -51,7 +51,7 @@ It will output
 ## Configuration Parameters
 
 ### Url
-* url (string) ([example](#url))
+* url (string) ([example](#url-1))
 
 ### Behavior
 * show_all_links (bool: false) ([example](#show_all_links))
