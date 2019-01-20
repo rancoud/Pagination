@@ -279,13 +279,14 @@ class Pagination
         $ariaLabel = $this->ariaLabelPrevious;
         if ($this->escAttr) {
             $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
+            $href = Security::escAttr($href, $this->charset);
         }
         if (!empty($ariaLabel)) {
             $ariaLabel = 'aria-label="' . $ariaLabel . '"';
         }
 
         $itemAttrs = $this->itemPreviousAttrs;
-        if ($href === '#') {
+        if ($href === '#' || $href === '&#x23;') {
             $sep = '';
             if (!empty($this->itemPreviousAttrs)) {
                 $sep = ' ';
@@ -380,13 +381,14 @@ class Pagination
         $ariaLabel = $this->ariaLabelNext;
         if ($this->escAttr) {
             $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
+            $href = Security::escAttr($href, $this->charset);
         }
         if (!empty($ariaLabel)) {
             $ariaLabel = 'aria-label="' . $ariaLabel . '"';
         }
 
         $itemAttrs = $this->itemNextAttrs;
-        if ($href === '#') {
+        if ($href === '#' || $href === '&#x23;') {
             $sep = '';
             if (!empty($this->itemNextAttrs)) {
                 $sep = ' ';
@@ -455,6 +457,7 @@ class Pagination
 
         if ($this->escAttr) {
             $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
+            $href = Security::escAttr($href, $this->charset);
         }
         if (!empty($ariaLabel)) {
             $ariaLabel = 'aria-label="' . $ariaLabel . '"';
@@ -506,6 +509,9 @@ class Pagination
             ++$this->htmlInitialIndentation;
 
             $ariaLabelNav = $this->ariaLabelNav;
+            if ($this->escAttr) {
+                $ariaLabelNav = Security::escAttr($this->ariaLabelNav);
+            }
             if (!empty($ariaLabelNav)) {
                 $ariaLabelNav = ' aria-label="' . $ariaLabelNav . '"';
             }

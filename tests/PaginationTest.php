@@ -20,7 +20,7 @@ class PaginationTest extends TestCase
             [
                 'dots' => false,
                 'current' => true,
-                'href' => '#',
+                'href' => '&#x23;',
                 'text' => '1',
                 'page' => 1,
                 'itemAttrs' => '',
@@ -43,10 +43,10 @@ class PaginationTest extends TestCase
         static::assertEquals($out, $data);
 
         $html = $p->generateHtml(1, 2, 1);
-        $expected = '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+        $expected = '<nav role="navigation" aria-label="Pagination&#x20;navigation">'.PHP_EOL.
                     '	<ul>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
                     '			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
@@ -84,7 +84,7 @@ class PaginationTest extends TestCase
                 [
                     'dots' => false,
                     'current' => true,
-                    'href' => '#',
+                    'href' => '&#x23;',
                     'text' => '2',
                     'page' => 2,
                     'itemAttrs' => '',
@@ -177,7 +177,7 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '#',
+                            'href' => '&#x23;',
                             'text' => '1',
                             'page' => 1,
                             'itemAttrs' => '',
@@ -202,7 +202,7 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '#',
+                            'href' => '&#x23;',
                             'text' => '1',
                             'page' => 1,
                             'itemAttrs' => '',
@@ -260,7 +260,7 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '#',
+                            'href' => '&#x23;',
                             'text' => '1',
                             'page' => 1,
                             'itemAttrs' => '',
@@ -332,7 +332,7 @@ class PaginationTest extends TestCase
                         [
                             'dots' => false,
                             'current' => true,
-                            'href' => '#',
+                            'href' => '&#x23;',
                             'text' => '2',
                             'page' => 2,
                             'itemAttrs' => '',
@@ -461,7 +461,7 @@ class PaginationTest extends TestCase
             $linksCurrentPage1[] = [
                 'dots' => false,
                 'current' => ($i == 1),
-                'href' => ($i == 1) ? '#' : (string) $i,
+                'href' => ($i == 1) ? '&#x23;' : (string) $i,
                 'text' => (string) $i,
                 'page' => $i,
                 'itemAttrs' => '',
@@ -472,7 +472,7 @@ class PaginationTest extends TestCase
             $linksCurrentPage2[] = [
                 'dots' => false,
                 'current' => ($i == 2),
-                'href' => ($i == 2) ? '#' : (string) $i,
+                'href' => ($i == 2) ? '&#x23;' : (string) $i,
                 'text' => (string) $i,
                 'page' => $i,
                 'itemAttrs' => '',
@@ -483,7 +483,7 @@ class PaginationTest extends TestCase
             $linksCurrentPage50[] = [
                 'dots' => false,
                 'current' => ($i == 50),
-                'href' => ($i == 50) ? '#' : (string) $i,
+                'href' => ($i == 50) ? '&#x23;' : (string) $i,
                 'text' => (string) $i,
                 'page' => $i,
                 'itemAttrs' => '',
@@ -559,7 +559,7 @@ class PaginationTest extends TestCase
         $currentPage[] = [
             'dots' => false,
             'current' => true,
-            'href' => '#',
+            'href' => '&#x23;',
             'text' => (string) 20,
             'page' => 20,
             'itemAttrs' => '',
@@ -704,10 +704,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">'.
                     '<ul>'.
                     '<li>'.
-                    '<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.
+                    '<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.
                     '</li>'.
                     '<li>'.
                     '<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.
@@ -724,10 +724,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '				<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                'expectedHtml' => '				<nav role="navigation" aria-label="Pagination&#x20;navigation">'.PHP_EOL.
                     '					<ul>'.PHP_EOL.
                     '						<li>'.PHP_EOL.
-                    '							<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
+                    '							<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '						</li>'.PHP_EOL.
                     '						<li>'.PHP_EOL.
                     '							<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
@@ -745,10 +745,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                'expectedHtml' => '                <nav role="navigation" aria-label="Pagination&#x20;navigation">'.PHP_EOL.
                     '                    <ul>'.PHP_EOL.
                     '                        <li>'.PHP_EOL.
-                    '                            <a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
+                    '                            <a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '                        </li>'.PHP_EOL.
                     '                        <li>'.PHP_EOL.
                     '                            <a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
@@ -769,7 +769,7 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '                <ul>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
+                    '                        <a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
                     '                        <a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>'.PHP_EOL.
@@ -797,7 +797,7 @@ class PaginationTest extends TestCase
                     '                        <a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
-                    '                        <a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>'.PHP_EOL.
+                    '                        <a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>'.PHP_EOL.
                     '                    </li>'.PHP_EOL.
                     '                    <li>'.PHP_EOL.
                     '                        <a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>'.PHP_EOL.
@@ -843,7 +843,7 @@ class PaginationTest extends TestCase
                     '			<zela data-data="o" href="1" aria-label="&#xE9;&#x20;-&gt;&#x20;1">1</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item data-id="yes">'.PHP_EOL.
-                    '			<zela data-id="id" href="#" aria-label="&#xE9;&#x20;-&#x20;2" aria-current="true">2</zela>'.PHP_EOL.
+                    '			<zela data-id="id" href="&#x23;" aria-label="&#xE9;&#x20;-&#x20;2" aria-current="true">2</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item class="okay">'.PHP_EOL.
                     '			<zela data-data="o" href="3" aria-label="&#xE9;&#x20;-&gt;&#x20;3">3</zela>'.PHP_EOL.
@@ -866,13 +866,13 @@ class PaginationTest extends TestCase
                     'count' => 50,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">'.PHP_EOL.
                     '	<ul>'.PHP_EOL.
                     '		<li dotdot>'.PHP_EOL.
                     '			<span>dots</span>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;25" aria-current="true">25</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;25" aria-current="true">25</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li dotdot>'.PHP_EOL.
                     '			<span>dots</span>'.PHP_EOL.
@@ -892,16 +892,16 @@ class PaginationTest extends TestCase
                     'count' => 1,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">'.PHP_EOL.
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">'.PHP_EOL.
                     '	<ul>'.PHP_EOL.
                     '		<li item_previous_attrs data-disabled>'.PHP_EOL.
-                    '			<a href="#" aria-label="Previous&#x20;page">Previous page</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="Previous&#x20;page">Previous page</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li item_next_attrs data-disabled>'.PHP_EOL.
-                    '			<a href="#" aria-label="Next&#x20;page">Next page</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="Next&#x20;page">Next page</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
                     '</nav>'
@@ -938,13 +938,67 @@ class PaginationTest extends TestCase
                     '			<a href="1">1</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="#" aria-current="true">2</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-current="true">2</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
                     '			<a href="3">3</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
                     '			<a href="3"></a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '	</ul>'.PHP_EOL.
+                    '</nav>'
+            ],
+            'security' => [
+                'configuration' => [
+                    'text_previous'               => '<script>alert(1);</script>',
+                    'text_next'                   => '<script>alert(1);</script>',
+                    'text_dots'                   => '<script>alert(1);</script>',
+                    'text_page'                   => '<script>alert(1);</script>',
+                    'aria_label_link'             => '"<script>alert(1);</script>"',
+                    'aria_label_current_link'     => '"<script>alert(1);</script>"',
+                    'aria_label_nav'              => '"<script>alert(1);</script>"',
+                    'aria_label_previous'         => '"<script>alert(1);</script>"',
+                    'aria_label_next'             => '"<script>alert(1);</script>"',
+                    'root_tag'                    => '><script>alert(1);</script>',
+                    'item_tag'                    => '><script>alert(1);</script>',
+                    'link_tag'                    => '><script>alert(1);</script>',
+                    'thousands_separator'         => '<script>alert(1);</script>',
+                    'use_next'                    => true,
+                    'use_previous'                => true,
+                    'use_dots'                    => true,
+                    'count_pages_pair_limit'            => 1
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 3000,
+                    'per_page' => 1
+                ],
+                'expectedHtml' => '<nav role="navigation" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">'.PHP_EOL.
+                    '	<ul>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="1" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt;</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="1" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 1</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="true">&lt;script&gt;alert(1);&lt;/script&gt; 2</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="3" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 3</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="4" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 4</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<span>&lt;script&gt;alert(1);&lt;/script&gt;</span>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="3000" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 3&lt;script&gt;alert(1);&lt;/script&gt;000</a>'.PHP_EOL.
+                    '		</li>'.PHP_EOL.
+                    '		<li>'.PHP_EOL.
+                    '			<a href="3" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt;</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
                     '</nav>'
@@ -1031,13 +1085,13 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
-			<a href="https://example.com/news/page/2" aria-label="Goto&#x20;page&#x20;2">2</a>
+			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;news&#x2F;page&#x2F;2" aria-label="Goto&#x20;page&#x20;2">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1051,13 +1105,13 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
-			<a href="https://example.com/news/page/2/?date=desc" aria-label="Goto&#x20;page&#x20;2">2</a>
+			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;news&#x2F;page&#x2F;2&#x2F;&#x3F;date&#x3D;desc" aria-label="Goto&#x20;page&#x20;2">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1071,13 +1125,13 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
-			<a href="2?date=desc" aria-label="Goto&#x20;page&#x20;2">2</a>
+			<a href="2&#x3F;date&#x3D;desc" aria-label="Goto&#x20;page&#x20;2">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1091,10 +1145,10 @@ class PaginationTest extends TestCase
                     'count' => 30,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1123,7 +1177,7 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
@@ -1132,7 +1186,7 @@ class PaginationTest extends TestCase
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1146,13 +1200,13 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li data-disabled>
-			<a href="#" aria-label="Previous&#x20;page">Previous page</a>
+			<a href="&#x23;" aria-label="Previous&#x20;page">Previous page</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1169,10 +1223,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1192,16 +1246,16 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
 		</li>
 		<li data-disabled>
-			<a href="#" aria-label="Next&#x20;page">Next page</a>
+			<a href="&#x23;" aria-label="Next&#x20;page">Next page</a>
 		</li>
 	</ul>
 </nav>'
@@ -1215,10 +1269,10 @@ class PaginationTest extends TestCase
                     'count' => 30,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1241,7 +1295,7 @@ class PaginationTest extends TestCase
                     'count' => 300,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -1253,7 +1307,7 @@ class PaginationTest extends TestCase
 			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
 		</li>
 		<li>
 			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
@@ -1276,13 +1330,13 @@ class PaginationTest extends TestCase
                     'count' => 300,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
 		</li>
 		<li>
 			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
@@ -1300,10 +1354,10 @@ class PaginationTest extends TestCase
                     'count' => 300,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
 		</li>
 	</ul>
 </nav>'
@@ -1318,7 +1372,7 @@ class PaginationTest extends TestCase
                     'count' => 300,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -1333,7 +1387,7 @@ class PaginationTest extends TestCase
 			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
 		</li>
 		<li>
 			<a href="6" aria-label="Goto&#x20;page&#x20;6">6</a>
@@ -1360,7 +1414,7 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Previous&#x20;page">prev</a>
@@ -1369,7 +1423,7 @@ class PaginationTest extends TestCase
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1384,10 +1438,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1408,10 +1462,10 @@ class PaginationTest extends TestCase
                     'count' => 30,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1434,10 +1488,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yolo 1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yolo 1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">yolo 2</a>
@@ -1454,10 +1508,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yo 1 lo</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yo 1 lo</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">yo 2 lo</a>
@@ -1474,10 +1528,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="aria&#x20;label&#x20;link">2</a>
@@ -1494,10 +1548,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="aria&#x20;label&#x20;link&#x20;2">2</a>
@@ -1514,10 +1568,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="aria&#x20;label&#x20;current&#x20;link" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="aria&#x20;label&#x20;current&#x20;link" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1534,10 +1588,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="aria&#x20;label&#x20;current&#x20;link&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="aria&#x20;label&#x20;current&#x20;link&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1554,10 +1608,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="aria label nav">
+                'expectedHtml' => '<nav role="navigation" aria-label="aria&#x20;label&#x20;nav">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1575,7 +1629,7 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="prev">Previous page</a>
@@ -1584,7 +1638,7 @@ class PaginationTest extends TestCase
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1599,10 +1653,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1623,10 +1677,10 @@ class PaginationTest extends TestCase
                     'count' => 1000,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1649,10 +1703,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<root>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1669,10 +1723,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul root attrs>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1691,7 +1745,7 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '<ul>
 	<li>
-		<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+		<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 	</li>
 	<li>
 		<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1707,10 +1761,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<item>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</item>
 		<item>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1727,10 +1781,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li item attrs>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1747,10 +1801,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li item attrs data-page="2">
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1767,10 +1821,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item attrs current>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1787,10 +1841,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item attrs current data-page="1">
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1808,7 +1862,7 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item previous attrs>
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
@@ -1817,7 +1871,7 @@ class PaginationTest extends TestCase
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1832,7 +1886,7 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item previous attrs data-page="1">
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
@@ -1841,7 +1895,7 @@ class PaginationTest extends TestCase
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
 		</li>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;2" aria-current="true">2</a>
 		</li>
 	</ul>
 </nav>'
@@ -1856,10 +1910,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1880,10 +1934,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1904,10 +1958,10 @@ class PaginationTest extends TestCase
                     'count' => 30,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1930,10 +1984,10 @@ class PaginationTest extends TestCase
                     'count' => 10,
                     'per_page' => 5
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<link href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</link>
+			<link href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</link>
 		</li>
 		<li>
 			<link href="2" aria-label="Goto&#x20;page&#x20;2">2</link>
@@ -1950,10 +2004,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a link attrs href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1970,10 +2024,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a link attrs data-page="2" href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -1990,10 +2044,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a link attrs current href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a link attrs current href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -2010,10 +2064,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a link attrs current data-page="1" href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a link attrs current data-page="1" href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -2030,7 +2084,7 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation"><ul><li><a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>'
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation"><ul><li><a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>'
             ],
             'html_tab_sequence' => [
                 'configuration' => [
@@ -2041,10 +2095,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 <ul>
 <li>
-<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 </li>
 <li>
 <a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -2061,10 +2115,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '	<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '	<nav role="navigation" aria-label="Pagination&#x20;navigation">
 		<ul>
 			<li>
-				<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+				<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 			</li>
 			<li>
 				<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
@@ -2102,10 +2156,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true"><em>1</em></a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true"><em>1</em></a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2"><em>2</em></a>
@@ -2122,10 +2176,10 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav role="navigation" aria-label="Pagination navigation">
+                'expectedHtml' => '<nav role="navigation" aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
-			<a href="#" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
+			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Goto&#x20;page&#x20;2">2</a>
