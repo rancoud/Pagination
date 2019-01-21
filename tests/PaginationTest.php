@@ -858,7 +858,7 @@ class PaginationTest extends TestCase
                 'configuration' => [
                     'use_dots' => true,
                     'text_dots' => 'dots',
-                    'item_dot_attrs' => 'dotdot',
+                    'item_dots_attrs' => 'dotdot',
                     'count_pages_pair_adjacent' => 0
                 ],
                 'params' => [
@@ -1948,10 +1948,10 @@ class PaginationTest extends TestCase
 	</ul>
 </nav>'
             ],
-            'item_dot_attrs' => [
+            'item_dots_attrs' => [
                 'configuration' => [
                     'use_dots' => true,
-                    'item_dot_attrs' => 'item dot attrs'
+                    'item_dots_attrs' => 'item dots attrs'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1969,7 +1969,7 @@ class PaginationTest extends TestCase
 		<li>
 			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
 		</li>
-		<li item dot attrs>
+		<li item dots attrs>
 			<span>…</span>
 		</li>
 	</ul>

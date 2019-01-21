@@ -90,7 +90,7 @@ It will output
 * item_attrs_current (string) ([example](#item_attrs_current))
 * item_previous_attrs (string) ([example](#item_previous_attrs))
 * item_next_attrs (string) ([example](#item_next_attrs))
-* item_dot_attrs (string) ([example](#item_dot_attrs))
+* item_dots_attrs (string) ([example](#item_dots_attrs))
 
 #### Link
 * link_tag (string: a) ([example](#link_tag))
@@ -113,7 +113,7 @@ You have to sanitize by yourself thoses parameters:
 * item_attrs_current
 * item_previous_attrs
 * item_next_attrs
-* item_dot_attrs
+* item_dots_attrs
 * link_attrs
 * link_attrs_current
 * html_tab_sequence
@@ -1122,12 +1122,12 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 
 [⏫ Configuration Parameters](#configuration-parameters)
 
-### item_dot_attrs
+### item_dots_attrs
 #### Input
 ```php
 $conf = [
     'use_dots' => true,
-    'item_dot_attrs' => 'item dot attrs'
+    'item_dots_attrs' => 'item dots attrs'
 ];
 echo (new Pagination($conf))->generateHtml(1, 30, 5);
 ```
@@ -1144,7 +1144,7 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 		<li>
 			<a href="3" aria-label="Goto&#x20;page&#x20;3">3</a>
 		</li>
-		<li item dot attrs>
+		<li item dots attrs>
 			<span>…</span>
 		</li>
 	</ul>

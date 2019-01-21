@@ -61,7 +61,7 @@ class Pagination
     protected $itemAttrsCurrent = '';
     protected $itemNextAttrs = '';
     protected $itemPreviousAttrs = '';
-    protected $itemDotAttrs = '';
+    protected $itemDotsAttrs = '';
     protected $linkTag = 'a';
     protected $linkAttrs = '';
     protected $linkAttrsCurrent = '';
@@ -87,7 +87,7 @@ class Pagination
         'item_attrs_current'          => 'itemAttrsCurrent',
         'item_next_attrs'             => 'itemNextAttrs',
         'item_previous_attrs'         => 'itemPreviousAttrs',
-        'item_dot_attrs'              => 'itemDotAttrs',
+        'item_dots_attrs'             => 'itemDotsAttrs',
         'link_tag'                    => 'linkTag',
         'link_attrs'                  => 'linkAttrs',
         'link_attrs_current'          => 'linkAttrsCurrent',
@@ -448,7 +448,7 @@ class Pagination
 
         if ($dots) {
             $text = $this->textDots;
-            $itemAttrs = \str_replace('{{PAGE}}', $page, $this->itemDotAttrs);
+            $itemAttrs = \str_replace('{{PAGE}}', $page, $this->itemDotsAttrs);
         }
 
         if ($this->escHtml) {
