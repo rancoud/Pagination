@@ -12,69 +12,69 @@ use Rancoud\Security\Security;
 class Pagination
 {
     // region Properties: Calculations
-    protected $currentPage = 1;
-    protected $countElements = null;
-    protected $countElementPerPage = null;
-    protected $maxPages = null;
-    protected $countPagesPairLimit = 0;
-    protected $countPagesPairAdjacent = 2;
+    protected int $currentPage = 1;
+    protected int $countElements = 0;
+    protected int $countElementPerPage = 0;
+    protected int $maxPages = 0;
+    protected int $countPagesPairLimit = 0;
+    protected int $countPagesPairAdjacent = 2;
     // endregion
 
     // region Properties: Links
-    protected $url = '';
+    protected string $url = '';
     // endregion
 
     // region Properties: Texts
-    protected $textPrevious = 'Previous page';
-    protected $textNext = 'Next page';
-    protected $textDots = '…';
-    protected $textPage = '{{PAGE}}';
-    protected $ariaLabelLink = 'Goto page {{PAGE}}';
-    protected $ariaLabelCurrentLink = 'Current page, page {{PAGE}}';
-    protected $ariaLabelNav = 'Pagination navigation';
-    protected $ariaLabelPrevious = 'Previous page';
-    protected $ariaLabelNext = 'Next page';
-    protected $thousandsSeparator = '';
+    protected string $textPrevious = 'Previous page';
+    protected string $textNext = 'Next page';
+    protected string $textDots = '…';
+    protected string $textPage = '{{PAGE}}';
+    protected string $ariaLabelLink = 'Goto page {{PAGE}}';
+    protected string $ariaLabelCurrentLink = 'Current page, page {{PAGE}}';
+    protected string $ariaLabelNav = 'Pagination navigation';
+    protected string $ariaLabelPrevious = 'Previous page';
+    protected string $ariaLabelNext = 'Next page';
+    protected string $thousandsSeparator = '';
     // endregion
 
     // region Properties: Generation
-    protected $previous = null;
-    protected $links = [];
-    protected $next = null;
-    protected $useDots = false;
-    protected $usePrevious = false;
-    protected $alwaysUsePrevious = false;
-    protected $useNext = false;
-    protected $alwaysUseNext = false;
-    protected $showAllLinks = false;
-    protected $usePrettyHtml = true;
-    protected $htmlInitialIndentation = 0;
-    protected $htmlTabSequence = "\t";
-    protected $useNav = true;
+    protected ?array $previous = null;
+    protected array $links = [];
+    protected ?array $next = null;
+    protected bool $useDots = false;
+    protected bool $usePrevious = false;
+    protected bool $alwaysUsePrevious = false;
+    protected bool $useNext = false;
+    protected bool $alwaysUseNext = false;
+    protected bool $showAllLinks = false;
+    protected bool $usePrettyHtml = true;
+    protected int $htmlInitialIndentation = 0;
+    protected string $htmlTabSequence = "\t";
+    protected bool $useNav = true;
     // endregion
 
     // region Properties: Tags Parameters
-    protected $rootTag = 'ul';
-    protected $rootAttrs = '';
-    protected $itemTag = 'li';
-    protected $itemAttrs = '';
-    protected $itemAttrsCurrent = '';
-    protected $itemNextAttrs = '';
-    protected $itemPreviousAttrs = '';
-    protected $itemDotsAttrs = '';
-    protected $linkTag = 'a';
-    protected $linkAttrs = '';
-    protected $linkAttrsCurrent = '';
+    protected string $rootTag = 'ul';
+    protected string $rootAttrs = '';
+    protected string $itemTag = 'li';
+    protected string $itemAttrs = '';
+    protected string $itemAttrsCurrent = '';
+    protected string $itemNextAttrs = '';
+    protected string $itemPreviousAttrs = '';
+    protected string $itemDotsAttrs = '';
+    protected string $linkTag = 'a';
+    protected string $linkAttrs = '';
+    protected string $linkAttrsCurrent = '';
     // endregion
 
     // region Properties: Security
-    protected $escAttr = true;
-    protected $escHtml = true;
-    protected $charset = 'UTF-8';
+    protected bool $escAttr = true;
+    protected bool $escHtml = true;
+    protected string $charset = 'UTF-8';
     // endregion
 
     // region Configuration keys
-    protected $propsString = [
+    protected array $propsString = [
         'url'                         => 'url',
         'text_previous'               => 'textPrevious',
         'text_next'                   => 'textNext',
@@ -100,7 +100,7 @@ class Pagination
         'thousands_separator'         => 'thousandsSeparator',
         'charset'                     => 'charset'
     ];
-    protected $propsBool = [
+    protected array $propsBool = [
         'use_dots'              => 'useDots',
         'use_previous'          => 'usePrevious',
         'always_use_previous'   => 'alwaysUsePrevious',
@@ -112,7 +112,7 @@ class Pagination
         'esc_attr'              => 'escAttr',
         'esc_html'              => 'escHtml'
     ];
-    protected $propsPositiveInteger = [
+    protected array $propsPositiveInteger = [
         'count_pages_pair_limit'    => 'countPagesPairLimit',
         'count_pages_pair_adjacent' => 'countPagesPairAdjacent',
         'html_initial_indentation'  => 'htmlInitialIndentation',
@@ -187,6 +187,8 @@ class Pagination
      * @param int $countElements
      * @param int $countElementPerPage
      *
+     * @throws \Rancoud\Security\SecurityException
+     *
      * @return string
      */
     public function generateHtml(int $currentPage, int $countElements, int $countElementPerPage): string
@@ -202,6 +204,8 @@ class Pagination
      * @param int $currentPage
      * @param int $countElements
      * @param int $countElementPerPage
+     *
+     * @throws \Rancoud\Security\SecurityException
      *
      * @return array
      */
@@ -239,6 +243,9 @@ class Pagination
         $this->maxPages = (int) \ceil($this->countElements / $this->countElementPerPage);
     }
 
+    /**
+     * @throws \Rancoud\Security\SecurityException
+     */
     protected function compute(): void
     {
         $this->previous = null;
@@ -254,6 +261,9 @@ class Pagination
         $this->computeNextLink();
     }
 
+    /**
+     * @throws \Rancoud\Security\SecurityException
+     */
     protected function computePreviousLink(): void
     {
         if (!$this->alwaysUsePrevious && !$this->usePrevious) {
@@ -307,6 +317,9 @@ class Pagination
         ];
     }
 
+    /**
+     * @throws \Rancoud\Security\SecurityException
+     */
     protected function computeLinks(): void
     {
         $canAddDot = true;
@@ -356,6 +369,9 @@ class Pagination
         return $inIntervalLeft && $inIntervalRight;
     }
 
+    /**
+     * @throws \Rancoud\Security\SecurityException
+     */
     protected function computeNextLink(): void
     {
         if (!$this->alwaysUseNext && !$this->useNext) {
@@ -413,6 +429,8 @@ class Pagination
      * @param int  $page
      * @param bool $current
      * @param bool $dots
+     *
+     * @throws \Rancoud\Security\SecurityException
      *
      * @return array
      */
@@ -497,6 +515,8 @@ class Pagination
     }
 
     /**
+     * @throws \Rancoud\Security\SecurityException
+     *
      * @return string
      */
     protected function getHtml(): string

@@ -12,7 +12,10 @@ use Rancoud\Pagination\Pagination;
  */
 class PaginationTest extends TestCase
 {
-    public function testConstruct()
+    /**
+     * @throws \Rancoud\Security\SecurityException
+     */
+    public function testConstruct(): void
     {
         $p = new Pagination();
         $data = $p->generateData(1, 2, 1);
@@ -56,7 +59,10 @@ class PaginationTest extends TestCase
         static::assertSame($expected, $html);
     }
 
-    public function testConfiguration()
+    /**
+     * @throws \Rancoud\Security\SecurityException
+     */
+    public function testConfiguration(): void
     {
         $p = new Pagination(['text_previous' => 'toto', 'use_next' => true]);
         $p->setConfiguration(['text_next' => 'aze', 'use_previous' => true]);
@@ -123,8 +129,9 @@ class PaginationTest extends TestCase
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
+     * @throws \Rancoud\Security\SecurityException
      */
-    public function testIncorrectCeilCompute(array $configuration, array $params, array $dataOut)
+    public function testIncorrectCeilCompute(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
         $p->setConfiguration($configuration);
@@ -136,7 +143,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataCeil()
+    public function dataCeil(): array
     {
         $configuration = [
             'use_previous' => true,
@@ -393,8 +400,9 @@ class PaginationTest extends TestCase
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
+     * @throws \Rancoud\Security\SecurityException
      */
-    public function testShowAllLinks(array $configuration, array $params, array $dataOut)
+    public function testShowAllLinks(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
         $p->setConfiguration($configuration);
@@ -406,7 +414,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataShowAllLinks()
+    public function dataShowAllLinks(): array
     {
         $configuration = [
             'use_previous' => true,
@@ -460,36 +468,36 @@ class PaginationTest extends TestCase
         for ($i = 1; $i < 51; $i++) {
             $linksCurrentPage1[] = [
                 'dots' => false,
-                'current' => ($i == 1),
-                'href' => ($i == 1) ? '&#x23;' : (string) $i,
+                'current' => ($i === 1),
+                'href' => ($i === 1) ? '&#x23;' : (string) $i,
                 'text' => (string) $i,
                 'page' => $i,
                 'itemAttrs' => '',
                 'linkAttrs' => '',
-                'ariaLabel' => ($i == 1) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
-                'ariaCurrent' => ($i == 1)
+                'ariaLabel' => ($i === 1) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
+                'ariaCurrent' => ($i === 1)
             ];
             $linksCurrentPage2[] = [
                 'dots' => false,
-                'current' => ($i == 2),
-                'href' => ($i == 2) ? '&#x23;' : (string) $i,
+                'current' => ($i === 2),
+                'href' => ($i === 2) ? '&#x23;' : (string) $i,
                 'text' => (string) $i,
                 'page' => $i,
                 'itemAttrs' => '',
                 'linkAttrs' => '',
-                'ariaLabel' => ($i == 2) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
-                'ariaCurrent' => ($i == 2)
+                'ariaLabel' => ($i === 2) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
+                'ariaCurrent' => ($i === 2)
             ];
             $linksCurrentPage50[] = [
                 'dots' => false,
-                'current' => ($i == 50),
-                'href' => ($i == 50) ? '&#x23;' : (string) $i,
+                'current' => ($i === 50),
+                'href' => ($i === 50) ? '&#x23;' : (string) $i,
                 'text' => (string) $i,
                 'page' => $i,
                 'itemAttrs' => '',
                 'linkAttrs' => '',
-                'ariaLabel' => ($i == 50) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
-                'ariaCurrent' => ($i == 50)
+                'ariaLabel' => ($i === 50) ? 'aria-label="Current&#x20;page,&#x20;page&#x20;'.$i.'"' : 'aria-label="Goto&#x20;page&#x20;'.$i.'"',
+                'ariaCurrent' => ($i === 50)
             ];
         }
         
@@ -540,8 +548,9 @@ class PaginationTest extends TestCase
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
+     * @throws \Rancoud\Security\SecurityException
      */
-    public function testAdjacentAndLimitConfiguration(array $configuration, array $params, array $dataOut)
+    public function testAdjacentAndLimitConfiguration(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
         $p->setConfiguration($configuration);
@@ -553,7 +562,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataAdjacentAndLimitConfiguration()
+    public function dataAdjacentAndLimitConfiguration(): array
     {
         $currentPage = [];
         $currentPage[] = [
@@ -677,11 +686,12 @@ class PaginationTest extends TestCase
     }
 
     /** @dataProvider dataRenderHtml
-     * @param array  $configuration
-     * @param array  $params
+     * @param array $configuration
+     * @param array $params
      * @param string $expectedHtml
+     * @throws \Rancoud\Security\SecurityException
      */
-    public function testRenderHtml(array $configuration, array $params, string $expectedHtml)
+    public function testRenderHtml(array $configuration, array $params, string $expectedHtml): void
     {
         $p = new Pagination();
         $p->setConfiguration($configuration);
@@ -692,7 +702,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataRenderHtml()
+    public function dataRenderHtml(): array
     {
         return [
             'pretty html off' => [
@@ -837,19 +847,19 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav role="navigation" aria-label="plop">'.PHP_EOL.
                     '	<root x="f(x)">'.PHP_EOL.
                     '		<item previous>'.PHP_EOL.
-                    '			<zela data-data="o" href="1" aria-label="aria-&#xE5;">前</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="aria-&#x524D;">前</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item class="okay">'.PHP_EOL.
-                    '			<zela data-data="o" href="1" aria-label="&#xE9;&#x20;-&gt;&#x20;1">1</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item data-id="yes">'.PHP_EOL.
-                    '			<zela data-id="id" href="&#x23;" aria-label="&#xE9;&#x20;-&#x20;2" aria-current="true">2</zela>'.PHP_EOL.
+                    '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="true">2</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item class="okay">'.PHP_EOL.
-                    '			<zela data-data="o" href="3" aria-label="&#xE9;&#x20;-&gt;&#x20;3">3</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '		<item next>'.PHP_EOL.
-                    '			<zela data-data="o" href="3" aria-label="aria-&#xE6;">次</zela>'.PHP_EOL.
+                    '			<zela data-data="o" href="3" aria-label="aria-&#x6B21;">次</zela>'.PHP_EOL.
                     '		</item>'.PHP_EOL.
                     '	</root>'.PHP_EOL.
                     '</nav>'
@@ -977,28 +987,28 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav role="navigation" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">'.PHP_EOL.
                     '	<ul>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="1" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt;</a>'.PHP_EOL.
+                    '			<a href="1" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="1" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 1</a>'.PHP_EOL.
+                    '			<a href="1" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="true">&lt;script&gt;alert(1);&lt;/script&gt; 2</a>'.PHP_EOL.
+                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="true">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="3" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 3</a>'.PHP_EOL.
+                    '			<a href="3" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="4" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 4</a>'.PHP_EOL.
+                    '			<a href="4" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<span>&lt;script&gt;alert(1);&lt;/script&gt;</span>'.PHP_EOL.
+                    '			<span>&lt;script&gt;alert(1);&lt;&#47;script&gt;</span>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="3000" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt; 3&lt;script&gt;alert(1);&lt;/script&gt;000</a>'.PHP_EOL.
+                    '			<a href="3000" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
-                    '			<a href="3" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;/script&gt;</a>'.PHP_EOL.
+                    '			<a href="3" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
                     '</nav>'
@@ -1011,7 +1021,7 @@ class PaginationTest extends TestCase
      * @param int  $countElementPerPage
      * @param int  $expected
      */
-    public function testCountPages(int $countElements, int $countElementPerPage, int $expected)
+    public function testCountPages(int $countElements, int $countElementPerPage, int $expected): void
     {
         static::assertSame($expected, Pagination::countPages($countElements, $countElementPerPage));
     }
@@ -1019,7 +1029,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataCountPages()
+    public function dataCountPages(): array
     {
         return [
             '1 item + 1 per page' => [1, 1, 1],
@@ -1034,7 +1044,7 @@ class PaginationTest extends TestCase
      * @param int $itemIndex
      * @param int $expected
      */
-    public function testLocateItemInPage(int $countElementPerPage, int $itemIndex, int $expected)
+    public function testLocateItemInPage(int $countElementPerPage, int $itemIndex, int $expected): void
     {
         static::assertSame($expected, Pagination::locateItemInPage($countElementPerPage, $itemIndex));
     }
@@ -1042,7 +1052,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataLocateItemInPage()
+    public function dataLocateItemInPage(): array
     {
         return [
             '1 per page + item index 1' => [1, 1, 1],
@@ -1057,11 +1067,12 @@ class PaginationTest extends TestCase
     }
 
     /** @dataProvider dataRenderHtmlForReadme
-     * @param array  $configuration
-     * @param array  $params
+     * @param array $configuration
+     * @param array $params
      * @param string $expectedHtml
+     * @throws \Rancoud\Security\SecurityException
      */
-    public function testRenderHtmlForReadme(array $configuration, array $params, string $expectedHtml)
+    public function testRenderHtmlForReadme(array $configuration, array $params, string $expectedHtml): void
     {
         $p = new Pagination();
         $p->setConfiguration($configuration);
@@ -1073,7 +1084,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataRenderHtmlForReadme()
+    public function dataRenderHtmlForReadme(): array
     {
         return [
             'url (page append at the end)' => [
@@ -2189,5 +2200,4 @@ class PaginationTest extends TestCase
             ]
         ];
     }
-
 }
