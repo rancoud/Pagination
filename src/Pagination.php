@@ -38,9 +38,9 @@ class Pagination
     // endregion
 
     // region Properties: Generation
-    protected ?array $previous = null;
+    protected ?Item $previous = null;
     protected array $links = [];
-    protected ?array $next = null;
+    protected ?Item $next = null;
     protected bool $useDots = false;
     protected bool $usePrevious = false;
     protected bool $alwaysUsePrevious = false;
@@ -274,47 +274,40 @@ class Pagination
             return;
         }
 
-        $page = $this->currentPage - 1;
+        $this->previous = new Item();
+
+        $this->previous->page = $this->currentPage - 1;
         if ($this->currentPage > $this->maxPages) {
-            $page = $this->maxPages;
+            $this->previous->page = $this->maxPages;
         }
 
-        $href = ($page === 0) ? '#' : $this->getLink($page);
+        $this->previous->href = ($this->previous->page === 0) ? '#' : $this->getLink($this->previous->page);
 
-        $text = $this->textPrevious;
+        $this->previous->text = $this->textPrevious;
         if ($this->escHtml) {
-            $text = Security::escHtml($this->textPrevious, $this->charset);
+            $this->previous->text = Security::escHtml($this->textPrevious, $this->charset);
         }
 
-        $ariaLabel = $this->ariaLabelPrevious;
+        $this->previous->ariaLabel = $this->ariaLabelPrevious;
         if ($this->escAttr) {
-            $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
-            $href = Security::escAttr($href, $this->charset);
+            $this->previous->ariaLabel = Security::escAttr($this->previous->ariaLabel, $this->charset);
+            $this->previous->href = Security::escAttr($this->previous->href, $this->charset);
         }
-        if (!empty($ariaLabel)) {
-            $ariaLabel = 'aria-label="' . $ariaLabel . '"';
+        if ($this->previous->ariaLabel !== '') {
+            $this->previous->ariaLabel = 'aria-label="' . $this->previous->ariaLabel . '"';
         }
 
-        $itemAttrs = $this->itemPreviousAttrs;
-        if ($href === '#' || $href === '&#x23;') {
+        $this->previous->linkAttrs = $this->linkAttrs;
+        if ($this->previous->href === '#' || $this->previous->href === '&#x23;') {
             $sep = '';
-            if (!empty($this->itemPreviousAttrs)) {
+            if ($this->linkAttrs !== '') {
                 $sep = ' ';
             }
-            $itemAttrs = $this->itemPreviousAttrs . $sep . 'data-disabled';
+            $this->previous->linkAttrs = $this->linkAttrs . $sep . 'aria-disabled="true"';
         }
 
-        $itemAttrs = \str_replace('{{PAGE}}', $page, $itemAttrs);
-        $linkAttrs = \str_replace('{{PAGE}}', $page, $this->linkAttrs);
-
-        $this->previous = [
-            'itemAttrs' => $itemAttrs,
-            'linkAttrs' => $linkAttrs,
-            'href'      => $href,
-            'text'      => $text,
-            'page'      => $page,
-            'ariaLabel' => $ariaLabel
-        ];
+        $this->previous->itemAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->itemPreviousAttrs);
+        $this->previous->linkAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->previous->linkAttrs);
     }
 
     /**
@@ -382,47 +375,40 @@ class Pagination
             return;
         }
 
-        $page = $this->currentPage + 1;
+        $this->next = new Item();
+
+        $this->next->page = $this->currentPage + 1;
         if ($this->currentPage >= $this->maxPages) {
-            $page = $this->maxPages;
+            $this->next->page = $this->maxPages;
         }
 
-        $href = ($this->currentPage === $this->maxPages) ? '#' : $this->getLink($this->currentPage + 1);
+        $this->next->href = ($this->currentPage === $this->maxPages) ? '#' : $this->getLink($this->currentPage + 1);
 
-        $text = $this->textNext;
+        $this->next->text = $this->textNext;
         if ($this->escHtml) {
-            $text = Security::escHtml($this->textNext, $this->charset);
+            $this->next->text = Security::escHtml($this->next->text, $this->charset);
         }
 
-        $ariaLabel = $this->ariaLabelNext;
+        $this->next->ariaLabel = $this->ariaLabelNext;
         if ($this->escAttr) {
-            $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
-            $href = Security::escAttr($href, $this->charset);
+            $this->next->ariaLabel = Security::escAttr($this->next->ariaLabel, $this->charset);
+            $this->next->href = Security::escAttr($this->next->href, $this->charset);
         }
-        if (!empty($ariaLabel)) {
-            $ariaLabel = 'aria-label="' . $ariaLabel . '"';
+        if ($this->next->ariaLabel !== '') {
+            $this->next->ariaLabel = 'aria-label="' . $this->next->ariaLabel . '"';
         }
 
-        $itemAttrs = $this->itemNextAttrs;
-        if ($href === '#' || $href === '&#x23;') {
+        $this->next->linkAttrs = $this->linkAttrs;
+        if ($this->next->href === '#' || $this->next->href === '&#x23;') {
             $sep = '';
-            if (!empty($this->itemNextAttrs)) {
+            if ($this->linkAttrs !== '') {
                 $sep = ' ';
             }
-            $itemAttrs = $this->itemNextAttrs . $sep . 'data-disabled';
+            $this->next->linkAttrs = $this->linkAttrs . $sep . 'aria-disabled="true"';
         }
 
-        $itemAttrs = \str_replace('{{PAGE}}', $page, $itemAttrs);
-        $linkAttrs = \str_replace('{{PAGE}}', $page, $this->linkAttrs);
-
-        $this->next = [
-            'itemAttrs' => $itemAttrs,
-            'linkAttrs' => $linkAttrs,
-            'href'      => $href,
-            'text'      => $text,
-            'page'      => $page,
-            'ariaLabel' => $ariaLabel
-        ];
+        $this->next->itemAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->itemNextAttrs);
+        $this->next->linkAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->next->linkAttrs);
     }
 
     /**
@@ -432,66 +418,62 @@ class Pagination
      *
      * @throws \Rancoud\Security\SecurityException
      *
-     * @return array
+     * @return Item
      */
-    protected function generateLinkData(int $page, bool $current = false, bool $dots = false): array
+    protected function generateLinkData(int $page, bool $current = false, bool $dots = false): Item
     {
-        $itemAttrs = $this->itemAttrs;
-        $linkAttrs = $this->linkAttrs;
-        $ariaLabel = $this->ariaLabelLink;
+        $item = new Item();
+        $item->isDots = $dots;
+        $item->isCurrent = $current;
+        $item->ariaCurrent = $current;
+        $item->page = $page;
+
+        $item->itemAttrs = $this->itemAttrs;
+        $item->linkAttrs = $this->linkAttrs;
+        $item->ariaLabel = $this->ariaLabelLink;
         if ($current) {
-            $itemAttrs = $this->itemAttrsCurrent;
-            $linkAttrs = $this->linkAttrsCurrent;
-            $ariaLabel = $this->ariaLabelCurrentLink;
+            $item->itemAttrs = $this->itemAttrsCurrent;
+            $item->linkAttrs = $this->linkAttrsCurrent;
+            $item->ariaLabel = $this->ariaLabelCurrentLink;
         }
 
-        $itemAttrs = \str_replace('{{PAGE}}', $page, $itemAttrs);
-        $linkAttrs = \str_replace('{{PAGE}}', $page, $linkAttrs);
-        $ariaLabel = \str_replace('{{PAGE}}', $page, $ariaLabel);
+        $item->itemAttrs = \str_replace('{{PAGE}}', $page, $item->itemAttrs);
+        $item->linkAttrs = \str_replace('{{PAGE}}', $page, $item->linkAttrs);
+        $item->ariaLabel = \str_replace('{{PAGE}}', $page, $item->ariaLabel);
 
-        $href = $this->getLink($page);
+        $item->href = $this->getLink($page);
         if ($current) {
-            $href = '#';
+            $item->href = '#';
         }
 
         $pageFormated = \number_format($page, 0, '.', $this->thousandsSeparator);
-        $text = \str_replace('{{PAGE}}', $pageFormated, $this->textPage);
-        if ($text === $this->textPage) {
+        $item->text = \str_replace('{{PAGE}}', $pageFormated, $this->textPage);
+        if ($item->text === $this->textPage) {
             $sep = '';
-            if (!empty($text)) {
+            if ($item->text !== '') {
                 $sep = ' ';
             }
-            $text .= $sep . $pageFormated;
+            $item->text .= $sep . $pageFormated;
         }
 
         if ($dots) {
-            $text = $this->textDots;
-            $itemAttrs = \str_replace('{{PAGE}}', $page, $this->itemDotsAttrs);
+            $item->text = $this->textDots;
+            $item->itemAttrs = \str_replace('{{PAGE}}', $page, $this->itemDotsAttrs);
         }
 
         if ($this->escHtml) {
-            $text = Security::escHtml($text, $this->charset);
+            $item->text = Security::escHtml($item->text, $this->charset);
         }
 
         if ($this->escAttr) {
-            $ariaLabel = Security::escAttr($ariaLabel, $this->charset);
-            $href = Security::escAttr($href, $this->charset);
+            $item->ariaLabel = Security::escAttr($item->ariaLabel, $this->charset);
+            $item->href = Security::escAttr($item->href, $this->charset);
         }
-        if (!empty($ariaLabel)) {
-            $ariaLabel = 'aria-label="' . $ariaLabel . '"';
+        if ($item->ariaLabel !== '') {
+            $item->ariaLabel = 'aria-label="' . $item->ariaLabel . '"';
         }
 
-        return [
-            'itemAttrs'    => $itemAttrs,
-            'linkAttrs'    => $linkAttrs,
-            'dots'         => $dots,
-            'current'      => $current,
-            'href'         => $href,
-            'text'         => $text,
-            'page'         => $page,
-            'ariaLabel'    => $ariaLabel,
-            'ariaCurrent'  => $current,
-        ];
+        return $item;
     }
 
     /**
@@ -532,16 +514,16 @@ class Pagination
             if ($this->escAttr) {
                 $ariaLabelNav = Security::escAttr($this->ariaLabelNav);
             }
-            if (!empty($ariaLabelNav)) {
+            if ($ariaLabelNav !== '') {
                 $ariaLabelNav = ' aria-label="' . $ariaLabelNav . '"';
             }
 
-            $html .= $tab . '<nav role="navigation"' . $ariaLabelNav . '>' . $endl;
+            $html .= $tab . '<nav' . $ariaLabelNav . '>' . $endl;
             $tab = $this->getTabSequence();
         }
 
         $html .= $tab . '<' . $this->rootTag;
-        if (!empty($this->rootAttrs)) {
+        if ($this->rootAttrs !== '') {
             $html .= ' ' . $this->rootAttrs;
         }
         $html .= '>' . $endl;
@@ -575,31 +557,31 @@ class Pagination
         }
 
         return $this->generateLinkFactory([
-            'itemAttrs'    => $this->previous['itemAttrs'],
-            'linkAttrs'    => $this->previous['linkAttrs'],
-            'href'         => $this->previous['href'],
-            'text'         => $this->previous['text'],
-            'ariaLabel'    => $this->previous['ariaLabel'],
+            'itemAttrs'    => $this->previous->itemAttrs,
+            'linkAttrs'    => $this->previous->linkAttrs,
+            'href'         => $this->previous->href,
+            'text'         => $this->previous->text,
+            'ariaLabel'    => $this->previous->ariaLabel,
             'ariaCurrent'  => false,
             'dots'         => false
         ]);
     }
 
     /**
-     * @param array $link
+     * @param Item $link
      *
      * @return string
      */
-    protected function generateLink(array $link): string
+    protected function generateLink(Item $link): string
     {
         return $this->generateLinkFactory([
-            'itemAttrs'    => $link['itemAttrs'],
-            'linkAttrs'    => $link['linkAttrs'],
-            'href'         => $link['href'],
-            'text'         => $link['text'],
-            'ariaLabel'    => $link['ariaLabel'],
-            'ariaCurrent'  => $link['ariaCurrent'],
-            'dots'         => $link['dots']
+            'itemAttrs'    => $link->itemAttrs,
+            'linkAttrs'    => $link->linkAttrs,
+            'href'         => $link->href,
+            'text'         => $link->text,
+            'ariaLabel'    => $link->ariaLabel,
+            'ariaCurrent'  => $link->ariaCurrent,
+            'dots'         => $link->isDots
         ]);
     }
 
@@ -613,11 +595,11 @@ class Pagination
         }
 
         return $this->generateLinkFactory([
-            'itemAttrs'    => $this->next['itemAttrs'],
-            'linkAttrs'    => $this->next['linkAttrs'],
-            'href'         => $this->next['href'],
-            'text'         => $this->next['text'],
-            'ariaLabel'    => $this->next['ariaLabel'],
+            'itemAttrs'    => $this->next->itemAttrs,
+            'linkAttrs'    => $this->next->linkAttrs,
+            'href'         => $this->next->href,
+            'text'         => $this->next->text,
+            'ariaLabel'    => $this->next->ariaLabel,
             'ariaCurrent'  => false,
             'dots'         => false
         ]);
@@ -635,7 +617,7 @@ class Pagination
         $endl = $this->getEndlineSequence();
 
         $openItemTag = '<' . $this->itemTag;
-        $openItemTag .= !empty($infos['itemAttrs']) ? ' ' . $infos['itemAttrs'] . '>' : '>';
+        $openItemTag .= $infos['itemAttrs'] !== '' ? ' ' . $infos['itemAttrs'] . '>' : '>';
         $closeItemTag = '</' . $this->itemTag . '>';
 
         if ($infos['dots']) {
@@ -644,9 +626,9 @@ class Pagination
             $closeLinkTag = '</span>';
         } else {
             $openLinkTag = '<' . $this->linkTag;
-            $openLinkTag .= !empty($infos['linkAttrs']) ? ' ' . $infos['linkAttrs'] : '';
-            $openLinkTag .= !empty($infos['href']) ? ' href="' . $infos['href'] . '"' : '';
-            $openLinkTag .= !empty($infos['ariaLabel']) ? ' ' . $infos['ariaLabel'] : '';
+            $openLinkTag .= $infos['linkAttrs'] !== '' ? ' ' . $infos['linkAttrs'] : '';
+            $openLinkTag .= $infos['href'] !== '' ? ' href="' . $infos['href'] . '"' : '';
+            $openLinkTag .= $infos['ariaLabel'] !== '' ? ' ' . $infos['ariaLabel'] : '';
             $openLinkTag .= $infos['ariaCurrent'] ? ' aria-current="true"' : '';
             $openLinkTag .= '>' . $infos['text'];
             $closeLinkTag = '</' . $this->linkTag . '>';

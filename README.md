@@ -1,5 +1,14 @@
 # Pagination Package
 
+## TODO
+[X] use Pagination/Item for represents previous/next/links  
+[X] fix test units  
+[X] remove data-disabled for aria-disabled  
+[ ] refacto code  
+[ ] reorder attributes  
+[ ] check a11y rendering with nvda  
+[ ] update README with new render  
+
 [![Build Status](https://travis-ci.org/rancoud/Pagination.svg?branch=master)](https://travis-ci.org/rancoud/Pagination) [![Coverage Status](https://coveralls.io/repos/github/rancoud/Pagination/badge.svg?branch=master)](https://coveralls.io/github/rancoud/Pagination?branch=master)
 
 Generate HTML pagination.  
@@ -24,7 +33,7 @@ echo $html;
 ```
 It will output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Current page, page 1" aria-current="true" title="1">1</a>
@@ -130,7 +139,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -152,7 +161,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -174,7 +183,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -198,7 +207,7 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -234,7 +243,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
@@ -262,7 +271,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li data-disabled>
 			<a href="&#x23;" aria-label="Previous&#x20;page">Previous page</a>
@@ -289,7 +298,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -317,7 +326,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -344,7 +353,7 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -374,7 +383,7 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -413,7 +422,7 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="4" aria-label="Goto&#x20;page&#x20;4">4</a>
@@ -442,7 +451,7 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;5" aria-current="true">5</a>
@@ -462,7 +471,7 @@ echo (new Pagination($conf))->generateHtml(5, 300, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Goto&#x20;page&#x20;1">1</a>
@@ -508,7 +517,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="1" aria-label="Previous&#x20;page">prev</a>
@@ -536,7 +545,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -564,7 +573,7 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -595,7 +604,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yolo 1</a>
@@ -617,7 +626,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">yo 1 lo</a>
@@ -641,7 +650,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -663,7 +672,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -687,7 +696,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="aria&#x20;label&#x20;current&#x20;link" aria-current="true">1</a>
@@ -709,7 +718,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="aria&#x20;label&#x20;current&#x20;link&#x20;1" aria-current="true">1</a>
@@ -733,7 +742,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="aria&#x20;label&#x20;nav">
+<nav aria-label="aria&#x20;label&#x20;nav">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -758,7 +767,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="aria label nav">
+<nav aria-label="aria label nav">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -783,7 +792,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="aria label nav">
+<nav aria-label="aria label nav">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -808,7 +817,7 @@ echo (new Pagination($conf))->generateHtml(1, 1000, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -838,7 +847,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<root>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -862,7 +871,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul root attrs>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -908,7 +917,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<item>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -932,7 +941,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -954,7 +963,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -978,7 +987,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item attrs current>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1000,7 +1009,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item attrs current data-page="1">
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1025,7 +1034,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item previous attrs>
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
@@ -1051,7 +1060,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li item previous attrs data-page="1">
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
@@ -1079,7 +1088,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1105,7 +1114,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1133,7 +1142,7 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1163,7 +1172,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<link href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</link>
@@ -1187,7 +1196,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1209,7 +1218,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1233,7 +1242,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a link attrs current href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1255,7 +1264,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a link attrs current data-page="1" href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1279,7 +1288,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation"><ul><li><a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>
+<nav aria-label="Pagination&#x20;navigation"><ul><li><a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a></li><li><a href="2" aria-label="Goto&#x20;page&#x20;2">2</a></li></ul></nav>
 ```
 
 [⏫ Configuration Parameters / HTML markup / Indentation](#indentation)
@@ -1294,7 +1303,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 <ul>
 <li>
 <a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1318,7 +1327,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-	<nav role="navigation" aria-label="Pagination&#x20;navigation">
+	<nav aria-label="Pagination&#x20;navigation">
 		<ul>
 			<li>
 				<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
@@ -1342,7 +1351,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="#" aria-label="Current page, page 1" aria-current="true">1</a>
@@ -1367,7 +1376,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true"><em>1</em></a>
@@ -1391,7 +1400,7 @@ echo (new Pagination($conf))->generateHtml(1, 2, 1);
 ```
 #### Output
 ```html
-<nav role="navigation" aria-label="Pagination&#x20;navigation">
+<nav aria-label="Pagination&#x20;navigation">
 	<ul>
 		<li>
 			<a href="&#x23;" aria-label="Current&#x20;page,&#x20;page&#x20;1" aria-current="true">1</a>
