@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Rancoud\Pagination;
 
 /**
- * Class Item.
+ * Class Link.
  */
-class Item
+class Link
 {
     public string $ariaLabel = '';
     public string $href = '';
@@ -15,9 +15,9 @@ class Item
     public string $linkAttrs = '';
     public string $text = '';
 
-    public bool $ariaCurrent = false;
     public bool $isCurrent = false;
     public bool $isDots = false;
+    public bool $isDisabled = false;
 
     public int $page = 0;
 }
