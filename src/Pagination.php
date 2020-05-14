@@ -60,11 +60,15 @@ class Pagination
     protected string $itemAttrs = '';
     protected string $itemAttrsCurrent = '';
     protected string $itemNextAttrs = '';
+    protected string $itemNextAttrsDisabled = '';
     protected string $itemPreviousAttrs = '';
+    protected string $itemPreviousAttrsDisabled = '';
     protected string $itemDotsAttrs = '';
     protected string $linkTag = 'a';
     protected string $linkAttrs = '';
     protected string $linkAttrsCurrent = '';
+    protected string $linkNextAttrsDisabled = '';
+    protected string $linkPreviousAttrsDisabled = '';
     // endregion
 
     // region Properties: Security
@@ -86,11 +90,15 @@ class Pagination
         'item_attrs'                  => 'itemAttrs',
         'item_attrs_current'          => 'itemAttrsCurrent',
         'item_next_attrs'             => 'itemNextAttrs',
+        'item_next_attrs_disabled'    => 'itemNextAttrsDisabled',
         'item_previous_attrs'         => 'itemPreviousAttrs',
+        'item_previous_attrs_disabled'=> 'itemPreviousAttrsDisabled',
         'item_dots_attrs'             => 'itemDotsAttrs',
         'link_tag'                    => 'linkTag',
         'link_attrs'                  => 'linkAttrs',
         'link_attrs_current'          => 'linkAttrsCurrent',
+        'link_next_attrs_disabled'    => 'linkNextAttrsDisabled',
+        'link_previous_attrs_disabled'=> 'linkPreviousAttrsDisabled',
         'html_tab_sequence'           => 'htmlTabSequence',
         'aria_label_link'             => 'ariaLabelLink',
         'aria_label_current_link'     => 'ariaLabelCurrentLink',
@@ -275,6 +283,8 @@ class Pagination
         }
 
         $this->previous = new Link();
+        $this->previous->itemAttrs = $this->itemPreviousAttrs;
+        $this->previous->linkAttrs = $this->linkAttrs;
 
         $this->previous->page = $this->currentPage - 1;
         if ($this->currentPage > $this->maxPages) {
@@ -284,6 +294,8 @@ class Pagination
         $this->previous->href = ($this->previous->page === 0) ? '#' : $this->getLink($this->previous->page);
         if ($this->previous->href === '#' || $this->previous->href === '&#x23;') {
             $this->previous->isDisabled = true;
+            $this->previous->itemAttrs = $this->itemPreviousAttrsDisabled;
+            $this->previous->linkAttrs = $this->linkPreviousAttrsDisabled;
         }
 
         $this->previous->text = $this->textPrevious;
@@ -298,8 +310,8 @@ class Pagination
             $this->previous->href = Security::escAttr($this->previous->href, $this->charset);
         }
 
-        $this->previous->itemAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->itemPreviousAttrs);
-        $this->previous->linkAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->linkAttrs);
+        $this->previous->itemAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->previous->itemAttrs);
+        $this->previous->linkAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->previous->linkAttrs);
     }
 
     /**
@@ -316,6 +328,8 @@ class Pagination
         }
 
         $this->next = new Link();
+        $this->next->itemAttrs = $this->itemNextAttrs;
+        $this->next->linkAttrs = $this->linkAttrs;
 
         $this->next->page = $this->currentPage + 1;
         if ($this->currentPage >= $this->maxPages) {
@@ -325,6 +339,8 @@ class Pagination
         $this->next->href = ($this->currentPage === $this->maxPages) ? '#' : $this->getLink($this->currentPage + 1);
         if ($this->next->href === '#' || $this->next->href === '&#x23;') {
             $this->next->isDisabled = true;
+            $this->next->itemAttrs = $this->itemNextAttrsDisabled;
+            $this->next->linkAttrs = $this->linkNextAttrsDisabled;
         }
 
         $this->next->text = $this->textNext;
@@ -339,8 +355,8 @@ class Pagination
             $this->next->href = Security::escAttr($this->next->href, $this->charset);
         }
 
-        $this->next->itemAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->itemNextAttrs);
-        $this->next->linkAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->linkAttrs);
+        $this->next->itemAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->next->itemAttrs);
+        $this->next->linkAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->next->linkAttrs);
     }
 
     /**

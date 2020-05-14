@@ -771,8 +771,8 @@ class PaginationTest extends TestCase
                 'configuration' => [
                     'always_use_previous' => true,
                     'always_use_next' => true,
-                    'item_previous_attrs' => 'item_previous_attrs',
-                    'item_next_attrs' => 'item_next_attrs',
+                    'item_previous_attrs_disabled' => 'item_previous_attrs_disabled',
+                    'item_next_attrs_disabled' => 'item_next_attrs_disabled',
                 ],
                 'params' => [
                     'current' => 1,
@@ -781,13 +781,13 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">'.PHP_EOL.
                     '	<ul>'.PHP_EOL.
-                    '		<li item_previous_attrs>'.PHP_EOL.
+                    '		<li item_previous_attrs_disabled>'.PHP_EOL.
                     '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '		<li>'.PHP_EOL.
                     '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
-                    '		<li item_next_attrs>'.PHP_EOL.
+                    '		<li item_next_attrs_disabled>'.PHP_EOL.
                     '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>'.PHP_EOL.
                     '		</li>'.PHP_EOL.
                     '	</ul>'.PHP_EOL.
@@ -1603,7 +1603,7 @@ class PaginationTest extends TestCase
             ],
             'root_attrs' => [
                 'configuration' => [
-                    'root_attrs' => 'root attrs'
+                    'root_attrs' => 'data-root="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1611,7 +1611,7 @@ class PaginationTest extends TestCase
                     'per_page' => 5
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
-	<ul root attrs>
+	<ul data-root="attrs">
 		<li>
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
@@ -1661,7 +1661,7 @@ class PaginationTest extends TestCase
             ],
             'item_attrs' => [
                 'configuration' => [
-                    'item_attrs' => 'item attrs'
+                    'item_attrs' => 'data-item="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1673,7 +1673,7 @@ class PaginationTest extends TestCase
 		<li>
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
-		<li item attrs>
+		<li data-item="attrs">
 			<a href="2" aria-label="Page&#x20;2">2</a>
 		</li>
 	</ul>
@@ -1681,7 +1681,7 @@ class PaginationTest extends TestCase
             ],
             'item_attrs (with {{PAGE}} pattern)' => [
                 'configuration' => [
-                    'item_attrs' => 'item attrs data-page="{{PAGE}}"'
+                    'item_attrs' => 'data-item="attrs {{PAGE}}"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1693,7 +1693,7 @@ class PaginationTest extends TestCase
 		<li>
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
-		<li item attrs data-page="2">
+		<li data-item="attrs 2">
 			<a href="2" aria-label="Page&#x20;2">2</a>
 		</li>
 	</ul>
@@ -1701,7 +1701,7 @@ class PaginationTest extends TestCase
             ],
             'item_attrs_current' => [
                 'configuration' => [
-                    'item_attrs_current' => 'item attrs current'
+                    'item_attrs_current' => 'data-item-current="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1710,7 +1710,7 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
-		<li item attrs current>
+		<li data-item-current="attrs">
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
@@ -1721,7 +1721,7 @@ class PaginationTest extends TestCase
             ],
             'item_attrs_current (with {{PAGE}} pattern)' => [
                 'configuration' => [
-                    'item_attrs_current' => 'item attrs current data-page="{{PAGE}}"'
+                    'item_attrs_current' => 'data-item-current="attrs {{PAGE}}"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1730,7 +1730,7 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
-		<li item attrs current data-page="1">
+		<li data-item-current="attrs 1">
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
@@ -1742,7 +1742,7 @@ class PaginationTest extends TestCase
             'item_previous_attrs' => [
                 'configuration' => [
                     'use_previous' => true,
-                    'item_previous_attrs' => 'item previous attrs'
+                    'item_previous_attrs' => 'data-item-previous="attrs"'
                 ],
                 'params' => [
                     'current' => 2,
@@ -1751,7 +1751,7 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
-		<li item previous attrs>
+		<li data-item-previous="attrs">
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
 		</li>
 		<li>
@@ -1766,7 +1766,7 @@ class PaginationTest extends TestCase
             'item_previous_attrs (page replace with {{PAGE}} pattern)' => [
                 'configuration' => [
                     'use_previous' => true,
-                    'item_previous_attrs' => 'item previous attrs data-page="{{PAGE}}"'
+                    'item_previous_attrs' => 'data-item-previous="attrs {{PAGE}}"'
                 ],
                 'params' => [
                     'current' => 2,
@@ -1775,7 +1775,7 @@ class PaginationTest extends TestCase
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
-		<li item previous attrs data-page="1">
+		<li data-item-previous="attrs 1">
 			<a href="1" aria-label="Previous&#x20;page">Previous page</a>
 		</li>
 		<li>
@@ -1787,10 +1787,58 @@ class PaginationTest extends TestCase
 	</ul>
 </nav>'
             ],
+            'item_previous_attrs_disabled' => [
+                'configuration' => [
+                    'always_use_previous' => true,
+                    'item_previous_attrs_disabled' => 'data-item-previous-disabled="attrs"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li data-item-previous-disabled="attrs">
+			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_previous_attrs_disabled (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'always_use_previous' => true,
+                    'item_previous_attrs_disabled' => 'data-item-previous-disabled="attrs {{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li data-item-previous-disabled="attrs 0">
+			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
             'item_next_attrs' => [
                 'configuration' => [
                     'use_next' => true,
-                    'item_next_attrs' => 'item next attrs'
+                    'item_next_attrs' => 'data-item-next="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1805,7 +1853,7 @@ class PaginationTest extends TestCase
 		<li>
 			<a href="2" aria-label="Page&#x20;2">2</a>
 		</li>
-		<li item next attrs>
+		<li data-item-next="attrs">
 			<a href="2" aria-label="Next&#x20;page">Next page</a>
 		</li>
 	</ul>
@@ -1814,7 +1862,7 @@ class PaginationTest extends TestCase
             'item_next_attrs (page replace with {{PAGE}} pattern)' => [
                 'configuration' => [
                     'use_next' => true,
-                    'item_next_attrs' => 'item next attrs data-page="{{PAGE}}"'
+                    'item_next_attrs' => 'data-item-next="attrs {{PAGE}}"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1829,8 +1877,56 @@ class PaginationTest extends TestCase
 		<li>
 			<a href="2" aria-label="Page&#x20;2">2</a>
 		</li>
-		<li item next attrs data-page="2">
+		<li data-item-next="attrs 2">
 			<a href="2" aria-label="Next&#x20;page">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_next_attrs_disabled' => [
+                'configuration' => [
+                    'always_use_next' => true,
+                    'item_next_attrs_disabled' => 'data-item-next-disabled="attrs"'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a href="1" aria-label="Page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>
+		</li>
+		<li data-item-next-disabled="attrs">
+			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'item_next_attrs_disabled (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'always_use_next' => true,
+                    'item_next_attrs_disabled' => 'data-item-next-disabled="attrs {{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a href="1" aria-label="Page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>
+		</li>
+		<li data-item-next-disabled="attrs 2">
+			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>
 		</li>
 	</ul>
 </nav>'
@@ -1838,7 +1934,7 @@ class PaginationTest extends TestCase
             'item_dots_attrs' => [
                 'configuration' => [
                     'use_dots' => true,
-                    'item_dots_attrs' => 'item dots attrs'
+                    'item_dots_attrs' => 'data-item-dots="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1856,7 +1952,7 @@ class PaginationTest extends TestCase
 		<li>
 			<a href="3" aria-label="Page&#x20;3">3</a>
 		</li>
-		<li item dots attrs aria-hidden="true">
+		<li data-item-dots="attrs" aria-hidden="true">
 			<span>…</span>
 		</li>
 	</ul>
@@ -1884,7 +1980,7 @@ class PaginationTest extends TestCase
             ],
             'link_attrs' => [
                 'configuration' => [
-                    'link_attrs' => 'link attrs'
+                    'link_attrs' => 'data-link="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1897,14 +1993,14 @@ class PaginationTest extends TestCase
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
-			<a link attrs href="2" aria-label="Page&#x20;2">2</a>
+			<a data-link="attrs" href="2" aria-label="Page&#x20;2">2</a>
 		</li>
 	</ul>
 </nav>'
             ],
             'link_attrs (page replace with {{PAGE}} pattern)' => [
                 'configuration' => [
-                    'link_attrs' => 'link attrs data-page="{{PAGE}}"'
+                    'link_attrs' => 'data-link="attrs {{PAGE}}"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1917,14 +2013,14 @@ class PaginationTest extends TestCase
 			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
-			<a link attrs data-page="2" href="2" aria-label="Page&#x20;2">2</a>
+			<a data-link="attrs 2" href="2" aria-label="Page&#x20;2">2</a>
 		</li>
 	</ul>
 </nav>'
             ],
             'link_attrs_current' => [
                 'configuration' => [
-                    'link_attrs_current' => 'link attrs current'
+                    'link_attrs_current' => 'data-link-current="attrs"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1934,7 +2030,7 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
 		<li>
-			<a link attrs current href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+			<a data-link-current="attrs" href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Page&#x20;2">2</a>
@@ -1944,7 +2040,7 @@ class PaginationTest extends TestCase
             ],
             'link_attrs_current (page replace with {{PAGE}} pattern)' => [
                 'configuration' => [
-                    'link_attrs_current' => 'link attrs current data-page="{{PAGE}}"'
+                    'link_attrs_current' => 'data-link-current="attrs {{PAGE}}"'
                 ],
                 'params' => [
                     'current' => 1,
@@ -1954,10 +2050,106 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
 		<li>
-			<a link attrs current data-page="1" href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+			<a data-link-current="attrs 1" href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
 			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_previous_attrs_disabled' => [
+                'configuration' => [
+                    'always_use_previous' => true,
+                    'link_previous_attrs_disabled' => 'data-item-next-disabled="attrs"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a data-item-next-disabled="attrs" href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_previous_attrs_disabled (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'always_use_previous' => true,
+                    'link_previous_attrs_disabled' => 'data-item-next-disabled="attrs {{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 1,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a data-item-next-disabled="attrs 0" href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_next_attrs_disabled' => [
+                'configuration' => [
+                    'always_use_next' => true,
+                    'link_next_attrs_disabled' => 'data-item-next-disabled="attrs"'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a href="1" aria-label="Page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>
+		</li>
+		<li>
+			<a data-item-next-disabled="attrs" href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>
+		</li>
+	</ul>
+</nav>'
+            ],
+            'link_next_attrs_disabled (page replace with {{PAGE}} pattern)' => [
+                'configuration' => [
+                    'always_use_next' => true,
+                    'link_next_attrs_disabled' => 'data-item-next-disabled="attrs {{PAGE}}"'
+                ],
+                'params' => [
+                    'current' => 2,
+                    'count' => 10,
+                    'per_page' => 5
+                ],
+                'expectedHtml' => '<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a href="1" aria-label="Page&#x20;1">1</a>
+		</li>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>
+		</li>
+		<li>
+			<a data-item-next-disabled="attrs 2" href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>
 		</li>
 	</ul>
 </nav>'
@@ -1968,8 +2160,8 @@ class PaginationTest extends TestCase
                 ],
                 'params' => [
                     'current' => 1,
-                    'count' => 2,
-                    'per_page' => 1
+                    'count' => 10,
+                    'per_page' => 5
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination"><ul><li><a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a></li><li><a href="2" aria-label="Page&#x20;2">2</a></li></ul></nav>'
             ],
@@ -1979,8 +2171,8 @@ class PaginationTest extends TestCase
                 ],
                 'params' => [
                     'current' => 1,
-                    'count' => 2,
-                    'per_page' => 1
+                    'count' => 10,
+                    'per_page' => 5
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 <ul>
@@ -1999,8 +2191,8 @@ class PaginationTest extends TestCase
                 ],
                 'params' => [
                     'current' => 1,
-                    'count' => 2,
-                    'per_page' => 1
+                    'count' => 10,
+                    'per_page' => 5
                 ],
                 'expectedHtml' => '	<nav aria-label="Pagination">
 		<ul>
@@ -2019,8 +2211,8 @@ class PaginationTest extends TestCase
                 ],
                 'params' => [
                     'current' => 1,
-                    'count' => 2,
-                    'per_page' => 1
+                    'count' => 10,
+                    'per_page' => 5
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
@@ -2040,8 +2232,8 @@ class PaginationTest extends TestCase
                 ],
                 'params' => [
                     'current' => 1,
-                    'count' => 2,
-                    'per_page' => 1
+                    'count' => 10,
+                    'per_page' => 5
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
@@ -2060,8 +2252,8 @@ class PaginationTest extends TestCase
                 ],
                 'params' => [
                     'current' => 1,
-                    'count' => 2,
-                    'per_page' => 1
+                    'count' => 10,
+                    'per_page' => 5
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">
 	<ul>
