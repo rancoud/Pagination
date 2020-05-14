@@ -27,10 +27,10 @@ It will output
 <nav aria-label="Pagination">
 	<ul>
 		<li>
-			<a href="1" aria-label="Page 1" aria-current="page">1</a>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
 		</li>
 		<li>
-			<a href="2" aria-label="Page 2">2</a>
+			<a href="2" aria-label="Page&#x20;2">2</a>
 		</li>
 	</ul>
 </nav>
