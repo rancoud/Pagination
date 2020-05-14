@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Rancoud\Pagination\Test;
 
 use PHPUnit\Framework\TestCase;
-use Rancoud\Pagination\Link;
+use Rancoud\Pagination\Item;
 use Rancoud\Pagination\Pagination;
 
 /**
@@ -21,14 +21,14 @@ class PaginationTest extends TestCase
         $p = new Pagination();
         $data = $p->generateData(1, 2, 1);
 
-        $link1 = new Link();
+        $link1 = new Item();
         $link1->isCurrent = true;
         $link1->href = '&#x23;';
         $link1->text = '1';
         $link1->page = 1;
         $link1->ariaLabel = 'Page&#x20;1';
 
-        $link2 = new Link();
+        $link2 = new Item();
         $link2->href = '2';
         $link2->text = '2';
         $link2->page = 2;
@@ -63,32 +63,32 @@ class PaginationTest extends TestCase
     {
         $p = new Pagination(['text_previous' => 'toto', 'use_next' => true]);
         $p->setConfiguration(['text_next' => 'aze', 'use_previous' => true]);
-        $previous = new Link();
+        $previous = new Item();
         $previous->href = '1';
         $previous->text = 'toto';
         $previous->page = 1;
         $previous->ariaLabel = 'Previous&#x20;page';
 
-        $link1 = new Link();
+        $link1 = new Item();
         $link1->href = '1';
         $link1->text = '1';
         $link1->page = 1;
         $link1->ariaLabel = 'Page&#x20;1';
 
-        $link2 = new Link();
+        $link2 = new Item();
         $link2->isCurrent = true;
         $link2->href = '&#x23;';
         $link2->text = '2';
         $link2->page = 2;
         $link2->ariaLabel = 'Page&#x20;2';
 
-        $link3 = new Link();
+        $link3 = new Item();
         $link3->href = '3';
         $link3->text = '3';
         $link3->page = 3;
         $link3->ariaLabel = 'Page&#x20;3';
 
-        $next = new Link();
+        $next = new Item();
         $next->href = '3';
         $next->text = 'aze';
         $next->page = 3;
@@ -119,68 +119,68 @@ class PaginationTest extends TestCase
             'use_next' => true
         ];
 
-        $previous = new Link();
+        $previous = new Item();
         $previous->href = '1';
         $previous->text = 'Previous page';
         $previous->page = 1;
         $previous->ariaLabel = 'Previous&#x20;page';
 
-        $previousPage3 = new Link();
+        $previousPage3 = new Item();
         $previousPage3->href = '3';
         $previousPage3->text = 'Previous page';
         $previousPage3->page = 3;
         $previousPage3->ariaLabel = 'Previous&#x20;page';
 
-        $next = new Link();
+        $next = new Item();
         $next->href = '1';
         $next->text = 'Next page';
         $next->page = 1;
         $next->ariaLabel = 'Next&#x20;page';
 
-        $nextPage2 = new Link();
+        $nextPage2 = new Item();
         $nextPage2->href = '2';
         $nextPage2->text = 'Next page';
         $nextPage2->page = 2;
         $nextPage2->ariaLabel = 'Next&#x20;page';
 
-        $nextPage3 = new Link();
+        $nextPage3 = new Item();
         $nextPage3->href = '3';
         $nextPage3->text = 'Next page';
         $nextPage3->page = 3;
         $nextPage3->ariaLabel = 'Next&#x20;page';
 
-        $linkPage1Current = new Link();
+        $linkPage1Current = new Item();
         $linkPage1Current->isCurrent = true;
         $linkPage1Current->href = '&#x23;';
         $linkPage1Current->text = '1';
         $linkPage1Current->page = 1;
         $linkPage1Current->ariaLabel = 'Page&#x20;1';
 
-        $linkPage1 = new Link();
+        $linkPage1 = new Item();
         $linkPage1->href = '1';
         $linkPage1->text = '1';
         $linkPage1->page = 1;
         $linkPage1->ariaLabel = 'Page&#x20;1';
 
-        $linkPage2 = new Link();
+        $linkPage2 = new Item();
         $linkPage2->href = '2';
         $linkPage2->text = '2';
         $linkPage2->page = 2;
         $linkPage2->ariaLabel = 'Page&#x20;2';
 
-        $linkPage3 = new Link();
+        $linkPage3 = new Item();
         $linkPage3->href = '3';
         $linkPage3->text = '3';
         $linkPage3->page = 3;
         $linkPage3->ariaLabel = 'Page&#x20;3';
 
-        $linkPage4 = new Link();
+        $linkPage4 = new Item();
         $linkPage4->href = '4';
         $linkPage4->text = '4';
         $linkPage4->page = 4;
         $linkPage4->ariaLabel = 'Page&#x20;4';
 
-        $linkPage2Current = new Link();
+        $linkPage2Current = new Item();
         $linkPage2Current->isCurrent = true;
         $linkPage2Current->href = '&#x23;';
         $linkPage2Current->text = '2';
@@ -330,25 +330,25 @@ class PaginationTest extends TestCase
             'show_all_links' => true
         ];
 
-        $previousPage1 = new Link();
+        $previousPage1 = new Item();
         $previousPage1->href = '1';
         $previousPage1->text = 'Previous page';
         $previousPage1->page = 1;
         $previousPage1->ariaLabel = 'Previous&#x20;page';
 
-        $previousPage49 = new Link();
+        $previousPage49 = new Item();
         $previousPage49->href = '49';
         $previousPage49->text = 'Previous page';
         $previousPage49->page = 49;
         $previousPage49->ariaLabel = 'Previous&#x20;page';
 
-        $nextPage2 = new Link();
+        $nextPage2 = new Item();
         $nextPage2->href = '2';
         $nextPage2->text = 'Next page';
         $nextPage2->page = 2;
         $nextPage2->ariaLabel = 'Next&#x20;page';
 
-        $nextPage3 = new Link();
+        $nextPage3 = new Item();
         $nextPage3->href = '3';
         $nextPage3->text = 'Next page';
         $nextPage3->page = 3;
@@ -358,7 +358,7 @@ class PaginationTest extends TestCase
         $linksCurrentPage2 = [];
         $linksCurrentPage50 = [];
         for ($i = 1; $i < 51; $i++) {
-            $linkCurrentPage1 = new Link();
+            $linkCurrentPage1 = new Item();
             $linkCurrentPage1->isDots = false;
             $linkCurrentPage1->isCurrent = ($i === 1);
             $linkCurrentPage1->href = ($i === 1) ? '&#x23;' : (string) $i;
@@ -366,7 +366,7 @@ class PaginationTest extends TestCase
             $linkCurrentPage1->page = $i;
             $linkCurrentPage1->ariaLabel = 'Page&#x20;'.$i;
 
-            $linkCurrentPage2 = new Link();
+            $linkCurrentPage2 = new Item();
             $linkCurrentPage2->isDots = false;
             $linkCurrentPage2->isCurrent = ($i === 2);
             $linkCurrentPage2->href = ($i === 2) ? '&#x23;' : (string) $i;
@@ -374,7 +374,7 @@ class PaginationTest extends TestCase
             $linkCurrentPage2->page = $i;
             $linkCurrentPage2->ariaLabel = 'Page&#x20;'.$i;
 
-            $linkCurrentPage50 = new Link();
+            $linkCurrentPage50 = new Item();
             $linkCurrentPage50->isDots = false;
             $linkCurrentPage50->isCurrent = ($i === 50);
             $linkCurrentPage50->href = ($i === 50) ? '&#x23;' : (string) $i;
@@ -450,7 +450,7 @@ class PaginationTest extends TestCase
      */
     public function dataAdjacentAndLimitConfiguration(): array
     {
-        $linkCurrentPage20 = new Link();
+        $linkCurrentPage20 = new Item();
         $linkCurrentPage20->isDots = false;
         $linkCurrentPage20->isCurrent = true;
         $linkCurrentPage20->href = '&#x23;';
@@ -464,7 +464,7 @@ class PaginationTest extends TestCase
         $limitPagesLeft = [];
         $limitPagesRight = [];
         for ($i = 1; $i < 6; $i++) {
-            $limitPageLeft = new Link();
+            $limitPageLeft = new Item();
             $limitPageLeft->isDots = false;
             $limitPageLeft->isCurrent = false;
             $limitPageLeft->href = (string) $i;
@@ -475,7 +475,7 @@ class PaginationTest extends TestCase
             $limitPagesLeft[] = $limitPageLeft;
         }
         for ($i = 46; $i < 51; $i++) {
-            $limitPageRight = new Link();
+            $limitPageRight = new Item();
             $limitPageRight->isDots = false;
             $limitPageRight->isCurrent = false;
             $limitPageRight->href = (string) $i;
@@ -489,7 +489,7 @@ class PaginationTest extends TestCase
         $adjacentPagesLeft = [];
         $adjacentPagesRight = [];
         for ($i = 15; $i < 20; $i++) {
-            $adjacentPageLeft = new Link();
+            $adjacentPageLeft = new Item();
             $adjacentPageLeft->isDots = false;
             $adjacentPageLeft->isCurrent = false;
             $adjacentPageLeft->href = (string) $i;
@@ -500,7 +500,7 @@ class PaginationTest extends TestCase
             $adjacentPagesLeft[] = $adjacentPageLeft;
         }
         for ($i = 21; $i < 26; $i++) {
-            $adjacentPageRight = new Link();
+            $adjacentPageRight = new Item();
             $adjacentPageRight->isDots = false;
             $adjacentPageRight->isCurrent = false;
             $adjacentPageRight->href = (string) $i;

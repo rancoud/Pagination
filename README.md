@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rancoud/Pagination.svg?branch=master)](https://travis-ci.org/rancoud/Pagination) [![Coverage Status](https://coveralls.io/repos/github/rancoud/Pagination/badge.svg?branch=master)](https://coveralls.io/github/rancoud/Pagination?branch=master)
 
-Generate HTML pagination.  
+Generate HTML pagination for accessibility.  
 
 ## Dependencies
 [Security package](https://github.com/rancoud/Security)  
@@ -35,6 +35,10 @@ It will output
 	</ul>
 </nav>
 ```
+## Lexicon
+* **Root** represents `<ul>`
+* **Item** represents `<li>`
+* **Link** represents `<a>`
 
 ## Pagination Constructor
 ### Settings
@@ -45,8 +49,8 @@ It will output
 
 ## Pagination Methods
 ### General Commands  
-* generateHtml(currentPage: int, countElements: int, countElementPerPage: int):string
-* generateData(currentPage: int, countElements: int, countElementPerPage: int):array
+* generateHtml(currentPage: int, countElements: int, countElementPerPage: int): string
+* generateData(currentPage: int, countElements: int, countElementPerPage: int): array
 ### Static methods
 * countPages(countElements: int, countElementPerPage: int): int
 * locateItemInPage(countElementPerPage: int, indexItem: int): int
@@ -98,7 +102,6 @@ It will output
 * link_tag (string: a) ([example](#link_tag))
 * link_attrs (string) ([example](#link_attrs))
 * link_attrs_current (string) ([example](#link_attrs_current))
-* link_attrs_current (string) ([example](#link_attrs_current))
 * link_previous_attrs_disabled (string) ([example](#link_previous_attrs_disabled))
 * link_next_attrs_disabled (string) ([example](#link_next_attrs_disabled))
 
@@ -117,10 +120,14 @@ You have to sanitize by yourself thoses parameters:
 * item_attrs
 * item_attrs_current
 * item_previous_attrs
+* item_previous_attrs_disabled
 * item_next_attrs
+* item_next_attrs_disabled
 * item_dots_attrs
 * link_attrs
 * link_attrs_current
+* link_previous_attrs_disabled
+* link_next_attrs_disabled
 * html_tab_sequence
 
 ## Examples
@@ -1643,7 +1650,7 @@ var_dump(new Pagination($conf))->generateData(1, 3000, 5);
 
 array (size=3)
   'previous' => 
-    object(Rancoud\Pagination\Link)[2]
+    object(Rancoud\Pagination\Item)[2]
       public 'ariaLabel' => string 'Previous&#x20;page' (length=18)
       public 'href' => string '&#x23;' (length=6)
       public 'itemAttrs' => string '' (length=0)
@@ -1656,7 +1663,7 @@ array (size=3)
   'links' => 
     array (size=4)
       0 => 
-        object(Rancoud\Pagination\Link)[4]
+        object(Rancoud\Pagination\Item)[4]
           public 'ariaLabel' => string 'Page&#x20;1' (length=11)
           public 'href' => string '&#x23;' (length=6)
           public 'itemAttrs' => string '' (length=0)
@@ -1667,7 +1674,7 @@ array (size=3)
           public 'isDisabled' => boolean false
           public 'page' => int 1
       1 => 
-        object(Rancoud\Pagination\Link)[5]
+        object(Rancoud\Pagination\Item)[5]
           public 'ariaLabel' => string 'Page&#x20;2' (length=11)
           public 'href' => string '2' (length=1)
           public 'itemAttrs' => string '' (length=0)
@@ -1678,7 +1685,7 @@ array (size=3)
           public 'isDisabled' => boolean false
           public 'page' => int 2
       2 => 
-        object(Rancoud\Pagination\Link)[6]
+        object(Rancoud\Pagination\Item)[6]
           public 'ariaLabel' => string 'Page&#x20;3' (length=11)
           public 'href' => string '3' (length=1)
           public 'itemAttrs' => string '' (length=0)
@@ -1689,7 +1696,7 @@ array (size=3)
           public 'isDisabled' => boolean false
           public 'page' => int 3
       3 => 
-        object(Rancoud\Pagination\Link)[7]
+        object(Rancoud\Pagination\Item)[7]
           public 'ariaLabel' => string 'Page&#x20;4' (length=11)
           public 'href' => string '4' (length=1)
           public 'itemAttrs' => string '' (length=0)
@@ -1700,7 +1707,7 @@ array (size=3)
           public 'isDisabled' => boolean false
           public 'page' => int 4
   'next' => 
-    object(Rancoud\Pagination\Link)[8]
+    object(Rancoud\Pagination\Item)[8]
       public 'ariaLabel' => string 'Next&#x20;page' (length=14)
       public 'href' => string '2' (length=1)
       public 'itemAttrs' => string '' (length=0)

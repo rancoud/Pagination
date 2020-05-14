@@ -38,9 +38,9 @@ class Pagination
     // endregion
 
     // region Properties: Generation
-    protected ?Link $previous = null;
-    protected array $links = [];
-    protected ?Link $next = null;
+    protected ?Item $previous = null;
+    protected array $items = [];
+    protected ?Item $next = null;
     protected bool $useDots = false;
     protected bool $usePrevious = false;
     protected bool $alwaysUsePrevious = false;
@@ -229,7 +229,7 @@ class Pagination
             $results['previous'] = $this->previous;
         }
 
-        $results['links'] = $this->links;
+        $results['links'] = $this->items;
 
         if ($this->useNext || $this->alwaysUseNext) {
             $results['next'] = $this->next;
@@ -257,22 +257,22 @@ class Pagination
     protected function compute(): void
     {
         $this->previous = null;
-        $this->links = [];
+        $this->items = [];
         $this->next = null;
 
         if ($this->countElements === 0) {
             return;
         }
 
-        $this->computePreviousLink();
-        $this->computeLinks();
-        $this->computeNextLink();
+        $this->computePreviousItem();
+        $this->computeItems();
+        $this->computeNextItem();
     }
 
     /**
      * @throws \Rancoud\Security\SecurityException
      */
-    protected function computePreviousLink(): void
+    protected function computePreviousItem(): void
     {
         if (!$this->alwaysUsePrevious && !$this->usePrevious) {
             return;
@@ -282,7 +282,7 @@ class Pagination
             return;
         }
 
-        $this->previous = new Link();
+        $this->previous = new Item();
         $this->previous->itemAttrs = $this->itemPreviousAttrs;
         $this->previous->linkAttrs = $this->linkAttrs;
 
@@ -291,7 +291,7 @@ class Pagination
             $this->previous->page = $this->maxPages;
         }
 
-        $this->previous->href = ($this->previous->page === 0) ? '#' : $this->getLink($this->previous->page);
+        $this->previous->href = ($this->previous->page === 0) ? '#' : $this->getURL($this->previous->page);
         if ($this->previous->href === '#' || $this->previous->href === '&#x23;') {
             $this->previous->isDisabled = true;
             $this->previous->itemAttrs = $this->itemPreviousAttrsDisabled;
@@ -317,7 +317,7 @@ class Pagination
     /**
      * @throws \Rancoud\Security\SecurityException
      */
-    protected function computeNextLink(): void
+    protected function computeNextItem(): void
     {
         if (!$this->alwaysUseNext && !$this->useNext) {
             return;
@@ -327,7 +327,7 @@ class Pagination
             return;
         }
 
-        $this->next = new Link();
+        $this->next = new Item();
         $this->next->itemAttrs = $this->itemNextAttrs;
         $this->next->linkAttrs = $this->linkAttrs;
 
@@ -336,7 +336,7 @@ class Pagination
             $this->next->page = $this->maxPages;
         }
 
-        $this->next->href = ($this->currentPage === $this->maxPages) ? '#' : $this->getLink($this->currentPage + 1);
+        $this->next->href = ($this->currentPage === $this->maxPages) ? '#' : $this->getURL($this->currentPage + 1);
         if ($this->next->href === '#' || $this->next->href === '&#x23;') {
             $this->next->isDisabled = true;
             $this->next->itemAttrs = $this->itemNextAttrsDisabled;
@@ -362,24 +362,24 @@ class Pagination
     /**
      * @throws \Rancoud\Security\SecurityException
      */
-    protected function computeLinks(): void
+    protected function computeItems(): void
     {
         $canAddDot = true;
         for ($idxPages = 1; $idxPages <= $this->maxPages; ++$idxPages) {
             if ($idxPages === $this->currentPage) {
-                $this->links[] = $this->computeLink($idxPages, true);
+                $this->items[] = $this->computeItem($idxPages, true);
                 $canAddDot = true;
                 continue;
             }
 
             if ($this->showAllLinks || $this->isLimit($idxPages) || $this->isAdjacent($idxPages)) {
-                $this->links[] = $this->computeLink($idxPages);
+                $this->items[] = $this->computeItem($idxPages);
                 $canAddDot = true;
                 continue;
             }
 
             if ($this->useDots && $canAddDot) {
-                $this->links[] = $this->computeLink($idxPages, false, true);
+                $this->items[] = $this->computeItem($idxPages, false, true);
                 $canAddDot = false;
             }
         }
@@ -418,11 +418,11 @@ class Pagination
      *
      *@throws \Rancoud\Security\SecurityException
      *
-     * @return Link
+     *@return Item
      */
-    protected function computeLink(int $page, bool $isCurrent = false, bool $isDots = false): Link
+    protected function computeItem(int $page, bool $isCurrent = false, bool $isDots = false): Item
     {
-        $item = new Link();
+        $item = new Item();
         $item->isCurrent = $isCurrent;
         $item->isDots = $isDots;
         $item->page = $page;
@@ -434,7 +434,7 @@ class Pagination
             $item->linkAttrs = $this->linkAttrsCurrent;
             $item->ariaLabel = $this->ariaLabelCurrentLink;
         } else {
-            $item->href = $this->getLink($page);
+            $item->href = $this->getURL($page);
 
             $item->itemAttrs = $this->itemAttrs;
             $item->linkAttrs = $this->linkAttrs;
@@ -477,7 +477,7 @@ class Pagination
      *
      * @return string
      */
-    protected function getLink(int $page): string
+    protected function getURL(int $page): string
     {
         if ($this->url === '') {
             return (string) $page;
@@ -526,7 +526,7 @@ class Pagination
 
         $html .= $this->generateLinkFactory($this->previous);
 
-        foreach ($this->links as $link) {
+        foreach ($this->items as $link) {
             $html .= $this->generateLinkFactory($link);
         }
 
@@ -544,13 +544,13 @@ class Pagination
     }
 
     /**
-     * @param Link $link
+     * @param Item $item
      *
      * @return string
      */
-    protected function generateLinkFactory(?Link $link): string
+    protected function generateLinkFactory(?Item $item): string
     {
-        if ($link === null) {
+        if ($item === null) {
             return '';
         }
 
@@ -559,22 +559,22 @@ class Pagination
         $endl = $this->getEndlineSequence();
 
         $openItemTag = '<' . $this->itemTag;
-        $openItemTag .= $link->itemAttrs !== '' ? ' ' . $link->itemAttrs : '';
-        $openItemTag .= $link->isDots ? ' aria-hidden="true">' : '>';
+        $openItemTag .= $item->itemAttrs !== '' ? ' ' . $item->itemAttrs : '';
+        $openItemTag .= $item->isDots ? ' aria-hidden="true">' : '>';
         $closeItemTag = '</' . $this->itemTag . '>';
 
-        if ($link->isDots) {
+        if ($item->isDots) {
             $openLinkTag = '<span';
-            $openLinkTag .= '>' . $link->text;
+            $openLinkTag .= '>' . $item->text;
             $closeLinkTag = '</span>';
         } else {
             $openLinkTag = '<' . $this->linkTag;
-            $openLinkTag .= $link->linkAttrs !== '' ? ' ' . $link->linkAttrs : '';
-            $openLinkTag .= $link->href !== '' ? ' href="' . $link->href . '"' : '';
-            $openLinkTag .= $link->ariaLabel !== '' ? ' aria-label="' . $link->ariaLabel . '"' : '';
-            $openLinkTag .= $link->isDisabled ? ' aria-disabled="true"' : '';
-            $openLinkTag .= $link->isCurrent ? ' aria-current="page"' : '';
-            $openLinkTag .= '>' . $link->text;
+            $openLinkTag .= $item->linkAttrs !== '' ? ' ' . $item->linkAttrs : '';
+            $openLinkTag .= $item->href !== '' ? ' href="' . $item->href . '"' : '';
+            $openLinkTag .= $item->ariaLabel !== '' ? ' aria-label="' . $item->ariaLabel . '"' : '';
+            $openLinkTag .= $item->isDisabled ? ' aria-disabled="true"' : '';
+            $openLinkTag .= $item->isCurrent ? ' aria-current="page"' : '';
+            $openLinkTag .= '>' . $item->text;
             $closeLinkTag = '</' . $this->linkTag . '>';
         }
 

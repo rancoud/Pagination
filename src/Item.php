@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Rancoud\Pagination;
 
 /**
- * Class Link.
+ * Class Item.
  */
-class Link
+class Item
 {
     public string $ariaLabel = '';
     public string $href = '';
