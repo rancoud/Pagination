@@ -1,11 +1,17 @@
 # Pagination Package
 
-[![Build Status](https://travis-ci.org/rancoud/Pagination.svg?branch=master)](https://travis-ci.org/rancoud/Pagination) [![Coverage Status](https://coveralls.io/repos/github/rancoud/Pagination/badge.svg?branch=master)](https://coveralls.io/github/rancoud/Pagination?branch=master)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/rancoud/pagination)
+[![Packagist Version](https://img.shields.io/packagist/v/rancoud/pagination)](https://packagist.org/packages/rancoud/pagination)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/rancoud/pagination)](https://packagist.org/packages/rancoud/pagination)
+[![Composer dependencies](https://img.shields.io/badge/dependencies-1-brightgreen)](https://github.com/rancoud/Pagination/blob/master/composer.json)
+[![Build Status](https://travis-ci.org/rancoud/Pagination.svg?branch=master)](https://travis-ci.org/rancoud/Pagination)
+[![Coverage Status](https://coveralls.io/repos/github/rancoud/Pagination/badge.svg?branch=master)](https://coveralls.io/github/rancoud/Pagination?branch=master)
+[![composer.lock](https://poser.pugx.org/rancoud/pagination/composerlock)](https://packagist.org/packages/rancoud/pagination)
 
 Generate HTML pagination for accessibility.  
 
 ## Dependencies
-[Security package](https://github.com/rancoud/Security)  
+[Security package: https://github.com/rancoud/Security](https://github.com/rancoud/Security)  
 
 ## Installation
 ```php
