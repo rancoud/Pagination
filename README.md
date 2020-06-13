@@ -4,8 +4,8 @@
 [![Packagist Version](https://img.shields.io/packagist/v/rancoud/pagination)](https://packagist.org/packages/rancoud/pagination)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/rancoud/pagination)](https://packagist.org/packages/rancoud/pagination)
 [![Composer dependencies](https://img.shields.io/badge/dependencies-1-brightgreen)](https://github.com/rancoud/Pagination/blob/master/composer.json)
-[![Build Status](https://travis-ci.org/rancoud/Pagination.svg?branch=master)](https://travis-ci.org/rancoud/Pagination)
-[![Coverage Status](https://coveralls.io/repos/github/rancoud/Pagination/badge.svg?branch=master)](https://coveralls.io/github/rancoud/Pagination?branch=master)
+[![Test workflow](https://img.shields.io/github/workflow/status/rancoud/pagination/test?label=test&logo=github)](https://github.com/rancoud/pagination/actions?workflow=test)
+[![Codecov](https://img.shields.io/codecov/c/github/rancoud/pagination?logo=codecov)](https://codecov.io/gh/rancoud/pagination)
 [![composer.lock](https://poser.pugx.org/rancoud/pagination/composerlock)](https://packagist.org/packages/rancoud/pagination)
 
 Generate HTML pagination for accessibility.  
@@ -1726,5 +1726,6 @@ array (size=3)
 ```
 
 ## How to Dev
-`./run_all_commands.sh` for php-cs-fixer and phpunit and coverage  
-`./run_php_unit_coverage.sh` for phpunit and coverage  
+`composer ci` for php-cs-fixer and phpunit and coverage  
+`composer lint` for php-cs-fixer  
+`composer test` for phpunit and coverage  
