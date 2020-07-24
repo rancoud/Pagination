@@ -364,7 +364,7 @@ class PaginationTest extends TestCase
             $linkCurrentPage1->href = ($i === 1) ? '&#x23;' : (string) $i;
             $linkCurrentPage1->text = (string) $i;
             $linkCurrentPage1->page = $i;
-            $linkCurrentPage1->ariaLabel = 'Page&#x20;'.$i;
+            $linkCurrentPage1->ariaLabel = 'Page&#x20;' . $i;
 
             $linkCurrentPage2 = new Item();
             $linkCurrentPage2->isDots = false;
@@ -372,7 +372,7 @@ class PaginationTest extends TestCase
             $linkCurrentPage2->href = ($i === 2) ? '&#x23;' : (string) $i;
             $linkCurrentPage2->text = (string) $i;
             $linkCurrentPage2->page = $i;
-            $linkCurrentPage2->ariaLabel = 'Page&#x20;'.$i;
+            $linkCurrentPage2->ariaLabel = 'Page&#x20;' . $i;
 
             $linkCurrentPage50 = new Item();
             $linkCurrentPage50->isDots = false;
@@ -380,7 +380,7 @@ class PaginationTest extends TestCase
             $linkCurrentPage50->href = ($i === 50) ? '&#x23;' : (string) $i;
             $linkCurrentPage50->text = (string) $i;
             $linkCurrentPage50->page = $i;
-            $linkCurrentPage50->ariaLabel = 'Page&#x20;'.$i;
+            $linkCurrentPage50->ariaLabel = 'Page&#x20;' . $i;
 
             $linksCurrentPage1[] = $linkCurrentPage1;
             $linksCurrentPage2[] = $linkCurrentPage2;
@@ -591,15 +591,15 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="Pagination">'.
-                    '<ul>'.
-                    '<li>'.
-                    '<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.
-                    '</li>'.
-                    '<li>'.
-                    '<a href="2" aria-label="Page&#x20;2">2</a>'.
-                    '</li>'.
-                    '</ul>'.
+                'expectedHtml' => '<nav aria-label="Pagination">' .
+                    '<ul>' .
+                    '<li>' .
+                    '<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' .
+                    '</li>' .
+                    '<li>' .
+                    '<a href="2" aria-label="Page&#x20;2">2</a>' .
+                    '</li>' .
+                    '</ul>' .
                     '</nav>'
             ],
             'initial indentation 4' => [
@@ -611,15 +611,15 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '				<nav aria-label="Pagination">'.PHP_EOL.
-                    '					<ul>'.PHP_EOL.
-                    '						<li>'.PHP_EOL.
-                    '							<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.PHP_EOL.
-                    '						</li>'.PHP_EOL.
-                    '						<li>'.PHP_EOL.
-                    '							<a href="2" aria-label="Page&#x20;2">2</a>'.PHP_EOL.
-                    '						</li>'.PHP_EOL.
-                    '					</ul>'.PHP_EOL.
+                'expectedHtml' => '				<nav aria-label="Pagination">' . PHP_EOL .
+                    '					<ul>' . PHP_EOL .
+                    '						<li>' . PHP_EOL .
+                    '							<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
+                    '						</li>' . PHP_EOL .
+                    '						<li>' . PHP_EOL .
+                    '							<a href="2" aria-label="Page&#x20;2">2</a>' . PHP_EOL .
+                    '						</li>' . PHP_EOL .
+                    '					</ul>' . PHP_EOL .
                     '				</nav>'
             ],
             'initial indentation 4 + four spaces' => [
@@ -632,15 +632,15 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <nav aria-label="Pagination">'.PHP_EOL.
-                    '                    <ul>'.PHP_EOL.
-                    '                        <li>'.PHP_EOL.
-                    '                            <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.PHP_EOL.
-                    '                        </li>'.PHP_EOL.
-                    '                        <li>'.PHP_EOL.
-                    '                            <a href="2" aria-label="Page&#x20;2">2</a>'.PHP_EOL.
-                    '                        </li>'.PHP_EOL.
-                    '                    </ul>'.PHP_EOL.
+                'expectedHtml' => '                <nav aria-label="Pagination">' . PHP_EOL .
+                    '                    <ul>' . PHP_EOL .
+                    '                        <li>' . PHP_EOL .
+                    '                            <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
+                    '                        </li>' . PHP_EOL .
+                    '                        <li>' . PHP_EOL .
+                    '                            <a href="2" aria-label="Page&#x20;2">2</a>' . PHP_EOL .
+                    '                        </li>' . PHP_EOL .
+                    '                    </ul>' . PHP_EOL .
                     '                </nav>'
             ],
             'initial indentation 4 + four spaces + nav off' => [
@@ -654,13 +654,13 @@ class PaginationTest extends TestCase
                     'count' => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <ul>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="2" aria-label="Page&#x20;2">2</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
+                'expectedHtml' => '                <ul>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="2" aria-label="Page&#x20;2">2</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
                     '                </ul>'
             ],
             'initial indentation 4 + four spaces + nav off + previous + after' => [
@@ -676,22 +676,22 @@ class PaginationTest extends TestCase
                     'count' => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <ul>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="1" aria-label="Previous&#x20;page">Previous page</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="1" aria-label="Page&#x20;1">1</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="3" aria-label="Page&#x20;3">3</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
-                    '                    <li>'.PHP_EOL.
-                    '                        <a href="3" aria-label="Next&#x20;page">Next page</a>'.PHP_EOL.
-                    '                    </li>'.PHP_EOL.
+                'expectedHtml' => '                <ul>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="1" aria-label="Previous&#x20;page">Previous page</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="1" aria-label="Page&#x20;1">1</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="3" aria-label="Page&#x20;3">3</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
+                    '                    <li>' . PHP_EOL .
+                    '                        <a href="3" aria-label="Next&#x20;page">Next page</a>' . PHP_EOL .
+                    '                    </li>' . PHP_EOL .
                     '                </ul>'
             ],
             'attrs + labels + url' => [
@@ -723,30 +723,31 @@ class PaginationTest extends TestCase
                     'count' => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="plop" class="pagination">'.PHP_EOL.
-                    '	<root x="f(x)">'.PHP_EOL.
-                    '		<item previous>'.PHP_EOL.
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>'.PHP_EOL.
-                    '		</item>'.PHP_EOL.
-                    '		<item class="okay">'.PHP_EOL.
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>'.PHP_EOL.
-                    '		</item>'.PHP_EOL.
-                    '		<item data-id="yes">'.PHP_EOL.
-                    '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="page">2</zela>'.PHP_EOL.
-                    '		</item>'.PHP_EOL.
-                    '		<item class="okay">'.PHP_EOL.
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>'.PHP_EOL.
-                    '		</item>'.PHP_EOL.
-                    '		<item next>'.PHP_EOL.
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="aria-&#x6B21;">次</zela>'.PHP_EOL.
-                    '		</item>'.PHP_EOL.
-                    '	</root>'.PHP_EOL.
+                'expectedHtml' => '<nav aria-label="plop" class="pagination">' . PHP_EOL .
+                    '	<root x="f(x)">' . PHP_EOL .
+                    '		<item previous>' . PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>' . PHP_EOL .
+                    '		</item>' . PHP_EOL .
+                    '		<item class="okay">' . PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>' . PHP_EOL .
+                    '		</item>' . PHP_EOL .
+                    '		<item data-id="yes">' . PHP_EOL .
+                    '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="page">2</zela>' . PHP_EOL .
+                    '		</item>' . PHP_EOL .
+                    '		<item class="okay">' . PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>' . PHP_EOL .
+                    '		</item>' . PHP_EOL .
+                    '		<item next>' . PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="aria-&#x6B21;">次</zela>' . PHP_EOL .
+                    '		</item>' . PHP_EOL .
+                    '	</root>' . PHP_EOL .
                     '</nav>'
             ],
             'use dots' => [
                 'configuration' => [
                     'use_dots' => true,
                     'text_dots' => 'dots',
+                    'dot_tag' => 'dot',
                     'item_dots_attrs' => 'dotdot',
                     'count_pages_pair_adjacent' => 0
                 ],
@@ -755,18 +756,18 @@ class PaginationTest extends TestCase
                     'count' => 50,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="Pagination">'.PHP_EOL.
-                    '	<ul>'.PHP_EOL.
-                    '		<li dotdot aria-hidden="true">'.PHP_EOL.
-                    '			<span>dots</span>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="Page&#x20;25" aria-current="page">25</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li dotdot aria-hidden="true">'.PHP_EOL.
-                    '			<span>dots</span>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '	</ul>'.PHP_EOL.
+                'expectedHtml' => '<nav aria-label="Pagination">' . PHP_EOL .
+                    '	<ul>' . PHP_EOL .
+                    '		<li dotdot aria-hidden="true">' . PHP_EOL .
+                    '			<dot>dots</dot>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Page&#x20;25" aria-current="page">25</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li dotdot aria-hidden="true">' . PHP_EOL .
+                    '			<dot>dots</dot>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '	</ul>' . PHP_EOL .
                     '</nav>'
             ],
             'previous + next + attrs not empty + aria disabled' => [
@@ -781,18 +782,18 @@ class PaginationTest extends TestCase
                     'count' => 1,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="Pagination">'.PHP_EOL.
-                    '	<ul>'.PHP_EOL.
-                    '		<li item_previous_attrs_disabled>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li item_next_attrs_disabled>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '	</ul>'.PHP_EOL.
+                'expectedHtml' => '<nav aria-label="Pagination">' . PHP_EOL .
+                    '	<ul>' . PHP_EOL .
+                    '		<li item_previous_attrs_disabled>' . PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li item_next_attrs_disabled>' . PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '	</ul>' . PHP_EOL .
                     '</nav>'
             ],
             'empty text + empty tag' => [
@@ -818,24 +819,24 @@ class PaginationTest extends TestCase
                     'count' => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav>'.PHP_EOL.
-                    '	<ul>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="1"></a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="1">1</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-current="page">2</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="3">3</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="3"></a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '	</ul>'.PHP_EOL.
+                'expectedHtml' => '<nav>' . PHP_EOL .
+                    '	<ul>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="1"></a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="1">1</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="&#x23;" aria-current="page">2</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="3">3</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="3"></a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '	</ul>' . PHP_EOL .
                     '</nav>'
             ],
             'security' => [
@@ -864,33 +865,33 @@ class PaginationTest extends TestCase
                     'count' => 3000,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">'.PHP_EOL.
-                    '	<ul>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="page">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;4&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li aria-hidden="true">'.PHP_EOL.
-                    '			<span>&lt;script&gt;alert(1);&lt;&#47;script&gt;</span>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3000&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '	</ul>'.PHP_EOL.
+                'expectedHtml' => '<nav aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">' . PHP_EOL .
+                    '	<ul>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="page">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;4&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li aria-hidden="true">' . PHP_EOL .
+                    '			<span>&lt;script&gt;alert(1);&lt;&#47;script&gt;</span>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3000&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '		<li>' . PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . PHP_EOL .
+                    '		</li>' . PHP_EOL .
+                    '	</ul>' . PHP_EOL .
                     '</nav>'
             ]
         ];
