@@ -716,13 +716,14 @@ class PaginationTest extends TestCase
                     'aria_label_next'             => 'aria-次',
                     'use_next'                    => true,
                     'use_previous'                => true,
+                    'nav_attrs'                   => 'class="pagination"'
                 ],
                 'params' => [
                     'current' => 2,
                     'count' => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="plop">'.PHP_EOL.
+                'expectedHtml' => '<nav aria-label="plop" class="pagination">'.PHP_EOL.
                     '	<root x="f(x)">'.PHP_EOL.
                     '		<item previous>'.PHP_EOL.
                     '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>'.PHP_EOL.

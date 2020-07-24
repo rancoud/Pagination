@@ -54,6 +54,7 @@ class Pagination
     // endregion
 
     // region Properties: Tags Parameters
+    protected string $navAttrs = '';
     protected string $rootTag = 'ul';
     protected string $rootAttrs = '';
     protected string $itemTag = 'li';
@@ -79,34 +80,35 @@ class Pagination
 
     // region Configuration keys
     protected array $propsString = [
-        'url'                         => 'url',
-        'text_previous'               => 'textPrevious',
-        'text_next'                   => 'textNext',
-        'text_dots'                   => 'textDots',
-        'text_page'                   => 'textPage',
-        'root_tag'                    => 'rootTag',
-        'root_attrs'                  => 'rootAttrs',
-        'item_tag'                    => 'itemTag',
-        'item_attrs'                  => 'itemAttrs',
-        'item_attrs_current'          => 'itemAttrsCurrent',
-        'item_next_attrs'             => 'itemNextAttrs',
-        'item_next_attrs_disabled'    => 'itemNextAttrsDisabled',
-        'item_previous_attrs'         => 'itemPreviousAttrs',
-        'item_previous_attrs_disabled'=> 'itemPreviousAttrsDisabled',
-        'item_dots_attrs'             => 'itemDotsAttrs',
-        'link_tag'                    => 'linkTag',
-        'link_attrs'                  => 'linkAttrs',
-        'link_attrs_current'          => 'linkAttrsCurrent',
-        'link_next_attrs_disabled'    => 'linkNextAttrsDisabled',
-        'link_previous_attrs_disabled'=> 'linkPreviousAttrsDisabled',
-        'html_tab_sequence'           => 'htmlTabSequence',
-        'aria_label_link'             => 'ariaLabelLink',
-        'aria_label_current_link'     => 'ariaLabelCurrentLink',
-        'aria_label_nav'              => 'ariaLabelNav',
-        'aria_label_previous'         => 'ariaLabelPrevious',
-        'aria_label_next'             => 'ariaLabelNext',
-        'thousands_separator'         => 'thousandsSeparator',
-        'charset'                     => 'charset'
+        'url'                          => 'url',
+        'text_previous'                => 'textPrevious',
+        'text_next'                    => 'textNext',
+        'text_dots'                    => 'textDots',
+        'text_page'                    => 'textPage',
+        'nav_attrs'                    => 'navAttrs',
+        'root_tag'                     => 'rootTag',
+        'root_attrs'                   => 'rootAttrs',
+        'item_tag'                     => 'itemTag',
+        'item_attrs'                   => 'itemAttrs',
+        'item_attrs_current'           => 'itemAttrsCurrent',
+        'item_next_attrs'              => 'itemNextAttrs',
+        'item_next_attrs_disabled'     => 'itemNextAttrsDisabled',
+        'item_previous_attrs'          => 'itemPreviousAttrs',
+        'item_previous_attrs_disabled' => 'itemPreviousAttrsDisabled',
+        'item_dots_attrs'              => 'itemDotsAttrs',
+        'link_tag'                     => 'linkTag',
+        'link_attrs'                   => 'linkAttrs',
+        'link_attrs_current'           => 'linkAttrsCurrent',
+        'link_next_attrs_disabled'     => 'linkNextAttrsDisabled',
+        'link_previous_attrs_disabled' => 'linkPreviousAttrsDisabled',
+        'html_tab_sequence'            => 'htmlTabSequence',
+        'aria_label_link'              => 'ariaLabelLink',
+        'aria_label_current_link'      => 'ariaLabelCurrentLink',
+        'aria_label_nav'               => 'ariaLabelNav',
+        'aria_label_previous'          => 'ariaLabelPrevious',
+        'aria_label_next'              => 'ariaLabelNext',
+        'thousands_separator'          => 'thousandsSeparator',
+        'charset'                      => 'charset'
     ];
     protected array $propsBool = [
         'use_dots'              => 'useDots',
@@ -510,11 +512,13 @@ class Pagination
             if ($this->escAttr) {
                 $ariaLabelNav = Security::escAttr($this->ariaLabelNav);
             }
-            if ($ariaLabelNav !== '') {
-                $ariaLabelNav = ' aria-label="' . $ariaLabelNav . '"';
-            }
 
-            $html .= $tab . '<nav' . $ariaLabelNav . '>' . $endl;
+            $nav = '<nav';
+            $nav .= $ariaLabelNav !== '' ? ' aria-label="' . $ariaLabelNav . '"' : '';
+            $nav .= $this->navAttrs !== '' ? ' ' . $this->navAttrs : '';
+            $nav .= '>';
+
+            $html .= $tab . $nav . $endl;
             $tab = $this->getTabSequence();
         }
 

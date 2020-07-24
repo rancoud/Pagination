@@ -93,6 +93,7 @@ It will output
 * root_tag (string: ul) ([example](#root_tag))
 * root_attrs (string) ([example](#root_attrs))
 * use_nav (bool: true) ([example](#use_nav))
+* nav_attrs (string) ([example](#nav_attrs))
 
 #### Item
 * item_tag (string: li) ([example](#item_tag))
@@ -918,6 +919,30 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 		<a href="2" aria-label="Page&#x20;2">2</a>
 	</li>
 </ul>
+```
+
+[⏫ Configuration Parameters / HTML markup / Root](#root)
+
+### nav_attrs
+#### Input
+```php
+$conf = [
+    'nav_attrs' => 'data-item="attrs"'
+];
+echo (new Pagination($conf))->generateHtml(1, 10, 5);
+```
+#### Output
+```html
+<nav aria-label="Pagination" data-item="attrs">
+	<ul>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+	</ul>
+</nav>
 ```
 
 [⏫ Configuration Parameters / HTML markup / Root](#root)
