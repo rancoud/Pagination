@@ -748,6 +748,7 @@ class PaginationTest extends TestCase
                     'use_dots' => true,
                     'text_dots' => 'dots',
                     'dot_tag' => 'dot',
+                    'dot_attrs' => 'data-dot="attrs"',
                     'item_dots_attrs' => 'dotdot',
                     'count_pages_pair_adjacent' => 0
                 ],
@@ -759,13 +760,13 @@ class PaginationTest extends TestCase
                 'expectedHtml' => '<nav aria-label="Pagination">' . PHP_EOL .
                     '	<ul>' . PHP_EOL .
                     '		<li dotdot aria-hidden="true">' . PHP_EOL .
-                    '			<dot>dots</dot>' . PHP_EOL .
+                    '			<dot data-dot="attrs">dots</dot>' . PHP_EOL .
                     '		</li>' . PHP_EOL .
                     '		<li>' . PHP_EOL .
                     '			<a href="&#x23;" aria-label="Page&#x20;25" aria-current="page">25</a>' . PHP_EOL .
                     '		</li>' . PHP_EOL .
                     '		<li dotdot aria-hidden="true">' . PHP_EOL .
-                    '			<dot>dots</dot>' . PHP_EOL .
+                    '			<dot data-dot="attrs">dots</dot>' . PHP_EOL .
                     '		</li>' . PHP_EOL .
                     '	</ul>' . PHP_EOL .
                     '</nav>'
