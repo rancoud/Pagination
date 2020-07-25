@@ -112,6 +112,7 @@ It will output
 * link_previous_attrs_disabled (string) ([example](#link_previous_attrs_disabled))
 * link_next_attrs_disabled (string) ([example](#link_next_attrs_disabled))
 * dot_tag (string: span) ([example](#dot_tag))
+* dot_attrs (string) ([example](#dot_attrs))
 
 #### Indentation
 * use_pretty_html (bool: true) ([example](#use_pretty_html))
@@ -1479,7 +1480,7 @@ echo (new Pagination($conf))->generateHtml(1, 10, 5);
 </nav>
 ```
 
-[⏫ Configuration Parameters / HTML markup / Item](#item)
+[⏫ Configuration Parameters / HTML markup / Link](#link)
 
 ### link_next_attrs_disabled
 #### Input
@@ -1533,7 +1534,7 @@ echo (new Pagination($conf))->generateHtml(2, 10, 5);
 </nav>
 ```
 
-[⏫ Configuration Parameters / HTML markup / Item](#item)
+[⏫ Configuration Parameters / HTML markup / Link](#link)
 
 ### dot_tag
 #### Input
@@ -1564,7 +1565,38 @@ echo (new Pagination($conf))->generateHtml(1, 30, 5);
 </nav>
 ```
 
-[⏫ Configuration Parameters / HTML markup / Item](#item)
+[⏫ Configuration Parameters / HTML markup / Link](#link)
+
+### dot_attrs
+#### Input
+```php
+$conf = [
+    'use_dots' => true,
+    'dot_attrs' => 'data-dot="attrs"'
+];
+echo (new Pagination($conf))->generateHtml(1, 30, 5);
+```
+#### Output
+```html
+<nav aria-label="Pagination">
+	<ul>
+		<li>
+			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>
+		</li>
+		<li>
+			<a href="2" aria-label="Page&#x20;2">2</a>
+		</li>
+		<li>
+			<a href="3" aria-label="Page&#x20;3">3</a>
+		</li>
+		<li aria-hidden="true">
+			<span data-dot="attrs">…</span>
+		</li>
+	</ul>
+</nav>
+```
+
+[⏫ Configuration Parameters / HTML markup / Link](#link)
 
 ### use_pretty_html
 #### Input

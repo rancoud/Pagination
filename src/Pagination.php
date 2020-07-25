@@ -71,6 +71,7 @@ class Pagination
     protected string $linkNextAttrsDisabled = '';
     protected string $linkPreviousAttrsDisabled = '';
     protected string $dotTag = 'span';
+    protected string $dotAttrs = '';
     // endregion
 
     // region Properties: Security
@@ -103,6 +104,7 @@ class Pagination
         'link_next_attrs_disabled'     => 'linkNextAttrsDisabled',
         'link_previous_attrs_disabled' => 'linkPreviousAttrsDisabled',
         'dot_tag'                      => 'dotTag',
+        'dot_attrs'                    => 'dotAttrs',
         'html_tab_sequence'            => 'htmlTabSequence',
         'aria_label_link'              => 'ariaLabelLink',
         'aria_label_current_link'      => 'ariaLabelCurrentLink',
@@ -571,6 +573,7 @@ class Pagination
 
         if ($item->isDots) {
             $openLinkTag = '<' . $this->dotTag;
+            $openLinkTag .= $this->dotAttrs !== '' ? ' ' . $this->dotAttrs : '';
             $openLinkTag .= '>' . $item->text;
             $closeLinkTag = '</' . $this->dotTag . '>';
         } else {
