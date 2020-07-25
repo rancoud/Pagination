@@ -124,7 +124,8 @@ It will output
 * esc_html (bool: true) ([example](#esc_html))
 * charset (string: UTF-8) ([example](#charset))
 
-You have to sanitize by yourself thoses parameters:  
+You have to sanitize by yourself thoses parameters:
+* nav_attrs
 * root_attrs
 * item_attrs
 * item_attrs_current
@@ -137,6 +138,7 @@ You have to sanitize by yourself thoses parameters:
 * link_attrs_current
 * link_previous_attrs_disabled
 * link_next_attrs_disabled
+* dot_attrs
 * html_tab_sequence
 
 ## Examples
