@@ -306,7 +306,7 @@ class Pagination
 
         $this->previous->text = $this->textPrevious;
         if ($this->escHtml) {
-            $this->previous->text = Security::escHtml($this->textPrevious, $this->charset);
+            $this->previous->text = Security::escHTML($this->textPrevious, $this->charset);
         }
 
         $this->previous->ariaLabel = $this->ariaLabelPrevious;
@@ -351,7 +351,7 @@ class Pagination
 
         $this->next->text = $this->textNext;
         if ($this->escHtml) {
-            $this->next->text = Security::escHtml($this->next->text, $this->charset);
+            $this->next->text = Security::escHTML($this->next->text, $this->charset);
         }
 
         $this->next->ariaLabel = $this->ariaLabelNext;
@@ -467,7 +467,7 @@ class Pagination
         }
 
         if ($this->escHtml) {
-            $item->text = Security::escHtml($item->text, $this->charset);
+            $item->text = Security::escHTML($item->text, $this->charset);
         }
 
         if ($this->escAttr) {

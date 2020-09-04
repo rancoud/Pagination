@@ -4,23 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56c1499d9d745f38aae313cc1c52178e",
+    "content-hash": "4f9e9d30eb10e8f078372fb9b9a12828",
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "2.0.4",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "943841ccb117d2faefa0c22297ab5790be996d2f"
+                "reference": "cf1bb1330994a62f760fc206caf018a1fe7ac1b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/943841ccb117d2faefa0c22297ab5790be996d2f",
-                "reference": "943841ccb117d2faefa0c22297ab5790be996d2f",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/cf1bb1330994a62f760fc206caf018a1fe7ac1b4",
+                "reference": "cf1bb1330994a62f760fc206caf018a1fe7ac1b4",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">=7.4.0"
             },
             "require-dev": {
@@ -45,7 +46,7 @@
                 }
             ],
             "description": "Security package",
-            "time": "2020-07-24T19:35:51+00:00"
+            "time": "2020-09-03T22:34:49+00:00"
         }
     ],
     "packages-dev": [
@@ -1289,6 +1290,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-06-27T06:36:25+00:00"
         },
         {
