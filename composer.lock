@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "cf1bb1330994a62f760fc206caf018a1fe7ac1b4"
+                "reference": "6bdd215ca05d92f9529442cfd609b16a6799f9d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/cf1bb1330994a62f760fc206caf018a1fe7ac1b4",
-                "reference": "cf1bb1330994a62f760fc206caf018a1fe7ac1b4",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/6bdd215ca05d92f9529442cfd609b16a6799f9d8",
+                "reference": "6bdd215ca05d92f9529442cfd609b16a6799f9d8",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 }
             ],
             "description": "Security package",
-            "time": "2020-09-03T22:34:49+00:00"
+            "time": "2020-12-04T22:10:43+00:00"
         }
     ],
     "packages-dev": [
