@@ -310,14 +310,14 @@ class Pagination
         }
 
         $this->previous->ariaLabel = $this->ariaLabelPrevious;
-        $this->previous->ariaLabel = \str_replace('{{PAGE}}', $this->previous->page, $this->previous->ariaLabel);
+        $this->previous->ariaLabel = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->ariaLabel); //phpcs:ignore
         if ($this->escAttr) {
             $this->previous->ariaLabel = Security::escAttr($this->previous->ariaLabel, $this->charset);
             $this->previous->href = Security::escAttr($this->previous->href, $this->charset);
         }
 
-        $this->previous->itemAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->previous->itemAttrs);
-        $this->previous->linkAttrs = \str_replace('{{PAGE}}', $this->previous->page, $this->previous->linkAttrs);
+        $this->previous->itemAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->itemAttrs); //phpcs:ignore
+        $this->previous->linkAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->linkAttrs); //phpcs:ignore
     }
 
     /**
@@ -355,14 +355,14 @@ class Pagination
         }
 
         $this->next->ariaLabel = $this->ariaLabelNext;
-        $this->next->ariaLabel = \str_replace('{{PAGE}}', $this->next->page, $this->next->ariaLabel);
+        $this->next->ariaLabel = \str_replace('{{PAGE}}', (string) $this->next->page, $this->next->ariaLabel);
         if ($this->escAttr) {
             $this->next->ariaLabel = Security::escAttr($this->next->ariaLabel, $this->charset);
             $this->next->href = Security::escAttr($this->next->href, $this->charset);
         }
 
-        $this->next->itemAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->next->itemAttrs);
-        $this->next->linkAttrs = \str_replace('{{PAGE}}', $this->next->page, $this->next->linkAttrs);
+        $this->next->itemAttrs = \str_replace('{{PAGE}}', (string) $this->next->page, $this->next->itemAttrs);
+        $this->next->linkAttrs = \str_replace('{{PAGE}}', (string) $this->next->page, $this->next->linkAttrs);
     }
 
     /**
@@ -447,13 +447,13 @@ class Pagination
             $item->ariaLabel = $this->ariaLabelLink;
         }
 
-        $item->itemAttrs = \str_replace('{{PAGE}}', $page, $item->itemAttrs);
-        $item->linkAttrs = \str_replace('{{PAGE}}', $page, $item->linkAttrs);
-        $item->ariaLabel = \str_replace('{{PAGE}}', $page, $item->ariaLabel);
+        $item->itemAttrs = \str_replace('{{PAGE}}', (string) $page, $item->itemAttrs);
+        $item->linkAttrs = \str_replace('{{PAGE}}', (string) $page, $item->linkAttrs);
+        $item->ariaLabel = \str_replace('{{PAGE}}', (string) $page, $item->ariaLabel);
 
         if ($isDots) {
             $item->text = $this->textDots;
-            $item->itemAttrs = \str_replace('{{PAGE}}', $page, $this->itemDotsAttrs);
+            $item->itemAttrs = \str_replace('{{PAGE}}', (string) $page, $this->itemDotsAttrs);
         } else {
             $pageFormated = \number_format($page, 0, '.', $this->thousandsSeparator);
             $item->text = \str_replace('{{PAGE}}', $pageFormated, $this->textPage);
@@ -489,7 +489,7 @@ class Pagination
             return (string) $page;
         }
 
-        $url = \str_replace('{{PAGE}}', $page, $this->url);
+        $url = \str_replace('{{PAGE}}', (string) $page, $this->url);
 
         if ($url === $this->url) {
             return $url . $page;
@@ -552,7 +552,7 @@ class Pagination
     }
 
     /**
-     * @param Item $item
+     * @param Item|null $item
      *
      * @return string
      */
