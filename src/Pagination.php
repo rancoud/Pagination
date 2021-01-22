@@ -617,6 +617,6 @@ class Pagination
             return '';
         }
 
-        return PHP_EOL;
+        return \PHP_EOL;
     }
 }
