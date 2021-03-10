@@ -50,7 +50,7 @@ jobs:
           vendor/bin/phpunit --colors --coverage-text --coverage-clover coverage/clover.xml
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v1.2.1
+        uses: codecov/codecov-action@v1.2.2
         if: success()
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
