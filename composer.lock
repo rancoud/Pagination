@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f9e9d30eb10e8f078372fb9b9a12828",
+    "content-hash": "a765df2adaa001f6d006d59d4c1702e7",
     "packages": [
         {
             "name": "rancoud/security",
@@ -4167,7 +4167,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4.0"
+        "php": ">=7.4.0",
+        "ext-mbstring": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
