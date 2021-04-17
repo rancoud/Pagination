@@ -40,18 +40,18 @@ class PaginationTest extends TestCase
                 $link2
             ]
         ];
-        static::assertEquals($out, $data);
+        static::assertEqualsCanonicalizing($out, $data);
 
         $html = $p->generateHtml(1, 2, 1);
-        $expected = '<nav aria-label="Pagination">'.PHP_EOL.
-                    '	<ul>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '		<li>'.PHP_EOL.
-                    '			<a href="2" aria-label="Page&#x20;2">2</a>'.PHP_EOL.
-                    '		</li>'.PHP_EOL.
-                    '	</ul>'.PHP_EOL.
+        $expected = '<nav aria-label="Pagination">' . \PHP_EOL .
+                    '	<ul>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '	</ul>' . \PHP_EOL .
                     '</nav>';
         static::assertSame($expected, $html);
     }
@@ -96,7 +96,7 @@ class PaginationTest extends TestCase
 
         $out = [
             'previous' => $previous,
-            'links' => [
+            'links'    => [
                 $link1,
                 $link2,
                 $link3,
@@ -106,7 +106,7 @@ class PaginationTest extends TestCase
 
         $data = $p->generateData(2, 6, 2);
 
-        static::assertEquals($out, $data);
+        static::assertEqualsCanonicalizing($out, $data);
     }
 
     /**
@@ -116,7 +116,7 @@ class PaginationTest extends TestCase
     {
         $configuration = [
             'use_previous' => true,
-            'use_next' => true
+            'use_next'     => true
         ];
 
         $previous = new Item();
@@ -190,79 +190,79 @@ class PaginationTest extends TestCase
         return [
             'Current page incorrect 99 (1 count 1 per page)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 99,
-                    'count' => 1,
+                'params'        => [
+                    'current'  => 99,
+                    'count'    => 1,
                     'per_page' => 1
                 ],
                 'data_out' => [
                     'previous' => $previous,
-                    'links' => [],
-                    'next' => null
+                    'links'    => [],
+                    'next'     => null
                 ]
             ],
             'Current page incorrect -1 (1 count 1 per page)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => -1,
-                    'count' => 1,
+                'params'        => [
+                    'current'  => -1,
+                    'count'    => 1,
                     'per_page' => 1
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [$linkPage1Current],
-                    'next' => null,
+                    'links'    => [$linkPage1Current],
+                    'next'     => null,
                 ]
             ],
             'Per page incorrect -9 (1 current 1 count)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 1,
-                    'count' => 1,
+                'params'        => [
+                    'current'  => 1,
+                    'count'    => 1,
                     'per_page' => -9
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [$linkPage1Current],
-                    'next' => null,
+                    'links'    => [$linkPage1Current],
+                    'next'     => null,
                 ]
             ],
             'Count incorrect -9 (1 current 1 per page)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 1,
-                    'count' => -9,
+                'params'        => [
+                    'current'  => 1,
+                    'count'    => -9,
                     'per_page' => 1
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [],
-                    'next' => null,
+                    'links'    => [],
+                    'next'     => null,
                 ]
             ],
             'Current page incorrect 99 (6 count 2 per page)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 99,
-                    'count' => 6,
+                'params'        => [
+                    'current'  => 99,
+                    'count'    => 6,
                     'per_page' => 2
                 ],
                 'data_out' => [
                     'previous' => $previousPage3,
-                    'links' => [],
-                    'next' => null
+                    'links'    => [],
+                    'next'     => null
                 ]
             ],
             'Current page incorrect -1 (6 count 2 per page)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => -1,
-                    'count' => 6,
+                'params'        => [
+                    'current'  => -1,
+                    'count'    => 6,
                     'per_page' => 2
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [
+                    'links'    => [
                         $linkPage1Current,
                         $linkPage2,
                         $linkPage3
@@ -272,14 +272,14 @@ class PaginationTest extends TestCase
             ],
             'Per page incorrect -9 (2 current 6 count)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 2,
-                    'count' => 6,
+                'params'        => [
+                    'current'  => 2,
+                    'count'    => 6,
                     'per_page' => -9
                 ],
                 'data_out' => [
                     'previous' => $previous,
-                    'links' => [
+                    'links'    => [
                         $linkPage1,
                         $linkPage2Current,
                         $linkPage3,
@@ -290,15 +290,15 @@ class PaginationTest extends TestCase
             ],
             'Count incorrect -9 (2 current 2 per page)' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 2,
-                    'count' => -9,
+                'params'        => [
+                    'current'  => 2,
+                    'count'    => -9,
                     'per_page' => 2
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => [],
-                    'next' => null,
+                    'links'    => [],
+                    'next'     => null,
                 ]
             ]
         ];
@@ -308,6 +308,7 @@ class PaginationTest extends TestCase
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
+     *
      * @throws \Rancoud\Security\SecurityException
      */
     public function testIncorrectCeilCompute(array $configuration, array $params, array $dataOut): void
@@ -316,7 +317,7 @@ class PaginationTest extends TestCase
         $p->setConfiguration($configuration);
         $data = $p->generateData($params['current'], $params['count'], $params['per_page']);
 
-        static::assertEquals($dataOut, $data);
+        static::assertEqualsCanonicalizing($dataOut, $data);
     }
 
     /**
@@ -325,8 +326,8 @@ class PaginationTest extends TestCase
     public function dataShowAllLinks(): array
     {
         $configuration = [
-            'use_previous' => true,
-            'use_next' => true,
+            'use_previous'   => true,
+            'use_next'       => true,
             'show_all_links' => true
         ];
 
@@ -357,7 +358,7 @@ class PaginationTest extends TestCase
         $linksCurrentPage1 = [];
         $linksCurrentPage2 = [];
         $linksCurrentPage50 = [];
-        for ($i = 1; $i < 51; $i++) {
+        for ($i = 1; $i < 51; ++$i) {
             $linkCurrentPage1 = new Item();
             $linkCurrentPage1->isDots = false;
             $linkCurrentPage1->isCurrent = ($i === 1);
@@ -390,41 +391,41 @@ class PaginationTest extends TestCase
         return [
             '50 links + current page 1' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 1,
-                    'count' => 50,
+                'params'        => [
+                    'current'  => 1,
+                    'count'    => 50,
                     'per_page' => 1
                 ],
                 'data_out' => [
                     'previous' => null,
-                    'links' => $linksCurrentPage1,
-                    'next' => $nextPage2
+                    'links'    => $linksCurrentPage1,
+                    'next'     => $nextPage2
                 ]
             ],
             '50 links + current page 2' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 2,
-                    'count' => 50,
+                'params'        => [
+                    'current'  => 2,
+                    'count'    => 50,
                     'per_page' => 1
                 ],
                 'data_out' => [
                     'previous' => $previousPage1,
-                    'links' => $linksCurrentPage2,
-                    'next' => $nextPage3
+                    'links'    => $linksCurrentPage2,
+                    'next'     => $nextPage3
                 ]
             ],
             '50 links + current page 50' => [
                 'configuration' => $configuration,
-                'params' => [
-                    'current' => 50,
-                    'count' => 50,
+                'params'        => [
+                    'current'  => 50,
+                    'count'    => 50,
                     'per_page' => 1
                 ],
                 'data_out' => [
                     'previous' => $previousPage49,
-                    'links' => $linksCurrentPage50,
-                    'next' => null
+                    'links'    => $linksCurrentPage50,
+                    'next'     => null
                 ]
             ]
         ];
@@ -434,6 +435,7 @@ class PaginationTest extends TestCase
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
+     *
      * @throws \Rancoud\Security\SecurityException
      */
     public function testShowAllLinks(array $configuration, array $params, array $dataOut): void
@@ -442,7 +444,7 @@ class PaginationTest extends TestCase
         $p->setConfiguration($configuration);
         $data = $p->generateData($params['current'], $params['count'], $params['per_page']);
 
-        static::assertEquals($dataOut, $data);
+        static::assertEqualsCanonicalizing($dataOut, $data);
     }
 
     /**
@@ -463,7 +465,7 @@ class PaginationTest extends TestCase
 
         $limitPagesLeft = [];
         $limitPagesRight = [];
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 1; $i < 6; ++$i) {
             $limitPageLeft = new Item();
             $limitPageLeft->isDots = false;
             $limitPageLeft->isCurrent = false;
@@ -474,7 +476,7 @@ class PaginationTest extends TestCase
 
             $limitPagesLeft[] = $limitPageLeft;
         }
-        for ($i = 46; $i < 51; $i++) {
+        for ($i = 46; $i < 51; ++$i) {
             $limitPageRight = new Item();
             $limitPageRight->isDots = false;
             $limitPageRight->isCurrent = false;
@@ -488,7 +490,7 @@ class PaginationTest extends TestCase
 
         $adjacentPagesLeft = [];
         $adjacentPagesRight = [];
-        for ($i = 15; $i < 20; $i++) {
+        for ($i = 15; $i < 20; ++$i) {
             $adjacentPageLeft = new Item();
             $adjacentPageLeft->isDots = false;
             $adjacentPageLeft->isCurrent = false;
@@ -499,7 +501,7 @@ class PaginationTest extends TestCase
 
             $adjacentPagesLeft[] = $adjacentPageLeft;
         }
-        for ($i = 21; $i < 26; $i++) {
+        for ($i = 21; $i < 26; ++$i) {
             $adjacentPageRight = new Item();
             $adjacentPageRight->isDots = false;
             $adjacentPageRight->isCurrent = false;
@@ -512,50 +514,50 @@ class PaginationTest extends TestCase
         }
 
         $params = [
-            'current' => 20,
-            'count' => 50,
+            'current'  => 20,
+            'count'    => 50,
             'per_page' => 1
         ];
 
         return [
             'limit 0 + adjacent 0' => [
                 'configuration' => [
-                    'count_pages_pair_limit' => 0,
+                    'count_pages_pair_limit'    => 0,
                     'count_pages_pair_adjacent' => 0,
                 ],
-                'params' => $params,
+                'params'   => $params,
                 'data_out' => [
                     'links' => $currentPage,
                 ]
             ],
             'limit 5 + adjacent 0' => [
                 'configuration' => [
-                    'count_pages_pair_limit' => 5,
+                    'count_pages_pair_limit'    => 5,
                     'count_pages_pair_adjacent' => 0,
                 ],
-                'params' => $params,
+                'params'   => $params,
                 'data_out' => [
-                    'links' => array_merge($limitPagesLeft, $currentPage, $limitPagesRight),
+                    'links' => \array_merge($limitPagesLeft, $currentPage, $limitPagesRight),
                 ]
             ],
             'limit 0 + adjacent 5' => [
                 'configuration' => [
-                    'count_pages_pair_limit' => 0,
+                    'count_pages_pair_limit'    => 0,
                     'count_pages_pair_adjacent' => 5,
                 ],
-                'params' => $params,
+                'params'   => $params,
                 'data_out' => [
-                    'links' => array_merge($adjacentPagesLeft, $currentPage, $adjacentPagesRight),
+                    'links' => \array_merge($adjacentPagesLeft, $currentPage, $adjacentPagesRight),
                 ]
             ],
             'limit 5 + adjacent 5' => [
                 'configuration' => [
-                    'count_pages_pair_limit' => 5,
+                    'count_pages_pair_limit'    => 5,
                     'count_pages_pair_adjacent' => 5,
                 ],
-                'params' => $params,
+                'params'   => $params,
                 'data_out' => [
-                    'links' => array_merge($limitPagesLeft, $adjacentPagesLeft, $currentPage, $adjacentPagesRight, $limitPagesRight),
+                    'links' => \array_merge($limitPagesLeft, $adjacentPagesLeft, $currentPage, $adjacentPagesRight, $limitPagesRight), //phpcs:ignore
                 ]
             ]
         ];
@@ -565,6 +567,7 @@ class PaginationTest extends TestCase
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
+     *
      * @throws \Rancoud\Security\SecurityException
      */
     public function testAdjacentAndLimitConfiguration(array $configuration, array $params, array $dataOut): void
@@ -573,7 +576,7 @@ class PaginationTest extends TestCase
         $p->setConfiguration($configuration);
         $data = $p->generateData($params['current'], $params['count'], $params['per_page']);
 
-        static::assertEquals($dataOut, $data);
+        static::assertEqualsCanonicalizing($dataOut, $data);
     }
 
     /**
@@ -587,8 +590,8 @@ class PaginationTest extends TestCase
                     'use_pretty_html' => false
                 ],
                 'params' => [
-                    'current' => 1,
-                    'count' => 2,
+                    'current'  => 1,
+                    'count'    => 2,
                     'per_page' => 1
                 ],
                 'expectedHtml' => '<nav aria-label="Pagination">' .
@@ -607,91 +610,91 @@ class PaginationTest extends TestCase
                     'html_initial_indentation' => 4
                 ],
                 'params' => [
-                    'current' => 1,
-                    'count' => 2,
+                    'current'  => 1,
+                    'count'    => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '				<nav aria-label="Pagination">' . PHP_EOL .
-                    '					<ul>' . PHP_EOL .
-                    '						<li>' . PHP_EOL .
-                    '							<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
-                    '						</li>' . PHP_EOL .
-                    '						<li>' . PHP_EOL .
-                    '							<a href="2" aria-label="Page&#x20;2">2</a>' . PHP_EOL .
-                    '						</li>' . PHP_EOL .
-                    '					</ul>' . PHP_EOL .
+                'expectedHtml' => '				<nav aria-label="Pagination">' . \PHP_EOL .
+                    '					<ul>' . \PHP_EOL .
+                    '						<li>' . \PHP_EOL .
+                    '							<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL . //phpcs:ignore
+                    '						</li>' . \PHP_EOL .
+                    '						<li>' . \PHP_EOL .
+                    '							<a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
+                    '						</li>' . \PHP_EOL .
+                    '					</ul>' . \PHP_EOL .
                     '				</nav>'
             ],
             'initial indentation 4 + four spaces' => [
                 'configuration' => [
                     'html_initial_indentation' => 4,
-                    'html_tab_sequence' => '    '
+                    'html_tab_sequence'        => '    '
                 ],
                 'params' => [
-                    'current' => 1,
-                    'count' => 2,
+                    'current'  => 1,
+                    'count'    => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <nav aria-label="Pagination">' . PHP_EOL .
-                    '                    <ul>' . PHP_EOL .
-                    '                        <li>' . PHP_EOL .
-                    '                            <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
-                    '                        </li>' . PHP_EOL .
-                    '                        <li>' . PHP_EOL .
-                    '                            <a href="2" aria-label="Page&#x20;2">2</a>' . PHP_EOL .
-                    '                        </li>' . PHP_EOL .
-                    '                    </ul>' . PHP_EOL .
+                'expectedHtml' => '                <nav aria-label="Pagination">' . \PHP_EOL .
+                    '                    <ul>' . \PHP_EOL .
+                    '                        <li>' . \PHP_EOL .
+                    '                            <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL . //phpcs:ignore
+                    '                        </li>' . \PHP_EOL .
+                    '                        <li>' . \PHP_EOL .
+                    '                            <a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
+                    '                        </li>' . \PHP_EOL .
+                    '                    </ul>' . \PHP_EOL .
                     '                </nav>'
             ],
             'initial indentation 4 + four spaces + nav off' => [
                 'configuration' => [
                     'html_initial_indentation' => 4,
-                    'html_tab_sequence' => '    ',
-                    'use_nav' => false
+                    'html_tab_sequence'        => '    ',
+                    'use_nav'                  => false
                 ],
                 'params' => [
-                    'current' => 1,
-                    'count' => 2,
+                    'current'  => 1,
+                    'count'    => 2,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <ul>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="2" aria-label="Page&#x20;2">2</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
+                'expectedHtml' => '                <ul>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL . //phpcs:ignore
+                    '                    </li>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
+                    '                    </li>' . \PHP_EOL .
                     '                </ul>'
             ],
             'initial indentation 4 + four spaces + nav off + previous + after' => [
                 'configuration' => [
                     'html_initial_indentation' => 4,
-                    'html_tab_sequence' => '    ',
-                    'use_nav' => false,
-                    'use_next' => true,
-                    'use_previous' => true,
+                    'html_tab_sequence'        => '    ',
+                    'use_nav'                  => false,
+                    'use_next'                 => true,
+                    'use_previous'             => true,
                 ],
                 'params' => [
-                    'current' => 2,
-                    'count' => 3,
+                    'current'  => 2,
+                    'count'    => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '                <ul>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="1" aria-label="Previous&#x20;page">Previous page</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="1" aria-label="Page&#x20;1">1</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="3" aria-label="Page&#x20;3">3</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
-                    '                    <li>' . PHP_EOL .
-                    '                        <a href="3" aria-label="Next&#x20;page">Next page</a>' . PHP_EOL .
-                    '                    </li>' . PHP_EOL .
+                'expectedHtml' => '                <ul>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="1" aria-label="Previous&#x20;page">Previous page</a>' . \PHP_EOL .
+                    '                    </li>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="1" aria-label="Page&#x20;1">1</a>' . \PHP_EOL .
+                    '                    </li>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>' . \PHP_EOL . //phpcs:ignore
+                    '                    </li>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="3" aria-label="Page&#x20;3">3</a>' . \PHP_EOL .
+                    '                    </li>' . \PHP_EOL .
+                    '                    <li>' . \PHP_EOL .
+                    '                        <a href="3" aria-label="Next&#x20;page">Next page</a>' . \PHP_EOL .
+                    '                    </li>' . \PHP_EOL .
                     '                </ul>'
             ],
             'attrs + labels + url' => [
@@ -719,82 +722,82 @@ class PaginationTest extends TestCase
                     'nav_attrs'                   => 'class="pagination"'
                 ],
                 'params' => [
-                    'current' => 2,
-                    'count' => 3,
+                    'current'  => 2,
+                    'count'    => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="plop" class="pagination">' . PHP_EOL .
-                    '	<root x="f(x)">' . PHP_EOL .
-                    '		<item previous>' . PHP_EOL .
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>' . PHP_EOL .
-                    '		</item>' . PHP_EOL .
-                    '		<item class="okay">' . PHP_EOL .
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>' . PHP_EOL .
-                    '		</item>' . PHP_EOL .
-                    '		<item data-id="yes">' . PHP_EOL .
-                    '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="page">2</zela>' . PHP_EOL .
-                    '		</item>' . PHP_EOL .
-                    '		<item class="okay">' . PHP_EOL .
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>' . PHP_EOL .
-                    '		</item>' . PHP_EOL .
-                    '		<item next>' . PHP_EOL .
-                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="aria-&#x6B21;">次</zela>' . PHP_EOL .
-                    '		</item>' . PHP_EOL .
-                    '	</root>' . PHP_EOL .
+                'expectedHtml' => '<nav aria-label="plop" class="pagination">' . \PHP_EOL .
+                    '	<root x="f(x)">' . \PHP_EOL .
+                    '		<item previous>' . \PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>' . \PHP_EOL . //phpcs:ignore
+                    '		</item>' . \PHP_EOL .
+                    '		<item class="okay">' . \PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>' . \PHP_EOL . //phpcs:ignore
+                    '		</item>' . \PHP_EOL .
+                    '		<item data-id="yes">' . \PHP_EOL .
+                    '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="page">2</zela>' . \PHP_EOL . //phpcs:ignore
+                    '		</item>' . \PHP_EOL .
+                    '		<item class="okay">' . \PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>' . \PHP_EOL . //phpcs:ignore
+                    '		</item>' . \PHP_EOL .
+                    '		<item next>' . \PHP_EOL .
+                    '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="aria-&#x6B21;">次</zela>' . \PHP_EOL . //phpcs:ignore
+                    '		</item>' . \PHP_EOL .
+                    '	</root>' . \PHP_EOL .
                     '</nav>'
             ],
             'use dots' => [
                 'configuration' => [
-                    'use_dots' => true,
-                    'text_dots' => 'dots',
-                    'dot_tag' => 'dot',
-                    'dot_attrs' => 'data-dot="attrs"',
-                    'item_dots_attrs' => 'dotdot',
+                    'use_dots'                  => true,
+                    'text_dots'                 => 'dots',
+                    'dot_tag'                   => 'dot',
+                    'dot_attrs'                 => 'data-dot="attrs"',
+                    'item_dots_attrs'           => 'dotdot',
                     'count_pages_pair_adjacent' => 0
                 ],
                 'params' => [
-                    'current' => 25,
-                    'count' => 50,
+                    'current'  => 25,
+                    'count'    => 50,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="Pagination">' . PHP_EOL .
-                    '	<ul>' . PHP_EOL .
-                    '		<li dotdot aria-hidden="true">' . PHP_EOL .
-                    '			<dot data-dot="attrs">dots</dot>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="&#x23;" aria-label="Page&#x20;25" aria-current="page">25</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li dotdot aria-hidden="true">' . PHP_EOL .
-                    '			<dot data-dot="attrs">dots</dot>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '	</ul>' . PHP_EOL .
+                'expectedHtml' => '<nav aria-label="Pagination">' . \PHP_EOL .
+                    '	<ul>' . \PHP_EOL .
+                    '		<li dotdot aria-hidden="true">' . \PHP_EOL .
+                    '			<dot data-dot="attrs">dots</dot>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Page&#x20;25" aria-current="page">25</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li dotdot aria-hidden="true">' . \PHP_EOL .
+                    '			<dot data-dot="attrs">dots</dot>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '	</ul>' . \PHP_EOL .
                     '</nav>'
             ],
             'previous + next + attrs not empty + aria disabled' => [
                 'configuration' => [
-                    'always_use_previous' => true,
-                    'always_use_next' => true,
+                    'always_use_previous'          => true,
+                    'always_use_next'              => true,
                     'item_previous_attrs_disabled' => 'item_previous_attrs_disabled',
-                    'item_next_attrs_disabled' => 'item_next_attrs_disabled',
+                    'item_next_attrs_disabled'     => 'item_next_attrs_disabled',
                 ],
                 'params' => [
-                    'current' => 1,
-                    'count' => 1,
+                    'current'  => 1,
+                    'count'    => 1,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="Pagination">' . PHP_EOL .
-                    '	<ul>' . PHP_EOL .
-                    '		<li item_previous_attrs_disabled>' . PHP_EOL .
-                    '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li item_next_attrs_disabled>' . PHP_EOL .
-                    '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '	</ul>' . PHP_EOL .
+                'expectedHtml' => '<nav aria-label="Pagination">' . \PHP_EOL .
+                    '	<ul>' . \PHP_EOL .
+                    '		<li item_previous_attrs_disabled>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li item_next_attrs_disabled>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '	</ul>' . \PHP_EOL .
                     '</nav>'
             ],
             'empty text + empty tag' => [
@@ -816,28 +819,28 @@ class PaginationTest extends TestCase
                     'use_dots'                    => true
                 ],
                 'params' => [
-                    'current' => 2,
-                    'count' => 3,
+                    'current'  => 2,
+                    'count'    => 3,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav>' . PHP_EOL .
-                    '	<ul>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="1"></a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="1">1</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="&#x23;" aria-current="page">2</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="3">3</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="3"></a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '	</ul>' . PHP_EOL .
+                'expectedHtml' => '<nav>' . \PHP_EOL .
+                    '	<ul>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="1"></a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="1">1</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-current="page">2</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="3">3</a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="3"></a>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '	</ul>' . \PHP_EOL .
                     '</nav>'
             ],
             'security' => [
@@ -862,46 +865,47 @@ class PaginationTest extends TestCase
                     'count_pages_pair_limit'      => 1
                 ],
                 'params' => [
-                    'current' => 2,
-                    'count' => 3000,
+                    'current'  => 2,
+                    'count'    => 3000,
                     'per_page' => 1
                 ],
-                'expectedHtml' => '<nav aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">' . PHP_EOL .
-                    '	<ul>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="page">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;4&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li aria-hidden="true">' . PHP_EOL .
-                    '			<span>&lt;script&gt;alert(1);&lt;&#47;script&gt;</span>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3000&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '		<li>' . PHP_EOL .
-                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . PHP_EOL .
-                    '		</li>' . PHP_EOL .
-                    '	</ul>' . PHP_EOL .
+                'expectedHtml' => '<nav aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">' . \PHP_EOL . //phpcs:ignore
+                    '	<ul>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="page">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;4&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li aria-hidden="true">' . \PHP_EOL .
+                    '			<span>&lt;script&gt;alert(1);&lt;&#47;script&gt;</span>' . \PHP_EOL .
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3000&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '		<li>' . \PHP_EOL .
+                    '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . \PHP_EOL . //phpcs:ignore
+                    '		</li>' . \PHP_EOL .
+                    '	</ul>' . \PHP_EOL .
                     '</nav>'
             ]
         ];
     }
 
     /** @dataProvider dataRenderHtml
-     * @param array $configuration
-     * @param array $params
+     * @param array  $configuration
+     * @param array  $params
      * @param string $expectedHtml
+     *
      * @throws \Rancoud\Security\SecurityException
      */
     public function testRenderHtml(array $configuration, array $params, string $expectedHtml): void
@@ -918,7 +922,7 @@ class PaginationTest extends TestCase
     public function dataCountPages(): array
     {
         return [
-            '1 item + 1 per page' => [1, 1, 1],
+            '1 item + 1 per page'  => [1, 1, 1],
             '10 item + 1 per page' => [10, 1, 10],
             '10 item + 5 per page' => [10, 5, 2],
             '11 item + 5 per page' => [11, 5, 3],
@@ -926,9 +930,9 @@ class PaginationTest extends TestCase
     }
 
     /** @dataProvider dataCountPages
-     * @param int  $countElements
-     * @param int  $countElementPerPage
-     * @param int  $expected
+     * @param int $countElements
+     * @param int $countElementPerPage
+     * @param int $expected
      */
     public function testCountPages(int $countElements, int $countElementPerPage, int $expected): void
     {
@@ -941,14 +945,14 @@ class PaginationTest extends TestCase
     public function dataLocateItemInPage(): array
     {
         return [
-            '1 per page + item index 1' => [1, 1, 1],
-            '10 per page + item index 1' => [10, 1, 1],
-            '10 per page + item index 5' => [10, 5, 1],
-            '11 per page + item index 5' => [11, 5, 1],
+            '1 per page + item index 1'   => [1, 1, 1],
+            '10 per page + item index 1'  => [10, 1, 1],
+            '10 per page + item index 5'  => [10, 5, 1],
+            '11 per page + item index 5'  => [11, 5, 1],
             '10 per page + item index 10' => [10, 10, 1],
             '10 per page + item index 11' => [10, 11, 2],
-            '5 per page + item index 25' => [5, 25, 5],
-            '5 per page + item index 26' => [5, 26, 6]
+            '5 per page + item index 25'  => [5, 25, 5],
+            '5 per page + item index 26'  => [5, 26, 6]
         ];
     }
 
