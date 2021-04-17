@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection HtmlUnknownAttribute */
+
 declare(strict_types=1);
 
 namespace tests;
@@ -7,6 +9,7 @@ namespace tests;
 use PHPUnit\Framework\TestCase;
 use Rancoud\Pagination\Item;
 use Rancoud\Pagination\Pagination;
+use Rancoud\Pagination\PaginationException;
 
 /**
  * Class PaginationTest.
@@ -14,7 +17,7 @@ use Rancoud\Pagination\Pagination;
 class PaginationTest extends TestCase
 {
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     public function testConstruct(): void
     {
@@ -57,7 +60,7 @@ class PaginationTest extends TestCase
     }
 
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     public function testConfiguration(): void
     {
@@ -304,12 +307,14 @@ class PaginationTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataCeil
+    /**
+     * @dataProvider dataCeil
+     *
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     public function testIncorrectCeilCompute(array $configuration, array $params, array $dataOut): void
     {
@@ -431,12 +436,14 @@ class PaginationTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataShowAllLinks
+    /**
+     * @dataProvider dataShowAllLinks
+     *
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     public function testShowAllLinks(array $configuration, array $params, array $dataOut): void
     {
@@ -563,12 +570,14 @@ class PaginationTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataAdjacentAndLimitConfiguration
+    /**
+     * @dataProvider dataAdjacentAndLimitConfiguration
+     *
      * @param array $configuration
      * @param array $params
      * @param array $dataOut
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     public function testAdjacentAndLimitConfiguration(array $configuration, array $params, array $dataOut): void
     {
@@ -901,12 +910,14 @@ class PaginationTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataRenderHtml
+    /**
+     * @dataProvider dataRenderHtml
+     *
      * @param array  $configuration
      * @param array  $params
      * @param string $expectedHtml
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     public function testRenderHtml(array $configuration, array $params, string $expectedHtml): void
     {
@@ -929,7 +940,9 @@ class PaginationTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataCountPages
+    /**
+     * @dataProvider dataCountPages
+     *
      * @param int $countElements
      * @param int $countElementPerPage
      * @param int $expected
@@ -956,7 +969,9 @@ class PaginationTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataLocateItemInPage
+    /**
+     * @dataProvider dataLocateItemInPage
+     *
      * @param int $countElementPerPage
      * @param int $itemIndex
      * @param int $expected
@@ -964,5 +979,55 @@ class PaginationTest extends TestCase
     public function testLocateItemInPage(int $countElementPerPage, int $itemIndex, int $expected): void
     {
         static::assertSame($expected, Pagination::locateItemInPage($countElementPerPage, $itemIndex));
+    }
+
+    public function dataPaginationException(): array
+    {
+        return [
+            'aria_label_nav' => [
+                'conf'    => ['aria_label_nav' => \chr(99999999)],
+                'message' => 'could not escAttr "nav" aria label: String to convert is not valid for the specified charset' //phpcs:ignore
+            ],
+            'text_previous' => [
+                'conf'    => ['text_previous' => \chr(99999999), 'always_use_previous' => true],
+                'message' => 'could not escHTML "previous" text: String to convert is not valid for the specified charset' //phpcs:ignore
+            ],
+            'aria_label_previous' => [
+                'conf'    => ['aria_label_previous' => \chr(99999999), 'always_use_previous' => true],
+                'message' => 'could not escAttr "previous" aria label or "previous" href: String to convert is not valid for the specified charset' //phpcs:ignore
+            ],
+            'text_next' => [
+                'conf'    => ['text_next' => \chr(99999999), 'always_use_next' => true],
+                'message' => 'could not escHTML "next" text: String to convert is not valid for the specified charset'
+            ],
+            'aria_label_next' => [
+                'conf'    => ['aria_label_next' => \chr(99999999), 'always_use_next' => true],
+                'message' => 'could not escAttr "next" aria label or "next" href: String to convert is not valid for the specified charset' //phpcs:ignore
+            ],
+            'aria_label_link' => [
+                'conf'    => ['aria_label_link' => \chr(99999999)],
+                'message' => 'could not escAttr "item" aria label or "item" href: String to convert is not valid for the specified charset' //phpcs:ignore
+            ],
+            'text_page' => [
+                'conf'    => ['text_page' => \chr(99999999)],
+                'message' => 'could not escHTML "item" text: String to convert is not valid for the specified charset' //phpcs:ignore
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider dataPaginationException
+     *
+     * @param array  $conf
+     * @param string $message
+     *
+     * @throws PaginationException
+     */
+    public function testException(array $conf, string $message): void
+    {
+        $this->expectException(PaginationException::class);
+        $this->expectExceptionMessage($message);
+
+        (new Pagination($conf))->generateHtml(5, 10, 1);
     }
 }
