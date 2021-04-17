@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "9930ccb8410d01262b5f4a78cd5091d51bc45d13"
+                "reference": "f8ec2824bd29208a5d35ee0e8fa162570d581c8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/9930ccb8410d01262b5f4a78cd5091d51bc45d13",
-                "reference": "9930ccb8410d01262b5f4a78cd5091d51bc45d13",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/f8ec2824bd29208a5d35ee0e8fa162570d581c8f",
+                "reference": "f8ec2824bd29208a5d35ee0e8fa162570d581c8f",
                 "shasum": ""
             },
             "require": {
@@ -48,9 +48,9 @@
             "description": "Security package",
             "support": {
                 "issues": "https://github.com/rancoud/Security/issues",
-                "source": "https://github.com/rancoud/Security/tree/3.0.4"
+                "source": "https://github.com/rancoud/Security/tree/3.0.5"
             },
-            "time": "2021-02-07T01:25:14+00:00"
+            "time": "2021-04-17T19:25:54+00:00"
         }
     ],
     "packages-dev": [
@@ -1029,16 +1029,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.5",
+            "version": "9.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "f3e026641cc91909d421802dd3ac7827ebfd97e1"
+                "reference": "f6293e1b30a2354e8428e004689671b83871edde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f3e026641cc91909d421802dd3ac7827ebfd97e1",
-                "reference": "f3e026641cc91909d421802dd3ac7827ebfd97e1",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f6293e1b30a2354e8428e004689671b83871edde",
+                "reference": "f6293e1b30a2354e8428e004689671b83871edde",
                 "shasum": ""
             },
             "require": {
@@ -1094,7 +1094,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.5"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.6"
             },
             "funding": [
                 {
@@ -1102,7 +1102,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-28T06:44:49+00:00"
+            "time": "2021-03-28T07:26:59+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

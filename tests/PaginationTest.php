@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rancoud\Pagination\Test;
+namespace tests;
 
 use PHPUnit\Framework\TestCase;
 use Rancoud\Pagination\Item;

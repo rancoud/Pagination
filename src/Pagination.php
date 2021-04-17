@@ -422,9 +422,9 @@ class Pagination
      * @param bool $isCurrent
      * @param bool $isDots
      *
-     *@throws \Rancoud\Security\SecurityException
+     * @throws \Rancoud\Security\SecurityException
      *
-     *@return Item
+     * @return Item
      */
     protected function computeItem(int $page, bool $isCurrent = false, bool $isDots = false): Item
     {
