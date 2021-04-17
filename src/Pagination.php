@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rancoud\Pagination;
 
 use Rancoud\Security\Security;
+use Rancoud\Security\SecurityException;
 
 /**
  * Class Pagination.
@@ -201,7 +202,7 @@ class Pagination
      * @param int $countElements
      * @param int $countElementPerPage
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      *
      * @return string
      */
@@ -219,7 +220,7 @@ class Pagination
      * @param int $countElements
      * @param int $countElementPerPage
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      *
      * @return array
      */
@@ -258,7 +259,7 @@ class Pagination
     }
 
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     protected function compute(): void
     {
@@ -276,7 +277,7 @@ class Pagination
     }
 
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     protected function computePreviousItem(): void
     {
@@ -306,14 +307,22 @@ class Pagination
 
         $this->previous->text = $this->textPrevious;
         if ($this->escHtml) {
-            $this->previous->text = Security::escHTML($this->textPrevious, $this->charset);
+            try {
+                $this->previous->text = Security::escHTML($this->textPrevious, $this->charset);
+            } catch (SecurityException $e) {
+                throw new PaginationException('could not escHTML "previous" text: ' . $e->getMessage());
+            }
         }
 
         $this->previous->ariaLabel = $this->ariaLabelPrevious;
         $this->previous->ariaLabel = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->ariaLabel); //phpcs:ignore
         if ($this->escAttr) {
-            $this->previous->ariaLabel = Security::escAttr($this->previous->ariaLabel, $this->charset);
-            $this->previous->href = Security::escAttr($this->previous->href, $this->charset);
+            try {
+                $this->previous->ariaLabel = Security::escAttr($this->previous->ariaLabel, $this->charset);
+                $this->previous->href = Security::escAttr($this->previous->href, $this->charset);
+            } catch (SecurityException $e) {
+                throw new PaginationException('could not escAttr "previous" aria label or "previous" href: ' . $e->getMessage()); //phpcs:ignore
+            }
         }
 
         $this->previous->itemAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->itemAttrs); //phpcs:ignore
@@ -321,7 +330,7 @@ class Pagination
     }
 
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     protected function computeNextItem(): void
     {
@@ -351,14 +360,22 @@ class Pagination
 
         $this->next->text = $this->textNext;
         if ($this->escHtml) {
-            $this->next->text = Security::escHTML($this->next->text, $this->charset);
+            try {
+                $this->next->text = Security::escHTML($this->next->text, $this->charset);
+            } catch (SecurityException $e) {
+                throw new PaginationException('could not escHTML "next" text: ' . $e->getMessage());
+            }
         }
 
         $this->next->ariaLabel = $this->ariaLabelNext;
         $this->next->ariaLabel = \str_replace('{{PAGE}}', (string) $this->next->page, $this->next->ariaLabel);
         if ($this->escAttr) {
-            $this->next->ariaLabel = Security::escAttr($this->next->ariaLabel, $this->charset);
-            $this->next->href = Security::escAttr($this->next->href, $this->charset);
+            try {
+                $this->next->ariaLabel = Security::escAttr($this->next->ariaLabel, $this->charset);
+                $this->next->href = Security::escAttr($this->next->href, $this->charset);
+            } catch (SecurityException $e) {
+                throw new PaginationException('could not escAttr "next" aria label or "next" href: ' . $e->getMessage()); //phpcs:ignore
+            }
         }
 
         $this->next->itemAttrs = \str_replace('{{PAGE}}', (string) $this->next->page, $this->next->itemAttrs);
@@ -366,7 +383,7 @@ class Pagination
     }
 
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      */
     protected function computeItems(): void
     {
@@ -422,7 +439,7 @@ class Pagination
      * @param bool $isCurrent
      * @param bool $isDots
      *
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      *
      * @return Item
      */
@@ -467,12 +484,20 @@ class Pagination
         }
 
         if ($this->escHtml) {
-            $item->text = Security::escHTML($item->text, $this->charset);
+            try {
+                $item->text = Security::escHTML($item->text, $this->charset);
+            } catch (SecurityException $e) {
+                throw new PaginationException('could not escHTML "item" text: ' . $e->getMessage());
+            }
         }
 
         if ($this->escAttr) {
-            $item->ariaLabel = Security::escAttr($item->ariaLabel, $this->charset);
-            $item->href = Security::escAttr($item->href, $this->charset);
+            try {
+                $item->ariaLabel = Security::escAttr($item->ariaLabel, $this->charset);
+                $item->href = Security::escAttr($item->href, $this->charset);
+            } catch (SecurityException $e) {
+                throw new PaginationException('could not escAttr "item" aria label or "item" href: ' . $e->getMessage()); //phpcs:ignore
+            }
         }
 
         return $item;
@@ -499,7 +524,7 @@ class Pagination
     }
 
     /**
-     * @throws \Rancoud\Security\SecurityException
+     * @throws PaginationException
      *
      * @return string
      */
@@ -514,7 +539,11 @@ class Pagination
 
             $ariaLabelNav = $this->ariaLabelNav;
             if ($this->escAttr) {
-                $ariaLabelNav = Security::escAttr($this->ariaLabelNav);
+                try {
+                    $ariaLabelNav = Security::escAttr($this->ariaLabelNav);
+                } catch (SecurityException $e) {
+                    throw new PaginationException('could not escAttr "nav" aria label: ' . $e->getMessage());
+                }
             }
 
             $nav = '<nav';
