@@ -42,7 +42,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       - name: Lint
         run: |
