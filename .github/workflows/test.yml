@@ -54,7 +54,7 @@ jobs:
           vendor/bin/phpunit --colors --coverage-text --coverage-clover coverage/clover.xml
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v2.0.3
+        uses: codecov/codecov-action@v2.1.0
         if: success()
         with:
           file: ./coverage/clover.xml
