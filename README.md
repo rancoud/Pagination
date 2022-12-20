@@ -4,9 +4,8 @@
 [![Packagist Version](https://img.shields.io/packagist/v/rancoud/pagination)](https://packagist.org/packages/rancoud/pagination)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/rancoud/pagination)](https://packagist.org/packages/rancoud/pagination)
 [![Composer dependencies](https://img.shields.io/badge/dependencies-1-brightgreen)](https://github.com/rancoud/Pagination/blob/master/composer.json)
-[![Test workflow](https://img.shields.io/github/workflow/status/rancoud/pagination/test?label=test&logo=github)](https://github.com/rancoud/pagination/actions?workflow=test)
+[![Test workflow](https://img.shields.io/github/actions/workflow/status/rancoud/pagination/test.yml?branch=master)](https://github.com/rancoud/pagination/actions/workflows/test.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/rancoud/pagination?logo=codecov)](https://codecov.io/gh/rancoud/pagination)
-[![composer.lock](https://poser.pugx.org/rancoud/pagination/composerlock)](https://packagist.org/packages/rancoud/pagination)
 
 Generate HTML pagination for accessibility.  
 
