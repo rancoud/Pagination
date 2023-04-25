@@ -134,12 +134,6 @@ class PaginationTest extends TestCase
         $previousPage3->page = 3;
         $previousPage3->ariaLabel = 'Previous&#x20;page';
 
-        $next = new Item();
-        $next->href = '1';
-        $next->text = 'Next page';
-        $next->page = 1;
-        $next->ariaLabel = 'Next&#x20;page';
-
         $nextPage2 = new Item();
         $nextPage2->href = '2';
         $nextPage2->text = 'Next page';
@@ -479,7 +473,7 @@ class PaginationTest extends TestCase
             $limitPageLeft->href = (string) $i;
             $limitPageLeft->text = (string) $i;
             $limitPageLeft->page = $i;
-            $limitPageLeft->ariaLabel = 'Page&#x20;' . $i . '';
+            $limitPageLeft->ariaLabel = 'Page&#x20;' . $i;
 
             $limitPagesLeft[] = $limitPageLeft;
         }
@@ -490,7 +484,7 @@ class PaginationTest extends TestCase
             $limitPageRight->href = (string) $i;
             $limitPageRight->text = (string) $i;
             $limitPageRight->page = $i;
-            $limitPageRight->ariaLabel = 'Page&#x20;' . $i . '';
+            $limitPageRight->ariaLabel = 'Page&#x20;' . $i;
 
             $limitPagesRight[] = $limitPageRight;
         }
@@ -504,7 +498,7 @@ class PaginationTest extends TestCase
             $adjacentPageLeft->href = (string) $i;
             $adjacentPageLeft->text = (string) $i;
             $adjacentPageLeft->page = $i;
-            $adjacentPageLeft->ariaLabel = 'Page&#x20;' . $i . '';
+            $adjacentPageLeft->ariaLabel = 'Page&#x20;' . $i;
 
             $adjacentPagesLeft[] = $adjacentPageLeft;
         }
@@ -515,7 +509,7 @@ class PaginationTest extends TestCase
             $adjacentPageRight->href = (string) $i;
             $adjacentPageRight->text = (string) $i;
             $adjacentPageRight->page = $i;
-            $adjacentPageRight->ariaLabel = 'Page&#x20;' . $i . '';
+            $adjacentPageRight->ariaLabel = 'Page&#x20;' . $i;
 
             $adjacentPagesRight[] = $adjacentPageRight;
         }
