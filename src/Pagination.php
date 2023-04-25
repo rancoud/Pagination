@@ -177,8 +177,8 @@ class Pagination
      */
     public static function countPages(int $countElements, int $countElementPerPage): int
     {
-        $countElements = $countElements < 0 ? 0 : $countElements;
-        $countElementPerPage = $countElementPerPage < 1 ? 1 : $countElementPerPage;
+        $countElements = \max($countElements, 0);
+        $countElementPerPage = \max($countElementPerPage, 1);
 
         return (int) \ceil($countElements / $countElementPerPage);
     }
@@ -191,8 +191,8 @@ class Pagination
      */
     public static function locateItemInPage(int $countElementPerPage, int $itemIndex): int
     {
-        $countElementPerPage = $countElementPerPage < 1 ? 1 : $countElementPerPage;
-        $itemIndex = $itemIndex < 0 ? 0 : $itemIndex;
+        $countElementPerPage = \max($countElementPerPage, 1);
+        $itemIndex = \max($itemIndex, 0);
 
         return (int) \ceil($itemIndex / $countElementPerPage);
     }
@@ -252,9 +252,9 @@ class Pagination
      */
     protected function setPaginate(int $currentPage, int $countElements, int $countElementPerPage): void
     {
-        $this->currentPage = $currentPage < 1 ? 1 : $currentPage;
-        $this->countElements = $countElements < 0 ? 0 : $countElements;
-        $this->countElementPerPage = $countElementPerPage < 1 ? 1 : $countElementPerPage;
+        $this->currentPage = \max($currentPage, 1);
+        $this->countElements = \max($countElements, 0);
+        $this->countElementPerPage = \max($countElementPerPage, 1);
         $this->maxPages = (int) \ceil($this->countElements / $this->countElementPerPage);
     }
 
