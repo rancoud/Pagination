@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "3.0.6",
+            "version": "3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "aaf0cf0f9bad69ec5b5a28f264d05054733b85b1"
+                "reference": "f71a636ae9b9a5b5593476af81e36d04ce140b7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/aaf0cf0f9bad69ec5b5a28f264d05054733b85b1",
-                "reference": "aaf0cf0f9bad69ec5b5a28f264d05054733b85b1",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/f71a636ae9b9a5b5593476af81e36d04ce140b7d",
+                "reference": "f71a636ae9b9a5b5593476af81e36d04ce140b7d",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "php": ">=7.4.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
+                "friendsofphp/php-cs-fixer": "^2.16 || ^3.0",
                 "phpunit/phpunit": "^9.1",
                 "squizlabs/php_codesniffer": "^3.5"
             },
@@ -48,9 +48,9 @@
             "description": "Security package",
             "support": {
                 "issues": "https://github.com/rancoud/Security/issues",
-                "source": "https://github.com/rancoud/Security/tree/3.0.6"
+                "source": "https://github.com/rancoud/Security/tree/3.0.7"
             },
-            "time": "2021-04-23T20:02:50+00:00"
+            "time": "2023-11-14T18:01:44+00:00"
         }
     ],
     "packages-dev": [
