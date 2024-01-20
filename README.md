@@ -10,7 +10,7 @@
 Generate HTML pagination for accessibility.  
 
 ## Dependencies
-[Security package: https://github.com/rancoud/Security](https://github.com/rancoud/Security)  
+Security package: [https://github.com/rancoud/Security](https://github.com/rancoud/Security)  
 
 ## Installation
 ```php
