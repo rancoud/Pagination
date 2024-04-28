@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89d54c874cfb71fbfc06c890c77de477",
+    "content-hash": "c1f1104a9607b47d7c3b352c2e3adfc5",
     "packages": [
         {
             "name": "rancoud/security",
