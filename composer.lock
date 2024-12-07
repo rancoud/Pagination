@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1f1104a9607b47d7c3b352c2e3adfc5",
+    "content-hash": "c71de50487c54cf3aadc097f14412399",
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "12bd29d0e1e637ae75a6228f7b69387d73536fe8"
+                "reference": "62f9d6f006df4f0382f2cc0f03a1f0d319f64999"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/12bd29d0e1e637ae75a6228f7b69387d73536fe8",
-                "reference": "12bd29d0e1e637ae75a6228f7b69387d73536fe8",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/62f9d6f006df4f0382f2cc0f03a1f0d319f64999",
+                "reference": "62f9d6f006df4f0382f2cc0f03a1f0d319f64999",
                 "shasum": ""
             },
             "require": {
@@ -48,9 +48,9 @@
             "description": "Security package",
             "support": {
                 "issues": "https://github.com/rancoud/Security/issues",
-                "source": "https://github.com/rancoud/Security/tree/3.1.1"
+                "source": "https://github.com/rancoud/Security/tree/3.1.2"
             },
-            "time": "2024-12-07T12:50:53+00:00"
+            "time": "2024-12-07T19:25:13+00:00"
         }
     ],
     "packages-dev": [
