@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Rancoud\Pagination\Item;
 use Rancoud\Pagination\Pagination;
@@ -115,7 +116,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataCeil(): array
+    public static function dataCeil(): array
     {
         $configuration = [
             'use_previous' => true,
@@ -192,7 +193,7 @@ class PaginationTest extends TestCase
                     'count'    => 1,
                     'per_page' => 1
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => $previous,
                     'links'    => [],
                     'next'     => null
@@ -205,7 +206,7 @@ class PaginationTest extends TestCase
                     'count'    => 1,
                     'per_page' => 1
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => null,
                     'links'    => [$linkPage1Current],
                     'next'     => null,
@@ -218,7 +219,7 @@ class PaginationTest extends TestCase
                     'count'    => 1,
                     'per_page' => -9
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => null,
                     'links'    => [$linkPage1Current],
                     'next'     => null,
@@ -231,7 +232,7 @@ class PaginationTest extends TestCase
                     'count'    => -9,
                     'per_page' => 1
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => null,
                     'links'    => [],
                     'next'     => null,
@@ -244,7 +245,7 @@ class PaginationTest extends TestCase
                     'count'    => 6,
                     'per_page' => 2
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => $previousPage3,
                     'links'    => [],
                     'next'     => null
@@ -257,7 +258,7 @@ class PaginationTest extends TestCase
                     'count'    => 6,
                     'per_page' => 2
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => null,
                     'links'    => [
                         $linkPage1Current,
@@ -274,7 +275,7 @@ class PaginationTest extends TestCase
                     'count'    => 6,
                     'per_page' => -9
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => $previous,
                     'links'    => [
                         $linkPage1,
@@ -292,7 +293,7 @@ class PaginationTest extends TestCase
                     'count'    => -9,
                     'per_page' => 2
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => null,
                     'links'    => [],
                     'next'     => null,
@@ -310,6 +311,7 @@ class PaginationTest extends TestCase
      *
      * @throws PaginationException
      */
+    #[DataProvider('dataCeil')]
     public function testIncorrectCeilCompute(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
@@ -322,7 +324,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataShowAllLinks(): array
+    public static function dataShowAllLinks(): array
     {
         $configuration = [
             'use_previous'   => true,
@@ -395,7 +397,7 @@ class PaginationTest extends TestCase
                     'count'    => 50,
                     'per_page' => 1
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => null,
                     'links'    => $linksCurrentPage1,
                     'next'     => $nextPage2
@@ -408,7 +410,7 @@ class PaginationTest extends TestCase
                     'count'    => 50,
                     'per_page' => 1
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => $previousPage1,
                     'links'    => $linksCurrentPage2,
                     'next'     => $nextPage3
@@ -421,7 +423,7 @@ class PaginationTest extends TestCase
                     'count'    => 50,
                     'per_page' => 1
                 ],
-                'data_out' => [
+                'dataOut' => [
                     'previous' => $previousPage49,
                     'links'    => $linksCurrentPage50,
                     'next'     => null
@@ -439,6 +441,7 @@ class PaginationTest extends TestCase
      *
      * @throws PaginationException
      */
+    #[DataProvider('dataShowAllLinks')]
     public function testShowAllLinks(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
@@ -451,7 +454,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataAdjacentAndLimitConfiguration(): array
+    public static function dataAdjacentAndLimitConfiguration(): array
     {
         $linkCurrentPage20 = new Item();
         $linkCurrentPage20->isDots = false;
@@ -527,7 +530,7 @@ class PaginationTest extends TestCase
                     'count_pages_pair_adjacent' => 0,
                 ],
                 'params'   => $params,
-                'data_out' => [
+                'dataOut'  => [
                     'links' => $currentPage,
                 ]
             ],
@@ -537,7 +540,7 @@ class PaginationTest extends TestCase
                     'count_pages_pair_adjacent' => 0,
                 ],
                 'params'   => $params,
-                'data_out' => [
+                'dataOut'  => [
                     'links' => \array_merge($limitPagesLeft, $currentPage, $limitPagesRight),
                 ]
             ],
@@ -547,7 +550,7 @@ class PaginationTest extends TestCase
                     'count_pages_pair_adjacent' => 5,
                 ],
                 'params'   => $params,
-                'data_out' => [
+                'dataOut'  => [
                     'links' => \array_merge($adjacentPagesLeft, $currentPage, $adjacentPagesRight),
                 ]
             ],
@@ -557,7 +560,7 @@ class PaginationTest extends TestCase
                     'count_pages_pair_adjacent' => 5,
                 ],
                 'params'   => $params,
-                'data_out' => [
+                'dataOut'  => [
                     'links' => \array_merge($limitPagesLeft, $adjacentPagesLeft, $currentPage, $adjacentPagesRight, $limitPagesRight), // phpcs:ignore
                 ]
             ]
@@ -573,6 +576,7 @@ class PaginationTest extends TestCase
      *
      * @throws PaginationException
      */
+    #[DataProvider('dataAdjacentAndLimitConfiguration')]
     public function testAdjacentAndLimitConfiguration(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
@@ -585,7 +589,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataRenderHtml(): array
+    public static function dataRenderHtml(): array
     {
         return [
             'pretty html off' => [
@@ -913,6 +917,7 @@ class PaginationTest extends TestCase
      *
      * @throws PaginationException
      */
+    #[DataProvider('dataRenderHtml')]
     public function testRenderHtml(array $configuration, array $params, string $expectedHtml): void
     {
         $p = new Pagination();
@@ -924,7 +929,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataCountPages(): array
+    public static function dataCountPages(): array
     {
         return [
             '1 item + 1 per page'  => [1, 1, 1],
@@ -941,6 +946,7 @@ class PaginationTest extends TestCase
      * @param int $countElementPerPage
      * @param int $expected
      */
+    #[DataProvider('dataCountPages')]
     public function testCountPages(int $countElements, int $countElementPerPage, int $expected): void
     {
         static::assertSame($expected, Pagination::countPages($countElements, $countElementPerPage));
@@ -949,7 +955,7 @@ class PaginationTest extends TestCase
     /**
      * @return array
      */
-    public function dataLocateItemInPage(): array
+    public static function dataLocateItemInPage(): array
     {
         return [
             '1 per page + item index 1'   => [1, 1, 1],
@@ -970,12 +976,13 @@ class PaginationTest extends TestCase
      * @param int $itemIndex
      * @param int $expected
      */
+    #[DataProvider('dataLocateItemInPage')]
     public function testLocateItemInPage(int $countElementPerPage, int $itemIndex, int $expected): void
     {
         static::assertSame($expected, Pagination::locateItemInPage($countElementPerPage, $itemIndex));
     }
 
-    public function dataPaginationException(): array
+    public static function dataPaginationException(): array
     {
         return [
             'aria_label_nav' => [
@@ -1017,6 +1024,7 @@ class PaginationTest extends TestCase
      *
      * @throws PaginationException
      */
+    #[DataProvider('dataPaginationException')]
     public function testException(array $conf, string $message): void
     {
         $this->expectException(PaginationException::class);
