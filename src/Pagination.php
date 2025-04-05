@@ -73,27 +73,27 @@ class Pagination
     protected string $textPage = '{{PAGE}}';
 
     /**
-     * @var string Text for aria label link
+     * @var string Text for aria label on link
      */
     protected string $ariaLabelLink = 'Page {{PAGE}}';
 
     /**
-     * @var string Text for aria label current link
+     * @var string Text for aria label on current link
      */
     protected string $ariaLabelCurrentLink = 'Page {{PAGE}}';
 
     /**
-     * @var string Text for aria label nav HTML tag
+     * @var string Text for aria label on nav HTML tag
      */
     protected string $ariaLabelNav = 'Pagination';
 
     /**
-     * @var string Text for aria label previous
+     * @var string Text for aria label on previous
      */
     protected string $ariaLabelPrevious = 'Previous page';
 
     /**
-     * @var string Text for aria label next
+     * @var string Text for aria label on next
      */
     protected string $ariaLabelNext = 'Next page';
 
