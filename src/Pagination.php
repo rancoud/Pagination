@@ -881,7 +881,7 @@ class Pagination
 
     /**
      * Returns tab sequence HTML output.<br>
-     *  If `!usePrettyHtml` return `''` else return `htmlTabSequence` with the current indentation.
+     *  If `usePrettyHtml` return `htmlTabSequence` with the current indentation else return `''`.
      *
      * @param int $currentIndent
      *
@@ -898,7 +898,7 @@ class Pagination
 
     /**
      * Returns endline sequence HTML output.<br>
-     * If `!usePrettyHtml` return `''` else return PHP_EOL.
+     * If `usePrettyHtml` return PHP_EOL else return `''`.
      *
      * @return string
      */
