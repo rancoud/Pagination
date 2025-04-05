@@ -13,75 +13,276 @@ use Rancoud\Security\SecurityException;
 class Pagination
 {
     // region Properties: Calculations
+    /**
+     * @var int Current page
+     */
     protected int $currentPage = 1;
+
+    /**
+     * @var int Number of "elements"
+     */
     protected int $countElements = 0;
+
+    /**
+     * @var int Number of "elements" per page
+     */
     protected int $countElementPerPage = 0;
+
+    /**
+     * @var int Maximum pages
+     */
     protected int $maxPages = 0;
+
+    /**
+     * @var int Number of pair pages at the limit
+     */
     protected int $countPagesPairLimit = 0;
+
+    /**
+     * @var int Number of pair pages next to the current page
+     */
     protected int $countPagesPairAdjacent = 2;
     // endregion
 
     // region Properties: Links
+    /**
+     * @var string Base URL
+     */
     protected string $url = '';
     // endregion
 
     // region Properties: Texts
+    /**
+     * @var string Text for previous page
+     */
     protected string $textPrevious = 'Previous page';
+
+    /**
+     * @var string Text for next page
+     */
     protected string $textNext = 'Next page';
+
+    /**
+     * @var string Text for dots
+     */
     protected string $textDots = '…';
+
+    /**
+     * @var string Text for page
+     */
     protected string $textPage = '{{PAGE}}';
+
+    /**
+     * @var string Text for aria label link
+     */
     protected string $ariaLabelLink = 'Page {{PAGE}}';
+
+    /**
+     * @var string Text for aria label current link
+     */
     protected string $ariaLabelCurrentLink = 'Page {{PAGE}}';
+
+    /**
+     * @var string Text for aria label nav HTML tag
+     */
     protected string $ariaLabelNav = 'Pagination';
+
+    /**
+     * @var string Text for aria label previous
+     */
     protected string $ariaLabelPrevious = 'Previous page';
+
+    /**
+     * @var string Text for aria label next
+     */
     protected string $ariaLabelNext = 'Next page';
+
+    /**
+     * @var string Text for thousands separator
+     */
     protected string $thousandsSeparator = '';
     // endregion
 
     // region Properties: Generation
+    /**
+     * @var Item|null Previous item
+     */
     protected ?Item $previous = null;
+
+    /**
+     * @var Item[] List of items
+     */
     protected array $items = [];
+
+    /**
+     * @var Item|null Next item
+     */
     protected ?Item $next = null;
+
+    /**
+     * @var bool Is use dots
+     */
     protected bool $useDots = false;
+
+    /**
+     * @var bool Is use previous
+     */
     protected bool $usePrevious = false;
+
+    /**
+     * @var bool Is always use previous
+     */
     protected bool $alwaysUsePrevious = false;
+
+    /**
+     * @var bool Is use next
+     */
     protected bool $useNext = false;
+
+    /**
+     * @var bool Is always use next
+     */
     protected bool $alwaysUseNext = false;
+
+    /**
+     * @var bool Is show all links
+     */
     protected bool $showAllLinks = false;
+
+    /**
+     * @var bool Is use pretty HTML
+     */
     protected bool $usePrettyHtml = true;
+
+    /**
+     * @var int Initial indentation for HTML rendering
+     */
     protected int $htmlInitialIndentation = 0;
+
+    /**
+     * @var string Text for HTML tab sequence
+     */
     protected string $htmlTabSequence = "\t";
+
+    /**
+     * @var bool Is use nav HTML tag
+     */
     protected bool $useNav = true;
     // endregion
 
     // region Properties: Tags Parameters
+    /**
+     * @var string Nav HTML attributes
+     */
     protected string $navAttrs = '';
+
+    /**
+     * @var string Root list HTML tag
+     */
     protected string $rootTag = 'ul';
+
+    /**
+     * @var string Root list HTML attributes
+     */
     protected string $rootAttrs = '';
+
+    /**
+     * @var string Item HTML tag
+     */
     protected string $itemTag = 'li';
+
+    /**
+     * @var string Item HTML attributes
+     */
     protected string $itemAttrs = '';
+
+    /**
+     * @var string Current item HTML attributes
+     */
     protected string $itemAttrsCurrent = '';
+
+    /**
+     * @var string Next item HTML attributes
+     */
     protected string $itemNextAttrs = '';
+
+    /**
+     * @var string Next item HTML attributes when disabled
+     */
     protected string $itemNextAttrsDisabled = '';
+
+    /**
+     * @var string Previous item HTML attributes
+     */
     protected string $itemPreviousAttrs = '';
+
+    /**
+     * @var string Previous item HTML attributes when disabled
+     */
     protected string $itemPreviousAttrsDisabled = '';
+
+    /**
+     * @var string Item dots HTML attributes
+     */
     protected string $itemDotsAttrs = '';
+
+    /**
+     * @var string Link HTML tag
+     */
     protected string $linkTag = 'a';
+
+    /**
+     * @var string Link HTML attributes
+     */
     protected string $linkAttrs = '';
+
+    /**
+     * @var string Current link HTML attributes
+     */
     protected string $linkAttrsCurrent = '';
+
+    /**
+     * @var string Next link HTML attributes when disabled
+     */
     protected string $linkNextAttrsDisabled = '';
+
+    /**
+     * @var string Previous link HTML attributes when disabled
+     */
     protected string $linkPreviousAttrsDisabled = '';
+
+    /**
+     * @var string Dot item HTML tag
+     */
     protected string $dotTag = 'span';
+
+    /**
+     * @var string Dot item HTML attributes
+     */
     protected string $dotAttrs = '';
     // endregion
 
     // region Properties: Security
+    /**
+     * @var bool Escape attributes
+     */
     protected bool $escAttr = true;
+
+    /**
+     * @var bool Escape HTML
+     */
     protected bool $escHtml = true;
+
+    /**
+     * @var string Charset for escaping HTML and HTML attributes
+     */
     protected string $charset = 'UTF-8';
     // endregion
 
     // region Configuration keys
+    /**
+     * @var array List of strings values according to prop name
+     */
     protected array $propsString = [
         'url'                          => 'url',
         'text_previous'                => 'textPrevious',
@@ -115,6 +316,10 @@ class Pagination
         'thousands_separator'          => 'thousandsSeparator',
         'charset'                      => 'charset'
     ];
+
+    /**
+     * @var array List of bools values according to prop name
+     */
     protected array $propsBool = [
         'use_dots'              => 'useDots',
         'use_previous'          => 'usePrevious',
@@ -127,6 +332,10 @@ class Pagination
         'esc_attr'              => 'escAttr',
         'esc_html'              => 'escHtml'
     ];
+
+    /**
+     * @var array List of integers values according to prop name
+     */
     protected array $propsPositiveInteger = [
         'count_pages_pair_limit'    => 'countPagesPairLimit',
         'count_pages_pair_adjacent' => 'countPagesPairAdjacent',
@@ -135,9 +344,10 @@ class Pagination
     // endregion
 
     /**
-     * Pagination constructor.
+     * Pagination constructor.<br>
+     * It calls $this->setConfiguration.
      *
-     * @param array $configuration
+     * @param array $configuration Parameters for changing pagination behavior
      */
     public function __construct(array $configuration = [])
     {
@@ -145,7 +355,14 @@ class Pagination
     }
 
     /**
-     * @param array $configuration
+     * For changing pagination behavior.<br>
+     * Checks for each valid props:
+     * - when using string: force string type
+     * - when using tag: use regex /^[a-zA-Z-]+$/i otherwise ignored
+     * - when using bool: force bool type
+     * - when using int: force int type and check if value is equal or greater than 0, otherwise use 0.
+     *
+     * @param array $configuration Parameters for changing pagination behavior
      */
     public function setConfiguration(array $configuration): void
     {
@@ -170,6 +387,9 @@ class Pagination
     }
 
     /**
+     * Computes number of pages.<br>
+     * The formula is ceil($countElements / $countElementPerPage).
+     *
      * @param int $countElements
      * @param int $countElementPerPage
      *
@@ -184,6 +404,9 @@ class Pagination
     }
 
     /**
+     * Finds the page where the item index is located.<br>
+     * The formula is ceil($itemIndex / $countElementPerPage).
+     *
      * @param int $countElementPerPage
      * @param int $itemIndex
      *
@@ -198,6 +421,8 @@ class Pagination
     }
 
     /**
+     * Generates HTML pagination.
+     *
      * @param int $currentPage
      * @param int $countElements
      * @param int $countElementPerPage
@@ -216,6 +441,8 @@ class Pagination
     }
 
     /**
+     * Generates pagination and returns as array.
+     *
      * @param int $currentPage
      * @param int $countElements
      * @param int $countElementPerPage
@@ -246,6 +473,12 @@ class Pagination
     }
 
     /**
+     * Set pagination data:
+     * - $this->currentPage
+     * - $this->countElements
+     * - $this->countElementPerPage
+     * - $this->maxPages.
+     *
      * @param int $currentPage
      * @param int $countElements
      * @param int $countElementPerPage
@@ -259,6 +492,11 @@ class Pagination
     }
 
     /**
+     * Computes items:
+     * - $this->previous
+     * - $this->items
+     * - $this->next
+     *
      * @throws PaginationException
      */
     protected function compute(): void
@@ -277,6 +515,8 @@ class Pagination
     }
 
     /**
+     * Computes previous item.
+     *
      * @throws PaginationException
      */
     protected function computePreviousItem(): void
@@ -330,6 +570,8 @@ class Pagination
     }
 
     /**
+     * Computes next item.
+     *
      * @throws PaginationException
      */
     protected function computeNextItem(): void
@@ -383,6 +625,8 @@ class Pagination
     }
 
     /**
+     * Computes items.
+     *
      * @throws PaginationException
      */
     protected function computeItems(): void
@@ -409,6 +653,8 @@ class Pagination
     }
 
     /**
+     * Returns if page is limit.
+     *
      * @param int $page
      *
      * @return bool
@@ -422,6 +668,8 @@ class Pagination
     }
 
     /**
+     * Returns if page is adjacent.
+     *
      * @param int $page
      *
      * @return bool
@@ -435,6 +683,8 @@ class Pagination
     }
 
     /**
+     * Computes item.
+     *
      * @param int  $page
      * @param bool $isCurrent
      * @param bool $isDots
@@ -504,6 +754,8 @@ class Pagination
     }
 
     /**
+     * Returns URL.
+     *
      * @param int $page
      *
      * @return string
@@ -524,6 +776,8 @@ class Pagination
     }
 
     /**
+     * Returns pagination HTML output.
+     *
      * @throws PaginationException
      *
      * @return string
@@ -581,6 +835,8 @@ class Pagination
     }
 
     /**
+     * Returns item HTML output.
+     *
      * @param Item|null $item
      *
      * @return string
@@ -624,6 +880,9 @@ class Pagination
     }
 
     /**
+     * Returns tab sequence HTML output.<br>
+     *  If `!usePrettyHtml` return `''` else return `htmlTabSequence` with the current indentation.
+     *
      * @param int $currentIndent
      *
      * @return string
@@ -638,6 +897,9 @@ class Pagination
     }
 
     /**
+     * Returns endline sequence HTML output.<br>
+     * If `!usePrettyHtml` return `''` else return PHP_EOL.
+     *
      * @return string
      */
     protected function getEndlineSequence(): string

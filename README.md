@@ -7,10 +7,10 @@
 [![Test workflow](https://img.shields.io/github/actions/workflow/status/rancoud/pagination/test.yml?branch=master)](https://github.com/rancoud/pagination/actions/workflows/test.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/rancoud/pagination?logo=codecov)](https://codecov.io/gh/rancoud/pagination)
 
-Generate HTML pagination for accessibility.  
+Generate HTML pagination for accessibility.
 
 ## Dependencies
-Security package: [https://github.com/rancoud/Security](https://github.com/rancoud/Security)  
+Security package: [https://github.com/rancoud/Security](https://github.com/rancoud/Security)
 
 ## Installation
 ```php
@@ -19,6 +19,8 @@ composer require rancoud/pagination
 
 ## How to use it?
 ```php
+use Rancoud\Pagination\Pagination;
+
 $currentPage = 1;
 $countElements = 10;
 $countElementPerPage = 5;
@@ -53,12 +55,39 @@ It will output
 | configuration | array | []            | Parameters for changing pagination behavior |
 
 ## Pagination Methods
-### General Commands  
-* generateHtml(currentPage: int, countElements: int, countElementPerPage: int): string
-* generateData(currentPage: int, countElements: int, countElementPerPage: int): array
+### General Commands
+Generates HTML pagination.
+```php
+public function generateHtml(int $currentPage, int $countElements, int $countElementPerPage): string
+```
+
+Generates pagination and returns as array.
+```php
+public function generateData(int $currentPage, int $countElements, int $countElementPerPage): array
+```
+
+For changing pagination behavior.  
+Checks for each valid props:
+- when using string: force string type
+- when using tag: use regex `/^[a-zA-Z-]+$/i` otherwise ignored
+- when using bool: force bool type
+- when using int: force int type and check if value is equal or greater than 0, otherwise use 0.
+```php
+public function setConfiguration(array $configuration): void
+```
+
 ### Static methods
-* countPages(countElements: int, countElementPerPage: int): int
-* locateItemInPage(countElementPerPage: int, indexItem: int): int
+Computes number of pages.  
+The formula is `ceil($countElements / $countElementPerPage)`.
+```php
+public static function countPages(int $countElements, int $countElementPerPage): int
+```
+
+Finds the page where the item index is located.  
+The formula is `ceil($itemIndex / $countElementPerPage)`.
+```php
+public static function locateItemInPage(int $countElementPerPage, int $itemIndex): int
+```
 
 ## Configuration Parameters
 
@@ -1818,4 +1847,4 @@ array (size=3)
 ## How to Dev
 `composer ci` for php-cs-fixer and phpunit and coverage  
 `composer lint` for php-cs-fixer  
-`composer test` for phpunit and coverage  
+`composer test` for phpunit and coverage
