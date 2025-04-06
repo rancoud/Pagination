@@ -389,11 +389,6 @@ class Pagination
     /**
      * Computes number of pages.<br>
      * The formula is ceil($countElements / $countElementPerPage).
-     *
-     * @param int $countElements
-     * @param int $countElementPerPage
-     *
-     * @return int
      */
     public static function countPages(int $countElements, int $countElementPerPage): int
     {
@@ -406,11 +401,6 @@ class Pagination
     /**
      * Finds the page where the item index is located.<br>
      * The formula is ceil($itemIndex / $countElementPerPage).
-     *
-     * @param int $countElementPerPage
-     * @param int $itemIndex
-     *
-     * @return int
      */
     public static function locateItemInPage(int $countElementPerPage, int $itemIndex): int
     {
@@ -423,13 +413,7 @@ class Pagination
     /**
      * Generates HTML pagination.
      *
-     * @param int $currentPage
-     * @param int $countElements
-     * @param int $countElementPerPage
-     *
      * @throws PaginationException
-     *
-     * @return string
      */
     public function generateHtml(int $currentPage, int $countElements, int $countElementPerPage): string
     {
@@ -443,13 +427,7 @@ class Pagination
     /**
      * Generates pagination and returns as array.
      *
-     * @param int $currentPage
-     * @param int $countElements
-     * @param int $countElementPerPage
-     *
      * @throws PaginationException
-     *
-     * @return array
      */
     public function generateData(int $currentPage, int $countElements, int $countElementPerPage): array
     {
@@ -478,10 +456,6 @@ class Pagination
      * - $this->countElements
      * - $this->countElementPerPage
      * - $this->maxPages.
-     *
-     * @param int $currentPage
-     * @param int $countElements
-     * @param int $countElementPerPage
      */
     protected function setPaginate(int $currentPage, int $countElements, int $countElementPerPage): void
     {
@@ -654,10 +628,6 @@ class Pagination
 
     /**
      * Returns if page is limit.
-     *
-     * @param int $page
-     *
-     * @return bool
      */
     protected function isLimit(int $page): bool
     {
@@ -669,10 +639,6 @@ class Pagination
 
     /**
      * Returns if page is adjacent.
-     *
-     * @param int $page
-     *
-     * @return bool
      */
     protected function isAdjacent(int $page): bool
     {
@@ -685,13 +651,7 @@ class Pagination
     /**
      * Computes item.
      *
-     * @param int  $page
-     * @param bool $isCurrent
-     * @param bool $isDots
-     *
      * @throws PaginationException
-     *
-     * @return Item
      */
     protected function computeItem(int $page, bool $isCurrent = false, bool $isDots = false): Item
     {
@@ -755,10 +715,6 @@ class Pagination
 
     /**
      * Returns URL.
-     *
-     * @param int $page
-     *
-     * @return string
      */
     protected function getURL(int $page): string
     {
@@ -779,8 +735,6 @@ class Pagination
      * Returns pagination HTML output.
      *
      * @throws PaginationException
-     *
-     * @return string
      */
     protected function getHtml(): string
     {
@@ -836,10 +790,6 @@ class Pagination
 
     /**
      * Returns item HTML output.
-     *
-     * @param Item|null $item
-     *
-     * @return string
      */
     protected function generateLinkFactory(?Item $item): string
     {
@@ -882,10 +832,6 @@ class Pagination
     /**
      * Returns tab sequence HTML output.<br>
      *  If `usePrettyHtml` return `htmlTabSequence` with the current indentation else return `''`.
-     *
-     * @param int $currentIndent
-     *
-     * @return string
      */
     protected function getTabSequence(int $currentIndent = 0): string
     {
@@ -899,8 +845,6 @@ class Pagination
     /**
      * Returns endline sequence HTML output.<br>
      * If `usePrettyHtml` return PHP_EOL else return `''`.
-     *
-     * @return string
      */
     protected function getEndlineSequence(): string
     {
