@@ -113,9 +113,6 @@ class PaginationTest extends TestCase
         static::assertEqualsCanonicalizing($out, $data);
     }
 
-    /**
-     * @return array
-     */
     public static function dataCeil(): array
     {
         $configuration = [
@@ -305,10 +302,6 @@ class PaginationTest extends TestCase
     /**
      * @dataProvider dataCeil
      *
-     * @param array $configuration
-     * @param array $params
-     * @param array $dataOut
-     *
      * @throws PaginationException
      */
     #[DataProvider('dataCeil')]
@@ -321,9 +314,6 @@ class PaginationTest extends TestCase
         static::assertEqualsCanonicalizing($dataOut, $data);
     }
 
-    /**
-     * @return array
-     */
     public static function dataShowAllLinks(): array
     {
         $configuration = [
@@ -435,10 +425,6 @@ class PaginationTest extends TestCase
     /**
      * @dataProvider dataShowAllLinks
      *
-     * @param array $configuration
-     * @param array $params
-     * @param array $dataOut
-     *
      * @throws PaginationException
      */
     #[DataProvider('dataShowAllLinks')]
@@ -451,9 +437,6 @@ class PaginationTest extends TestCase
         static::assertEqualsCanonicalizing($dataOut, $data);
     }
 
-    /**
-     * @return array
-     */
     public static function dataAdjacentAndLimitConfiguration(): array
     {
         $linkCurrentPage20 = new Item();
@@ -570,10 +553,6 @@ class PaginationTest extends TestCase
     /**
      * @dataProvider dataAdjacentAndLimitConfiguration
      *
-     * @param array $configuration
-     * @param array $params
-     * @param array $dataOut
-     *
      * @throws PaginationException
      */
     #[DataProvider('dataAdjacentAndLimitConfiguration')]
@@ -586,9 +565,6 @@ class PaginationTest extends TestCase
         static::assertEqualsCanonicalizing($dataOut, $data);
     }
 
-    /**
-     * @return array
-     */
     public static function dataRenderHtml(): array
     {
         return [
@@ -911,10 +887,6 @@ class PaginationTest extends TestCase
     /**
      * @dataProvider dataRenderHtml
      *
-     * @param array  $configuration
-     * @param array  $params
-     * @param string $expectedHtml
-     *
      * @throws PaginationException
      */
     #[DataProvider('dataRenderHtml')]
@@ -926,9 +898,6 @@ class PaginationTest extends TestCase
         static::assertSame($expectedHtml, $html);
     }
 
-    /**
-     * @return array
-     */
     public static function dataCountPages(): array
     {
         return [
@@ -941,10 +910,6 @@ class PaginationTest extends TestCase
 
     /**
      * @dataProvider dataCountPages
-     *
-     * @param int $countElements
-     * @param int $countElementPerPage
-     * @param int $expected
      */
     #[DataProvider('dataCountPages')]
     public function testCountPages(int $countElements, int $countElementPerPage, int $expected): void
@@ -952,9 +917,6 @@ class PaginationTest extends TestCase
         static::assertSame($expected, Pagination::countPages($countElements, $countElementPerPage));
     }
 
-    /**
-     * @return array
-     */
     public static function dataLocateItemInPage(): array
     {
         return [
@@ -971,10 +933,6 @@ class PaginationTest extends TestCase
 
     /**
      * @dataProvider dataLocateItemInPage
-     *
-     * @param int $countElementPerPage
-     * @param int $itemIndex
-     * @param int $expected
      */
     #[DataProvider('dataLocateItemInPage')]
     public function testLocateItemInPage(int $countElementPerPage, int $itemIndex, int $expected): void
@@ -1018,9 +976,6 @@ class PaginationTest extends TestCase
 
     /**
      * @dataProvider dataPaginationException
-     *
-     * @param array  $conf
-     * @param string $message
      *
      * @throws PaginationException
      */
