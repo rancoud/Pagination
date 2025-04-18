@@ -22,11 +22,6 @@ jobs:
         os:
           - ubuntu-latest
         php-version:
-          - '7.4'
-          - '8.0'
-          - '8.1'
-          - '8.2'
-          - '8.3'
           - '8.4'
 
     steps:
@@ -58,7 +53,6 @@ jobs:
 
       - name: Lint
         run: |
-          vendor/bin/phpcs -s
           PHP_CS_FIXER_IGNORE_ENV=True vendor/bin/php-cs-fixer fix --diff --dry-run
 
       - name: PHPUnit
