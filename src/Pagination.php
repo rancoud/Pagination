@@ -13,276 +13,172 @@ use Rancoud\Security\SecurityException;
 class Pagination
 {
     // region Properties: Calculations
-    /**
-     * @var int Current page
-     */
+    /** @var int Current page */
     protected int $currentPage = 1;
 
-    /**
-     * @var int Number of "elements"
-     */
+    /** @var int Number of "elements" */
     protected int $countElements = 0;
 
-    /**
-     * @var int Number of "elements" per page
-     */
+    /** @var int Number of "elements" per page */
     protected int $countElementPerPage = 0;
 
-    /**
-     * @var int Maximum pages
-     */
+    /** @var int Maximum pages */
     protected int $maxPages = 0;
 
-    /**
-     * @var int Number of pair pages at the limit
-     */
+    /** @var int Number of pair pages at the limit */
     protected int $countPagesPairLimit = 0;
 
-    /**
-     * @var int Number of pair pages next to the current page
-     */
+    /** @var int Number of pair pages next to the current page */
     protected int $countPagesPairAdjacent = 2;
     // endregion
 
     // region Properties: Links
-    /**
-     * @var string Base URL
-     */
+    /** @var string Base URL */
     protected string $url = '';
     // endregion
 
     // region Properties: Texts
-    /**
-     * @var string Text for previous page
-     */
+    /** @var string Text for previous page */
     protected string $textPrevious = 'Previous page';
 
-    /**
-     * @var string Text for next page
-     */
+    /** @var string Text for next page */
     protected string $textNext = 'Next page';
 
-    /**
-     * @var string Text for dots
-     */
+    /** @var string Text for dots */
     protected string $textDots = '…';
 
-    /**
-     * @var string Text for page
-     */
+    /** @var string Text for page */
     protected string $textPage = '{{PAGE}}';
 
-    /**
-     * @var string Text for aria label on link
-     */
+    /** @var string Text for aria label on link */
     protected string $ariaLabelLink = 'Page {{PAGE}}';
 
-    /**
-     * @var string Text for aria label on current link
-     */
+    /** @var string Text for aria label on current link */
     protected string $ariaLabelCurrentLink = 'Page {{PAGE}}';
 
-    /**
-     * @var string Text for aria label on nav HTML tag
-     */
+    /** @var string Text for aria label on nav HTML tag */
     protected string $ariaLabelNav = 'Pagination';
 
-    /**
-     * @var string Text for aria label on previous
-     */
+    /** @var string Text for aria label on previous */
     protected string $ariaLabelPrevious = 'Previous page';
 
-    /**
-     * @var string Text for aria label on next
-     */
+    /** @var string Text for aria label on next */
     protected string $ariaLabelNext = 'Next page';
 
-    /**
-     * @var string Text for thousands separator
-     */
+    /** @var string Text for thousands separator */
     protected string $thousandsSeparator = '';
     // endregion
 
     // region Properties: Generation
-    /**
-     * @var Item|null Previous item
-     */
+    /** @var Item|null Previous item */
     protected ?Item $previous = null;
 
-    /**
-     * @var Item[] List of items
-     */
+    /** @var Item[] List of items */
     protected array $items = [];
 
-    /**
-     * @var Item|null Next item
-     */
+    /** @var Item|null Next item */
     protected ?Item $next = null;
 
-    /**
-     * @var bool Is use dots
-     */
+    /** @var bool Is use dots */
     protected bool $useDots = false;
 
-    /**
-     * @var bool Is use previous
-     */
+    /** @var bool Is use previous */
     protected bool $usePrevious = false;
 
-    /**
-     * @var bool Is always use previous
-     */
+    /** @var bool Is always use previous */
     protected bool $alwaysUsePrevious = false;
 
-    /**
-     * @var bool Is use next
-     */
+    /** @var bool Is use next */
     protected bool $useNext = false;
 
-    /**
-     * @var bool Is always use next
-     */
+    /** @var bool Is always use next */
     protected bool $alwaysUseNext = false;
 
-    /**
-     * @var bool Is show all links
-     */
+    /** @var bool Is show all links */
     protected bool $showAllLinks = false;
 
-    /**
-     * @var bool Is use pretty HTML
-     */
+    /** @var bool Is use pretty HTML */
     protected bool $usePrettyHtml = true;
 
-    /**
-     * @var int Initial indentation for HTML rendering
-     */
+    /** @var int Initial indentation for HTML rendering */
     protected int $htmlInitialIndentation = 0;
 
-    /**
-     * @var string Text for HTML tab sequence
-     */
+    /** @var string Text for HTML tab sequence */
     protected string $htmlTabSequence = "\t";
 
-    /**
-     * @var bool Is use nav HTML tag
-     */
+    /** @var bool Is use nav HTML tag */
     protected bool $useNav = true;
     // endregion
 
     // region Properties: Tags Parameters
-    /**
-     * @var string Nav HTML attributes
-     */
+    /** @var string Nav HTML attributes */
     protected string $navAttrs = '';
 
-    /**
-     * @var string Root list HTML tag
-     */
+    /** @var string Root list HTML tag */
     protected string $rootTag = 'ul';
 
-    /**
-     * @var string Root list HTML attributes
-     */
+    /** @var string Root list HTML attributes */
     protected string $rootAttrs = '';
 
-    /**
-     * @var string Item HTML tag
-     */
+    /** @var string Item HTML tag */
     protected string $itemTag = 'li';
 
-    /**
-     * @var string Item HTML attributes
-     */
+    /** @var string Item HTML attributes */
     protected string $itemAttrs = '';
 
-    /**
-     * @var string Current item HTML attributes
-     */
+    /** @var string Current item HTML attributes */
     protected string $itemAttrsCurrent = '';
 
-    /**
-     * @var string Next item HTML attributes
-     */
+    /** @var string Next item HTML attributes */
     protected string $itemNextAttrs = '';
 
-    /**
-     * @var string Next item HTML attributes when disabled
-     */
+    /** @var string Next item HTML attributes when disabled */
     protected string $itemNextAttrsDisabled = '';
 
-    /**
-     * @var string Previous item HTML attributes
-     */
+    /** @var string Previous item HTML attributes */
     protected string $itemPreviousAttrs = '';
 
-    /**
-     * @var string Previous item HTML attributes when disabled
-     */
+    /** @var string Previous item HTML attributes when disabled */
     protected string $itemPreviousAttrsDisabled = '';
 
-    /**
-     * @var string Item dots HTML attributes
-     */
+    /** @var string Item dots HTML attributes */
     protected string $itemDotsAttrs = '';
 
-    /**
-     * @var string Link HTML tag
-     */
+    /** @var string Link HTML tag */
     protected string $linkTag = 'a';
 
-    /**
-     * @var string Link HTML attributes
-     */
+    /** @var string Link HTML attributes */
     protected string $linkAttrs = '';
 
-    /**
-     * @var string Current link HTML attributes
-     */
+    /** @var string Current link HTML attributes */
     protected string $linkAttrsCurrent = '';
 
-    /**
-     * @var string Next link HTML attributes when disabled
-     */
+    /** @var string Next link HTML attributes when disabled */
     protected string $linkNextAttrsDisabled = '';
 
-    /**
-     * @var string Previous link HTML attributes when disabled
-     */
+    /** @var string Previous link HTML attributes when disabled */
     protected string $linkPreviousAttrsDisabled = '';
 
-    /**
-     * @var string Dot item HTML tag
-     */
+    /** @var string Dot item HTML tag */
     protected string $dotTag = 'span';
 
-    /**
-     * @var string Dot item HTML attributes
-     */
+    /** @var string Dot item HTML attributes */
     protected string $dotAttrs = '';
     // endregion
 
     // region Properties: Security
-    /**
-     * @var bool Escape attributes
-     */
+    /** @var bool Escape attributes */
     protected bool $escAttr = true;
 
-    /**
-     * @var bool Escape HTML
-     */
+    /** @var bool Escape HTML */
     protected bool $escHtml = true;
 
-    /**
-     * @var string Charset for escaping HTML and HTML attributes
-     */
+    /** @var string Charset for escaping HTML and HTML attributes */
     protected string $charset = 'UTF-8';
     // endregion
 
     // region Configuration keys
-    /**
-     * @var array List of strings values according to prop name
-     */
+    /** @var array List of strings values according to prop name */
     protected array $propsString = [
         'url'                          => 'url',
         'text_previous'                => 'textPrevious',
@@ -317,9 +213,7 @@ class Pagination
         'charset'                      => 'charset'
     ];
 
-    /**
-     * @var array List of bools values according to prop name
-     */
+    /** @var array List of bools values according to prop name */
     protected array $propsBool = [
         'use_dots'              => 'useDots',
         'use_previous'          => 'usePrevious',
@@ -333,9 +227,7 @@ class Pagination
         'esc_html'              => 'escHtml'
     ];
 
-    /**
-     * @var array List of integers values according to prop name
-     */
+    /** @var array List of integers values according to prop name */
     protected array $propsPositiveInteger = [
         'count_pages_pair_limit'    => 'countPagesPairLimit',
         'count_pages_pair_adjacent' => 'countPagesPairAdjacent',
@@ -610,12 +502,14 @@ class Pagination
             if ($idxPages === $this->currentPage) {
                 $this->items[] = $this->computeItem($idxPages, true);
                 $canAddDot = true;
+
                 continue;
             }
 
             if ($this->showAllLinks || $this->isLimit($idxPages) || $this->isAdjacent($idxPages)) {
                 $this->items[] = $this->computeItem($idxPages);
                 $canAddDot = true;
+
                 continue;
             }
 
@@ -626,9 +520,7 @@ class Pagination
         }
     }
 
-    /**
-     * Returns if page is limit.
-     */
+    /** Returns if page is limit. */
     protected function isLimit(int $page): bool
     {
         $inLimitLeft = $page <= $this->countPagesPairLimit;
@@ -637,9 +529,7 @@ class Pagination
         return $inLimitLeft || $inLimitRight;
     }
 
-    /**
-     * Returns if page is adjacent.
-     */
+    /** Returns if page is adjacent. */
     protected function isAdjacent(int $page): bool
     {
         $inIntervalLeft = $page >= $this->currentPage - $this->countPagesPairAdjacent;
@@ -713,9 +603,7 @@ class Pagination
         return $item;
     }
 
-    /**
-     * Returns URL.
-     */
+    /** Returns URL. */
     protected function getURL(int $page): string
     {
         if ($this->url === '') {
@@ -788,9 +676,7 @@ class Pagination
         return $html;
     }
 
-    /**
-     * Returns item HTML output.
-     */
+    /** Returns item HTML output. */
     protected function generateLinkFactory(?Item $item): string
     {
         if ($item === null) {
