@@ -9,48 +9,30 @@ namespace Rancoud\Pagination;
  */
 class Item
 {
-    /**
-     * @var string Aria label
-     */
+    /** @var string Aria label */
     public string $ariaLabel = '';
 
-    /**
-     * @var string Href attribute
-     */
+    /** @var string Href attribute */
     public string $href = '';
 
-    /**
-     * @var string Item HTML attributes
-     */
+    /** @var string Item HTML attributes */
     public string $itemAttrs = '';
 
-    /**
-     * @var string Link HTML attributes
-     */
+    /** @var string Link HTML attributes */
     public string $linkAttrs = '';
 
-    /**
-     * @var string Text to display
-     */
+    /** @var string Text to display */
     public string $text = '';
 
-    /**
-     * @var bool Is Current
-     */
+    /** @var bool Is Current */
     public bool $isCurrent = false;
 
-    /**
-     * @var bool Is Dots
-     */
+    /** @var bool Is Dots */
     public bool $isDots = false;
 
-    /**
-     * @var bool Is Disabled
-     */
+    /** @var bool Is Disabled */
     public bool $isDisabled = false;
 
-    /**
-     * @var int Page
-     */
+    /** @var int Page */
     public int $page = 0;
 }
