@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Rancoud\Pagination;
 
-/**
- * Class Item.
- */
 class Item
 {
     /** @var string Aria label */
