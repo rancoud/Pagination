@@ -4,30 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02661172b250a2c634cda6116178631f",
+    "content-hash": "6665082a7b51779dc91582c04a1b619a",
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "3.1.2",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "62f9d6f006df4f0382f2cc0f03a1f0d319f64999"
+                "reference": "b6eaaa8b0da41616e82015bee39a433bf68e1413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/62f9d6f006df4f0382f2cc0f03a1f0d319f64999",
-                "reference": "62f9d6f006df4f0382f2cc0f03a1f0d319f64999",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/b6eaaa8b0da41616e82015bee39a433bf68e1413",
+                "reference": "b6eaaa8b0da41616e82015bee39a433bf68e1413",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=7.4.0"
+                "php": ">=8.4.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16 || ^3.0",
-                "phpunit/phpunit": "^9.1 || ^10.0 || ^11.0",
-                "squizlabs/php_codesniffer": "^3.5"
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "phpunit/phpunit": "^12.0"
             },
             "type": "library",
             "autoload": {
@@ -48,9 +47,9 @@
             "description": "Security package",
             "support": {
                 "issues": "https://github.com/rancoud/Security/issues",
-                "source": "https://github.com/rancoud/Security/tree/3.1.2"
+                "source": "https://github.com/rancoud/Security/tree/4.0.0"
             },
-            "time": "2024-12-07T19:25:13+00:00"
+            "time": "2025-04-20T17:30:40+00:00"
         }
     ],
     "packages-dev": [
