@@ -12,11 +12,7 @@ use Rancoud\Pagination\Item;
 use Rancoud\Pagination\Pagination;
 use Rancoud\Pagination\PaginationException;
 
-/**
- * Class PaginationTest.
- *
- * @internal
- */
+/** @internal */
 class PaginationTest extends TestCase
 {
     /** @throws PaginationException */

@@ -7,9 +7,6 @@ namespace Rancoud\Pagination;
 use Rancoud\Security\Security;
 use Rancoud\Security\SecurityException;
 
-/**
- * Class Pagination.
- */
 class Pagination
 {
     // region Properties: Calculations
