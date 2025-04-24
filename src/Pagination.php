@@ -418,18 +418,18 @@ class Pagination
         }
 
         $this->previous->ariaLabel = $this->ariaLabelPrevious;
-        $this->previous->ariaLabel = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->ariaLabel); // phpcs:ignore
+        $this->previous->ariaLabel = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->ariaLabel);
         if ($this->escAttr) {
             try {
                 $this->previous->ariaLabel = Security::escAttr($this->previous->ariaLabel, $this->charset);
                 $this->previous->href = Security::escAttr($this->previous->href, $this->charset);
             } catch (SecurityException $e) {
-                throw new PaginationException('could not escAttr "previous" aria label or "previous" href: ' . $e->getMessage()); // phpcs:ignore
+                throw new PaginationException('could not escAttr "previous" aria label or "previous" href: ' . $e->getMessage());
             }
         }
 
-        $this->previous->itemAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->itemAttrs); // phpcs:ignore
-        $this->previous->linkAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->linkAttrs); // phpcs:ignore
+        $this->previous->itemAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->itemAttrs);
+        $this->previous->linkAttrs = \str_replace('{{PAGE}}', (string) $this->previous->page, $this->previous->linkAttrs);
     }
 
     /**
@@ -479,7 +479,7 @@ class Pagination
                 $this->next->ariaLabel = Security::escAttr($this->next->ariaLabel, $this->charset);
                 $this->next->href = Security::escAttr($this->next->href, $this->charset);
             } catch (SecurityException $e) {
-                throw new PaginationException('could not escAttr "next" aria label or "next" href: ' . $e->getMessage()); // phpcs:ignore
+                throw new PaginationException('could not escAttr "next" aria label or "next" href: ' . $e->getMessage());
             }
         }
 
@@ -593,7 +593,7 @@ class Pagination
                 $item->ariaLabel = Security::escAttr($item->ariaLabel, $this->charset);
                 $item->href = Security::escAttr($item->href, $this->charset);
             } catch (SecurityException $e) {
-                throw new PaginationException('could not escAttr "item" aria label or "item" href: ' . $e->getMessage()); // phpcs:ignore
+                throw new PaginationException('could not escAttr "item" aria label or "item" href: ' . $e->getMessage());
             }
         }
 

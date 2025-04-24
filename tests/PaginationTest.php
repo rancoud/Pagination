@@ -537,7 +537,7 @@ class PaginationTest extends TestCase
             ],
             'params'   => $params,
             'dataOut'  => [
-                'links' => \array_merge($limitPagesLeft, $adjacentPagesLeft, $currentPage, $adjacentPagesRight, $limitPagesRight), // phpcs:ignore
+                'links' => \array_merge($limitPagesLeft, $adjacentPagesLeft, $currentPage, $adjacentPagesRight, $limitPagesRight),
             ]
         ];
     }
@@ -588,7 +588,7 @@ class PaginationTest extends TestCase
             'expectedHtml' => '				<nav aria-label="Pagination">' . \PHP_EOL .
                 '					<ul>' . \PHP_EOL .
                 '						<li>' . \PHP_EOL .
-                '							<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL . // phpcs:ignore
+                '							<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL .
                 '						</li>' . \PHP_EOL .
                 '						<li>' . \PHP_EOL .
                 '							<a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
@@ -610,7 +610,7 @@ class PaginationTest extends TestCase
             'expectedHtml' => '                <nav aria-label="Pagination">' . \PHP_EOL .
                 '                    <ul>' . \PHP_EOL .
                 '                        <li>' . \PHP_EOL .
-                '                            <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL . // phpcs:ignore
+                '                            <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL .
                 '                        </li>' . \PHP_EOL .
                 '                        <li>' . \PHP_EOL .
                 '                            <a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
@@ -632,7 +632,7 @@ class PaginationTest extends TestCase
             ],
             'expectedHtml' => '                <ul>' . \PHP_EOL .
                 '                    <li>' . \PHP_EOL .
-                '                        <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL . // phpcs:ignore
+                '                        <a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL .
                 '                    </li>' . \PHP_EOL .
                 '                    <li>' . \PHP_EOL .
                 '                        <a href="2" aria-label="Page&#x20;2">2</a>' . \PHP_EOL .
@@ -661,7 +661,7 @@ class PaginationTest extends TestCase
                 '                        <a href="1" aria-label="Page&#x20;1">1</a>' . \PHP_EOL .
                 '                    </li>' . \PHP_EOL .
                 '                    <li>' . \PHP_EOL .
-                '                        <a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>' . \PHP_EOL . // phpcs:ignore
+                '                        <a href="&#x23;" aria-label="Page&#x20;2" aria-current="page">2</a>' . \PHP_EOL .
                 '                    </li>' . \PHP_EOL .
                 '                    <li>' . \PHP_EOL .
                 '                        <a href="3" aria-label="Page&#x20;3">3</a>' . \PHP_EOL .
@@ -704,19 +704,19 @@ class PaginationTest extends TestCase
             'expectedHtml' => '<nav aria-label="plop" class="pagination">' . \PHP_EOL .
                 '	<root x="f(x)">' . \PHP_EOL .
                 '		<item previous>' . \PHP_EOL .
-                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>' . \PHP_EOL . // phpcs:ignore
+                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="aria-&#x524D;">前</zela>' . \PHP_EOL .
                 '		</item>' . \PHP_EOL .
                 '		<item class="okay">' . \PHP_EOL .
-                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>' . \PHP_EOL . // phpcs:ignore
+                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1" aria-label="&#x9801;&#x20;-&gt;&#x20;1">1</zela>' . \PHP_EOL .
                 '		</item>' . \PHP_EOL .
                 '		<item data-id="yes">' . \PHP_EOL .
-                '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="page">2</zela>' . \PHP_EOL . // phpcs:ignore
+                '			<zela data-id="id" href="&#x23;" aria-label="&#x9801;&#x20;-&#x20;2" aria-current="page">2</zela>' . \PHP_EOL .
                 '		</item>' . \PHP_EOL .
                 '		<item class="okay">' . \PHP_EOL .
-                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>' . \PHP_EOL . // phpcs:ignore
+                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="&#x9801;&#x20;-&gt;&#x20;3">3</zela>' . \PHP_EOL .
                 '		</item>' . \PHP_EOL .
                 '		<item next>' . \PHP_EOL .
-                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="aria-&#x6B21;">次</zela>' . \PHP_EOL . // phpcs:ignore
+                '			<zela data-data="o" href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3" aria-label="aria-&#x6B21;">次</zela>' . \PHP_EOL .
                 '		</item>' . \PHP_EOL .
                 '	</root>' . \PHP_EOL .
                 '</nav>'
@@ -766,13 +766,13 @@ class PaginationTest extends TestCase
             'expectedHtml' => '<nav aria-label="Pagination">' . \PHP_EOL .
                 '	<ul>' . \PHP_EOL .
                 '		<li item_previous_attrs_disabled>' . \PHP_EOL .
-                '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="&#x23;" aria-label="Previous&#x20;page" aria-disabled="true">Previous page</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
                 '			<a href="&#x23;" aria-label="Page&#x20;1" aria-current="page">1</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li item_next_attrs_disabled>' . \PHP_EOL .
-                '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="&#x23;" aria-label="Next&#x20;page" aria-disabled="true">Next page</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '	</ul>' . \PHP_EOL .
                 '</nav>'
@@ -848,31 +848,31 @@ class PaginationTest extends TestCase
                 'count'    => 3000,
                 'per_page' => 1
             ],
-            'expectedHtml' => '<nav aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">' . \PHP_EOL . // phpcs:ignore
+            'expectedHtml' => '<nav aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">' . \PHP_EOL .
                 '	<ul>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;1&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 1</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="page">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="&#x23;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;" aria-current="page">&lt;script&gt;alert(1);&lt;&#47;script&gt; 2</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;4&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;4&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 4</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li aria-hidden="true">' . \PHP_EOL .
                 '			<span>&lt;script&gt;alert(1);&lt;&#47;script&gt;</span>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3000&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3000&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt; 3&lt;script&gt;alert(1);&lt;&#47;script&gt;000</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '		<li>' . \PHP_EOL .
-                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . \PHP_EOL . // phpcs:ignore
+                '			<a href="https&#x3A;&#x2F;&#x2F;example.com&#x2F;3&#x2F;&quot;&#x20;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&#x20;" aria-label="&quot;&lt;script&gt;alert&#x28;1&#x29;&#x3B;&lt;&#x2F;script&gt;&quot;">&lt;script&gt;alert(1);&lt;&#47;script&gt;</a>' . \PHP_EOL .
                 '		</li>' . \PHP_EOL .
                 '	</ul>' . \PHP_EOL .
                 '</nav>'
@@ -935,17 +935,17 @@ class PaginationTest extends TestCase
     {
         yield 'aria_label_nav' => [
             'conf'    => ['aria_label_nav' => \chr(99999999)],
-            'message' => 'could not escAttr "nav" aria label: String to convert is not valid for the specified charset' // phpcs:ignore
+            'message' => 'could not escAttr "nav" aria label: String to convert is not valid for the specified charset'
         ];
 
         yield 'text_previous' => [
             'conf'    => ['text_previous' => \chr(99999999), 'always_use_previous' => true],
-            'message' => 'could not escHTML "previous" text: String to convert is not valid for the specified charset' // phpcs:ignore
+            'message' => 'could not escHTML "previous" text: String to convert is not valid for the specified charset'
         ];
 
         yield 'aria_label_previous' => [
             'conf'    => ['aria_label_previous' => \chr(99999999), 'always_use_previous' => true],
-            'message' => 'could not escAttr "previous" aria label or "previous" href: String to convert is not valid for the specified charset' // phpcs:ignore
+            'message' => 'could not escAttr "previous" aria label or "previous" href: String to convert is not valid for the specified charset'
         ];
 
         yield 'text_next' => [
@@ -955,17 +955,17 @@ class PaginationTest extends TestCase
 
         yield 'aria_label_next' => [
             'conf'    => ['aria_label_next' => \chr(99999999), 'always_use_next' => true],
-            'message' => 'could not escAttr "next" aria label or "next" href: String to convert is not valid for the specified charset' // phpcs:ignore
+            'message' => 'could not escAttr "next" aria label or "next" href: String to convert is not valid for the specified charset'
         ];
 
         yield 'aria_label_link' => [
             'conf'    => ['aria_label_link' => \chr(99999999)],
-            'message' => 'could not escAttr "item" aria label or "item" href: String to convert is not valid for the specified charset' // phpcs:ignore
+            'message' => 'could not escAttr "item" aria label or "item" href: String to convert is not valid for the specified charset'
         ];
 
         yield 'text_page' => [
             'conf'    => ['text_page' => \chr(99999999)],
-            'message' => 'could not escHTML "item" text: String to convert is not valid for the specified charset' // phpcs:ignore
+            'message' => 'could not escHTML "item" text: String to convert is not valid for the specified charset'
         ];
     }
 
