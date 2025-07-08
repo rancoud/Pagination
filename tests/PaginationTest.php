@@ -107,7 +107,7 @@ class PaginationTest extends TestCase
         static::assertEqualsCanonicalizing($out, $data);
     }
 
-    public static function provideCeilDataCases(): iterable
+    public static function provideIncorrectCeilComputeDataCases(): iterable
     {
         $configuration = [
             'use_previous' => true,
@@ -299,7 +299,7 @@ class PaginationTest extends TestCase
     }
 
     /** @throws PaginationException */
-    #[DataProvider('provideCeilDataCases')]
+    #[DataProvider('provideIncorrectCeilComputeDataCases')]
     public function testIncorrectCeilCompute(array $configuration, array $params, array $dataOut): void
     {
         $p = new Pagination();
