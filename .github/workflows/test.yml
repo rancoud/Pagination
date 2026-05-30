@@ -63,7 +63,7 @@ jobs:
 
       - name: PHPUnit
         run: |
-          vendor/bin/phpunit --colors --display-deprecation --coverage-text --coverage-clover coverage/clover.xml
+          vendor/bin/phpunit --colors --display-all-issues --coverage-text --coverage-clover coverage/clover.xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v6
