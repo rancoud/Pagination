@@ -936,37 +936,37 @@ class PaginationTest extends TestCase
     public static function provideExceptionDataCases(): iterable
     {
         yield 'aria_label_nav' => [
-            'conf'    => ['aria_label_nav' => \chr(99999999)],
+            'conf'    => ['aria_label_nav' => "\xFF"],
             'message' => 'could not escAttr "nav" aria label: String to convert is not valid for the specified charset'
         ];
 
         yield 'text_previous' => [
-            'conf'    => ['text_previous' => \chr(99999999), 'always_use_previous' => true],
+            'conf'    => ['text_previous' => "\xFF", 'always_use_previous' => true],
             'message' => 'could not escHTML "previous" text: String to convert is not valid for the specified charset'
         ];
 
         yield 'aria_label_previous' => [
-            'conf'    => ['aria_label_previous' => \chr(99999999), 'always_use_previous' => true],
+            'conf'    => ['aria_label_previous' => "\xFF", 'always_use_previous' => true],
             'message' => 'could not escAttr "previous" aria label or "previous" href: String to convert is not valid for the specified charset'
         ];
 
         yield 'text_next' => [
-            'conf'    => ['text_next' => \chr(99999999), 'always_use_next' => true],
+            'conf'    => ['text_next' => "\xFF", 'always_use_next' => true],
             'message' => 'could not escHTML "next" text: String to convert is not valid for the specified charset'
         ];
 
         yield 'aria_label_next' => [
-            'conf'    => ['aria_label_next' => \chr(99999999), 'always_use_next' => true],
+            'conf'    => ['aria_label_next' => "\xFF", 'always_use_next' => true],
             'message' => 'could not escAttr "next" aria label or "next" href: String to convert is not valid for the specified charset'
         ];
 
         yield 'aria_label_link' => [
-            'conf'    => ['aria_label_link' => \chr(99999999)],
+            'conf'    => ['aria_label_link' => "\xFF"],
             'message' => 'could not escAttr "item" aria label or "item" href: String to convert is not valid for the specified charset'
         ];
 
         yield 'text_page' => [
-            'conf'    => ['text_page' => \chr(99999999)],
+            'conf'    => ['text_page' => "\xFF"],
             'message' => 'could not escHTML "item" text: String to convert is not valid for the specified charset'
         ];
     }
