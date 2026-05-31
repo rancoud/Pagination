@@ -38,7 +38,7 @@
             "php-cs-fixer fix -vvv"
         ],
         "test": [
-            "phpunit --colors --coverage-html ./coverage"
+            "phpunit --colors --display-all-issues --coverage-html ./coverage"
         ]
     }
 }

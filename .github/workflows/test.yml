@@ -8,12 +8,13 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  push:
-    paths-ignore:
-      - '**.md'
   pull_request:
     paths-ignore:
       - '**.md'
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
   test:
@@ -26,6 +27,7 @@ jobs:
           - ubuntu-latest
         php-version:
           - '8.4'
+          - '8.5'
 
     steps:
       - name: Checkout
@@ -55,12 +57,13 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Lint
+        if: matrix.php-version == '8.4'
         run: |
-          PHP_CS_FIXER_IGNORE_ENV=True vendor/bin/php-cs-fixer fix --diff --dry-run
+          vendor/bin/php-cs-fixer fix --diff --dry-run
 
       - name: PHPUnit
         run: |
-          vendor/bin/phpunit --colors --coverage-text --coverage-clover coverage/clover.xml
+          vendor/bin/phpunit --colors --display-all-issues --coverage-text --coverage-clover coverage/clover.xml
 
       - name: Upload coverage
         uses: codecov/codecov-action@v6
