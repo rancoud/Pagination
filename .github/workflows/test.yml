@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
+          - ubuntu-26.04
         php-version:
           - '8.4'
           - '8.5'
@@ -67,10 +67,3 @@ jobs:
       - name: PHPUnit
         run: |
           vendor/bin/phpunit --colors --display-all-issues --coverage-text --coverage-clover coverage/clover.xml
-
-      - name: Upload coverage
-        uses: codecov/codecov-action@v6
-        if: success()
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/clover.xml
