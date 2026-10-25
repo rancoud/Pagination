@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbfd814f7c1501acd212af3af6a9b585",
+    "content-hash": "c98cd81ecaa730317e5482ab97556c09",
     "packages": [
         {
             "name": "rancoud/security",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rancoud/Security.git",
-                "reference": "dc7fecf10cd98fb5dda8cb05ef2ed763a0ea6767"
+                "reference": "6aced2bc4b203f3d452143a233f231123304867d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rancoud/Security/zipball/dc7fecf10cd98fb5dda8cb05ef2ed763a0ea6767",
-                "reference": "dc7fecf10cd98fb5dda8cb05ef2ed763a0ea6767",
+                "url": "https://api.github.com/repos/rancoud/Security/zipball/6aced2bc4b203f3d452143a233f231123304867d",
+                "reference": "6aced2bc4b203f3d452143a233f231123304867d",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=8.4.0"
+                "php": "^8.4.27 || ^8.5.12 || ^8.6.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.95.1",
@@ -47,9 +47,9 @@
             "description": "Security package",
             "support": {
                 "issues": "https://github.com/rancoud/Security/issues",
-                "source": "https://github.com/rancoud/Security/tree/4.0.3"
+                "source": "https://github.com/rancoud/Security/tree/4.0.4"
             },
-            "time": "2026-06-01T21:43:16+00:00"
+            "time": "2026-10-25T13:52:59+00:00"
         }
     ],
     "packages-dev": [

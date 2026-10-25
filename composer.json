@@ -22,7 +22,7 @@
     },
     "require": {
         "php": "^8.4.27 || ^8.5.12 || ^8.6.0",
-        "rancoud/security": "4.0.3",
+        "rancoud/security": "4.0.4",
         "ext-mbstring": "*"
     },
     "require-dev": {
