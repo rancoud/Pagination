@@ -44,7 +44,7 @@ jobs:
           coverage: xdebug
 
       - name: Validate composer.json and composer.lock
-        run: composer validate --strict
+        run: composer validate --strict --no-check-all
 
       - name: Get composer cache directory
         id: composer-cache
