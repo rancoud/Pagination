@@ -31,6 +31,7 @@ jobs:
         php-version:
           - '8.4'
           - '8.5'
+          - '8.6'
 
     steps:
       - name: Checkout
@@ -43,7 +44,7 @@ jobs:
           coverage: xdebug
 
       - name: Validate composer.json and composer.lock
-        run: composer validate
+        run: composer validate --strict
 
       - name: Get composer cache directory
         id: composer-cache
@@ -57,7 +58,10 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Composer audit
+        run: composer audit --no-interaction
 
       - name: Lint
         if: matrix.php-version == '8.4'
@@ -66,4 +70,4 @@ jobs:
 
       - name: PHPUnit
         run: |
-          vendor/bin/phpunit --colors --display-all-issues --coverage-text --coverage-clover coverage/clover.xml
+          vendor/bin/phpunit --colors --display-all-issues --coverage-text
